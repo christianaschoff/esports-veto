@@ -1,0 +1,53 @@
+@if(this.game(); as game) {
+<div>
+    <h2>{{ game.name }}</h2>
+    {{ game.description }}
+
+    <h2>Modus</h2>
+    <mat-button-toggle-group [ngModel]="this.state.modus()" name="modus" aria-label="Modus" (ngModelChange)="setModus($event)">
+        @for (val of game.gameModes; track val) {
+            <mat-button-toggle value={{val}}>{{ this.translateService.getGamemodeText(val)}}</mat-button-toggle>    
+        }
+    </mat-button-toggle-group>
+    <h2>Series</h2>
+    <mat-button-toggle-group [ngModel]="this.state.bestOf()" name="bestof" aria-label="Series" (ngModelChange)="setBestOf($event)">
+        @for (val of game.bestOf; track val) {
+            <mat-button-toggle value={{val}}>{{val}}</mat-button-toggle>
+        }
+    </mat-button-toggle-group>
+
+     @if (this.state.modus() !== GameModes.UNSET && this.state.bestOf() !== BestOf.UNSET) {        
+        <app-veto-system></app-veto-system>    
+        <app-mapslist></app-mapslist>
+        <app-additional-information></app-additional-information>
+
+        @if(this.state.vetoSystem()) {
+            <div class="primary-form">
+                @if (remoteService.isLoading()) {
+                    <div class="spinner-small">
+                        <mat-spinner [diameter]="42"></mat-spinner>
+                    </div>
+                }
+                @else {
+                    <button matFab extended class="to-upper" (click)="createVeto()"><mat-icon>bolt</mat-icon>create veto process</button> 
+                }
+
+            </div>
+            @if(createdConstellation(); as created) {                
+                <div id="veto-done">
+                    <h2>Veto for {{created.title}}</h2>
+                    <app-qrcode [data]="created.vetoId" [title]="'Admin'" [type]="ATTENDEE_TYPE.ADMIN"></app-qrcode>
+                    <app-qrcode [data]="created.playerAId" [title]="created.playerA" [type]="ATTENDEE_TYPE.PLAYER"></app-qrcode>
+                    <app-qrcode [data]="created.playerBId" [title]="created.playerB" [type]="ATTENDEE_TYPE.PLAYER"></app-qrcode>
+                    <app-qrcode [data]="created.vetoId" [title]="'Spectators'" [type]="ATTENDEE_TYPE.OBSERVER"></app-qrcode>
+                </div>
+            }
+        }
+    }
+    
+</div>
+} @else {
+<div>
+    no game found
+</div>
+}

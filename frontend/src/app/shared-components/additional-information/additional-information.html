@@ -1,0 +1,28 @@
+<div class="additional-visibiliy-container" [class.open]="isVisible()">
+    <div class="additional-visibiliy-content">
+        <h2>Additional infos</h2>
+        <div>These informations are completly <strong>optional</strong>, but will increase the user experience significantly.</div>
+        <div class="primary-form">    
+            <mat-form-field>
+                <mat-label>Match Title</mat-label>
+                <input matInput #title maxlength="50" placeholder="Title" value="" (change)="updateTitle(title.value)">
+                <mat-hint align="start"><strong>Title/Name of the Match</strong></mat-hint>
+                <mat-hint align="end">{{title.value.length}} / 50</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="primary-form">
+            <mat-form-field>
+                <mat-label>Name <strong>{{playerOrTeamname()}} A</strong></mat-label>
+                <input matInput #playera maxlength="25" placeholder="Name" value="" (change)="updatePlayerA(playera.value)">
+                <mat-hint align="start">Name <strong>{{playerOrTeamname()}} A</strong></mat-hint>
+                <mat-hint align="end">{{playera.value.length}} / 25</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Name <strong>{{playerOrTeamname()}} B</strong></mat-label>
+                <input matInput #playerb maxlength="25" placeholder="Name" value="" (change)="updatePlayerB(playerb.value)">
+                <mat-hint align="start">Name <strong>{{playerOrTeamname()}} B</strong></mat-hint>
+                <mat-hint align="end">{{playerb.value.length}} / 25</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

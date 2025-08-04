@@ -1,0 +1,49 @@
+@if (this.state.modus() !== GameModes.UNSET && this.state.bestOf() !== BestOf.UNSET) {
+        <h2>Veto-System</h2>
+        <div class="system-container">
+            <div class="system-toggle-container">                
+                <mat-radio-group class="system-radio-group" [ngModel]="this.state.vetoSystem()" (ngModelChange)="setVetoSystem($event)">
+                    <mat-radio-button value="ABBA">ABBA</mat-radio-button>
+                    <mat-radio-button value="ABAB">ABAB</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            @if(this.state.vetoSystem()) {
+                <div class="system-details">
+                    <h3> {{ this.state.vetoSystem() }} </h3>
+                    @if(isVetoDetailsVisible()) {
+                        <div class="takeplace">
+                            Vetos will take place the folling way for a {{ this.state.bestOf() }} 
+                        </div>
+                        <button matIconButton (click)="showHideVeto()"><mat-icon>visibility_off</mat-icon></button> 
+                    }
+                     @else {
+                        <div class="takeplace">
+                            Show Details how Vetos will take place for a {{ this.state.bestOf() }} 
+                        </div>                        
+                        <button matIconButton (click)="showHideVeto()"><mat-icon>visibility</mat-icon></button>
+                    }                                       
+                    
+                    <div class="veto-system-detail-container" [class.open]="isVetoDetailsVisible()">
+                        <div class="veto-system-detail-content">
+                            <mat-list>
+                                <div mat-subheader><strong>{{this.state.vetoTitle().toUpperCase()}}</strong></div>
+                            @for (veto of veto(); track veto.step) {
+                                <mat-list-item>
+                                    <mat-icon matListItemIcon class="icon-red">close</mat-icon>
+                                    <div matListItemTitle>{{veto.playerName}}</div>
+                                </mat-list-item>
+                            }
+                            <mat-divider></mat-divider>
+                            @for (pick of pick(); track pick.step) { 
+                                <mat-list-item>
+                                    <mat-icon matListItemIcon class="icon-green">check</mat-icon>
+                                    <div matListItemTitle>{{pick.playerName}}</div>
+                                </mat-list-item>
+                            }
+                            </mat-list>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }

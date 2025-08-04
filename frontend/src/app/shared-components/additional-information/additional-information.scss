@@ -1,0 +1,42 @@
+.primary-form {
+    display: flex;
+    justify-content: center;    
+    width: 100%;
+    mat-form-field {
+        margin: 0.3rem 0.1rem;
+        width: 100%;
+    }    
+    button {        
+        min-width: 16rem;
+        margin: 2rem 0;
+    }
+
+    .spinner-small {
+        margin-top: 2rem;
+    }
+}
+
+.to-upper {
+    text-transform: uppercase;
+}
+
+.additional-visibiliy-container {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows .5s;
+}
+
+.additional-visibiliy-container.open {
+    grid-template-rows: 1fr;
+}
+
+.additional-visibiliy-content {
+    min-height: 0;
+    transition: visibility .5s;
+    visibility: hidden;                               
+    overflow: hidden;
+}
+.additional-visibiliy-container.open .additional-visibiliy-content {
+    visibility: visible;
+}

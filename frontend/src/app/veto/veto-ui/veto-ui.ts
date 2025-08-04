@@ -1,0 +1,74 @@
+import { Component,  computed,  effect, inject, OnDestroy, OnInit,signal } from '@angular/core';
+import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { RemoteService } from '../../services/remote.service';
+import { ActivatedRoute } from '@angular/router';
+import { SignalrService } from '../../services/signalr.service';
+import { VetoStore } from '../../store/store';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MaplistVeto } from '../../shared-components/maplist-veto/maplist-veto';
+import { VetoStateDisplay } from '../../shared-components/veto-state-display/veto-state-display';
+import { VetoResult } from "../../shared-components/veto-result/veto-result";
+
+@Component({
+  selector: 'app-veto-ui',
+  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult],
+  templateUrl: './veto-ui.html',
+  styleUrl: './veto-ui.scss'
+})
+export class VetoUi implements OnInit, OnDestroy {
+
+  route = inject(ActivatedRoute);
+  remoteService = inject(RemoteService);
+  breadcrumbService = inject(BreadcrumbService);
+  vetohub = inject(SignalrService);
+  state = inject(VetoStore);
+
+  routeId = signal('');
+  attendee = signal('');
+
+  sessionGiven = computed(() => this.attendee() && this.routeId());
+
+  constructor() {
+    this.route.params.subscribe((params) => {
+      const attendee = params['attendee'];
+      const id = params['id'];
+      if(id && attendee) {
+        this.routeId.set(id);  
+        this.attendee.set(attendee);                
+        if(this.attendee() && this.routeId()) {
+          this.state.joinSession(this.attendee(), this.routeId());
+        }     
+      } else {        
+        this.state.reset();
+        this.routeId.set('');
+        this.attendee.set('');
+        this.vetohub.leave();
+      }
+    });
+    
+    effect(async () => {          
+      if(this.state.attendee() && this.state.attendee().vetoId) {
+        await this.vetohub.joinVetoHub(this.state.attendee().vetoId,this.state.attendee().userId, this.state.attendee().userName);
+        await this.state.loadByVetoId(this.state.attendee().vetoId);                
+      }        
+    });
+  }
+  ngOnDestroy(): void {
+    this.vetohub.leave();
+  }
+  
+  ngOnInit(): void {
+    this.breadcrumbService.addPath([{ path: '/veto', displayName: 'Veto' }]);
+  }
+  
+  handleMapSelection(selectedMap: string) {          
+      if(selectedMap) {
+        this.vetohub.updateVeto(this.state.attendee().vetoId, selectedMap);
+      }
+  }
+
+}

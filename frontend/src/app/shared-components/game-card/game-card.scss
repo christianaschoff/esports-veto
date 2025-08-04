@@ -1,0 +1,31 @@
+.game-card {
+    margin:10px;
+    max-width: 200px;
+    min-width: 200px;
+    opacity: 0.95;
+    transition: 0.3s;
+    cursor: pointer;
+    img {
+        max-height: 100px;        
+        transition: 0.3s;
+        opacity: 0.95;
+    }
+
+    &:hover {
+        background-color: var(--mat-sys-surface-dim);
+        opacity: 1;
+        img {
+            opacity: 1;
+        }         
+    }
+}
+
+.to-upper {
+    button {
+        text-transform: uppercase;
+    }
+}
+
+.example-header-image {  
+  background-size: cover;
+}

@@ -1,0 +1,53 @@
+.icon-green {
+    color: #006400!important;
+}
+
+.icon-red {
+    color: #ff0000!important;
+}
+
+.system-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .system-details {
+        h3 {
+            margin: 0.5rem 0rem;
+        }
+        .takeplace {
+            float: left; 
+            margin-top: .6rem; 
+            padding-right: .4rem;
+            min-width: 20rem;
+        }
+    }
+
+    .system-radio-group {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        align-items: flex-start;
+    }
+
+    .veto-system-detail-container {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 0.5s;
+    }
+
+    .veto-system-detail-container.open {
+          grid-template-rows: 1fr;
+    }
+
+    .veto-system-detail-content {
+        min-height: 0;
+        transition: visibility 0.5s;
+        visibility: hidden;        
+        overflow: hidden;
+    }
+    .veto-system-detail-container.open .veto-system-detail-content {
+    visibility: visible;
+    }
+
+}

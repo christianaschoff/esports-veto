@@ -1,0 +1,25 @@
+<div class="popup-container">
+    <div class="content">
+        <h3 role="reading">Your Map Selction</h3>
+        <h4>{{ data.mapname }}</h4>
+        
+        @if(data.mapimage) {            
+            <div class="map-selected-container">
+                <img class="map-selected" ngSrc="{{data.mapimage}}" width="400" height="240">
+            </div>
+        }
+
+        <button matFab extended class="to-upper" (click)="cancelPick()"><mat-icon>cancel</mat-icon>cancel</button>           
+
+        <div>
+            <mat-progress-bar
+                  class="countdown-bar"              
+                  [value]=this.value()
+                  >
+              </mat-progress-bar>
+        </div>
+
+    </div>
+
+</div>
+      

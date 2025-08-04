@@ -1,0 +1,18 @@
+.main-fullscreen {    
+    width: calc(100% - 2rem);    
+    margin-left: 2rem;
+}
+.main {    
+    max-width: 800px;    
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.main-fullscreen, .main {     
+    padding: 1rem;
+}
+
+app-footer {
+    background-color: #797187;
+}

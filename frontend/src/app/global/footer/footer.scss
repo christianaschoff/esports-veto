@@ -1,0 +1,23 @@
+    .bottommenu {
+        min-height:7rem;        
+        .menu {
+            max-width: 800px;        
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 2rem;
+            color: #efefef;
+            text-align: center;
+            a {
+                padding: 0rem 1rem;
+                color: #efefef;
+                img {
+                    position: relative;
+                    top: .4rem;
+                    width: 1.5rem;
+                }
+                .img-left {
+                    margin-left: .4rem;
+                }
+            }
+        }
+    }

@@ -1,0 +1,35 @@
+.mat-button-toggle-group {
+      width: 100%;
+
+}
+.mat-button-toggle {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+
+.primary-form {
+    display: flex;
+    justify-content: center;    
+    width: 100%;
+    mat-form-field {
+        margin: 0.3rem 0.1rem;
+        width: 100%;
+    }    
+    button {        
+        min-width: 16rem;
+        margin: 2rem 0;
+    }
+
+    .spinner-small {
+        margin-top: 2rem;
+    }
+}
+
+.to-upper {
+    text-transform: uppercase;
+}
+

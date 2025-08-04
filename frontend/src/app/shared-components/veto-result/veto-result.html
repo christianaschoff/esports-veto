@@ -1,0 +1,40 @@
+@if(this.isVetoDone()) {      
+<div class="result-container">
+    <h2>The veto results are</h2>
+    <div class="result-container-grid">
+            <div class="cell headline">No.</div> 
+            <div class="cell headline hideRowOnMobile">&nbsp;</div>
+            <div class="cell headline">Map</div>
+            <div class="cell headline">Picked by</div>
+    @for (item of this.vetoResult(); track item.no) { 
+        @if(item.veto) {
+            <div class="result-container-content">
+                <div class="cell ban">-</div>
+                <div class="cell ban hideRowOnMobile">&nbsp;</div>
+                <div class="cell ban">{{ item?.map?.name }}</div>
+                <div class="cell ban">{{ item.user }}</div>
+            </div>
+        } @else {
+            <div class="result-container-content">
+                <div class="cell"><div class="margin-50">{{ item.order }}</div></div>
+                <div class="cell hideRowOnMobile">
+                    <div class="image-container">
+                        @if(item?.map?.image) {
+                            <img ngSrc="{{item.map.image}}" width="200" height="120"
+                        placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAIAAADhM9qrAAAFtWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgeG1wOkNyZWF0ZURhdGU9IjIwMjUtMDctMTJUMTM6MTk6MzMrMDIwMCIKICAgeG1wOk1vZGlmeURhdGU9IjIwMjUtMDctMTJUMTM6MjY6MTkrMDI6MDAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjUtMDctMTJUMTM6MjY6MTkrMDI6MDAiCiAgIHBob3Rvc2hvcDpEYXRlQ3JlYXRlZD0iMjAyNS0wNy0xMlQxMzoxOTozMyswMjAwIgogICBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIgogICBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEi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">                        
+                        } @else {
+                            :sad:    
+                        }
+                    </div>
+                </div>
+                <div class="cell"><div class="pick margin-50">{{ item?.map?.name }}</div></div>
+                <div class="cell"><div class="margin-50">{{ item.user }}</div></div>
+            </div>
+        } 
+    }   
+    </div>
+    <div class="glhf">
+        <h2>Good luck and have fun!</h2>
+    </div>
+</div>
+}

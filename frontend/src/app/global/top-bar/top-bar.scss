@@ -1,0 +1,31 @@
+.topmenu {
+    min-height: 4rem;
+    background-color:#4b4357;
+
+    .menu {
+        color: #ffffff;
+        max-width: 800px;
+        min-height: 4rem;        
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+    }
+    .button {        
+        min-height:4rem;
+        min-width: 8rem;
+        margin: 0 0.2rem;            
+        background-color: #695f7a;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s;
+        &:hover {
+            background-color:#a494c1;
+            color: #ffffff;     
+            cursor: pointer;
+        }
+        div {
+            align-self: center;
+        }        
+    }
+
+}

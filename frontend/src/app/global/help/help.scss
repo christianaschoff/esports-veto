@@ -1,0 +1,19 @@
+.important {
+    font-weight: bolder;
+    color: #8a0000;
+}
+
+.keyboard-shortcut-container {
+    display: grid;
+    grid-template-columns: 8rem auto;
+    margin-bottom: 2rem;
+    .cell {        
+        align-self: stretch;
+        border-top: solid 1px darkgrey;
+        padding: .6rem 0rem;        
+    }
+
+    :nth-child(odd) {
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+}

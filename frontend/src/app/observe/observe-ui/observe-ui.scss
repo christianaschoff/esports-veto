@@ -1,0 +1,126 @@
+
+.pickban-container {
+    display: flex;
+    min-height: 14rem;    
+    flex-wrap: wrap;
+}
+
+.pickban-base-container {
+    background-color: #ffffff;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+}
+
+.pbbc-border {
+    border: solid 1px #000000;
+    padding: 0rem 2rem;
+}
+
+.pbbc-1080 {
+    min-width: 1920px;
+    min-height: 1080px;
+    max-width: 1920px;
+}
+
+.pbbc-720 {
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 1280px;
+}
+
+.pbc-1080 {
+    max-width: 1880px;
+}
+
+.pbc-720 {
+    max-width: 1180px;
+}
+
+.parallel-box {
+    width: 180px;
+    transition-property: opacity, transform;
+    transition-duration: 1000ms;
+    transition-delay: calc(600ms * var(--index));
+    
+    &.parallel-box-right {
+        @starting-style {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+    }
+
+    &.parallel-box-left {
+        @starting-style {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+    }
+
+    &.parallel-box-top {
+        @starting-style {
+            opacity: 0;
+            transform: translateY(-60px);
+        }
+    }
+
+    &.parallel-box-bottom {
+        @starting-style {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+    }
+
+    .parallel-mapname {            
+        padding-left: 1rem;
+        margin-bottom: 0.6rem;
+        margin-top: 0.6rem;
+        font-weight: bolder;
+    }
+        
+    .parallel-player {
+        text-align: right;
+        padding-right: 1rem;
+        margin-bottom: 0.6rem;
+        margin-top: 0.2rem;
+    }
+
+    .parallel-imagebox-red {
+        border: solid 3px rgb(222, 41, 41);
+    }
+    .parallel-imagebox-green {
+        border: solid 3px rgb(22, 116, 58);
+    }
+
+    .parallel-imagebox {
+        transform: skew(20deg);
+        border-radius: 10px;
+        width: 160px;
+        height: 120px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 0;
+        overflow: hidden;        
+        img { 
+            object-fit: cover;
+            position: relative;
+            left:-24px;            
+            transform: skew(-20deg);	
+        }
+    }
+}
+.control-buttons-container {
+    position: absolute;
+    top: 10rem;
+    left:0rem;
+    button {
+        margin: 0rem .2rem;
+    }
+
+}
+
+.open-settings {
+    position: absolute;
+    left: .2rem;
+    top: 5.2rem;
+}

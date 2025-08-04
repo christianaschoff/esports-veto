@@ -1,0 +1,77 @@
+@use '@angular/material'  as mat;
+* {
+  box-sizing: inherit;
+}
+
+html {
+    height:100%;
+    box-sizing: border-box;
+    @include mat.theme((      
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$orange-palette,
+      accent: mat.$orange-palette,
+      theme-type: light,
+    ),
+    typography: (plain-family: ("Roboto Condensed", "Helvetica Neue", sans-serif)),
+    density: 0));
+}
+
+a {
+    color: #202020;
+    display: inline-block;
+    &:hover {
+      color: #404040;
+    }
+}
+
+body {
+  height: 100%; 
+  margin: 0; 
+  font-family: "Roboto Condensed", "Helvetica Neue", sans-serif; 
+}
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4b4357;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),  
+    url(/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

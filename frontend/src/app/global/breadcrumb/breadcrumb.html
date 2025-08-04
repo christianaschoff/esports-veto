@@ -1,0 +1,12 @@
+@if(data() !== null && data().length > 0) {
+    <a [routerLink]="['/']" (click)="this.breadcrumbService.addPath([])">Home</a>
+    @for (elem of data(); track elem.path) {
+        @if(!elem.path) {
+            &raquo; {{elem.displayName}}            
+         }
+        @else if(elem.displayName) {
+            &raquo; <a [routerLink]="[elem.path]">{{elem.displayName}}</a>
+        }
+    }     
+}
+

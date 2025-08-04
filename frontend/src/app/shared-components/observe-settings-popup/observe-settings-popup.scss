@@ -1,0 +1,24 @@
+.player-controls-container {
+    border-radius: .8rem;
+    width: 34rem;
+    background-color: rgba($color: #ffffff, $alpha: .95);    
+    padding: 2rem 1.5rem;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    border: solid 1px #808080;
+    position: relative;
+    button {
+        margin:0rem .6rem;
+    }
+
+    mat-slide-toggle {
+        margin-bottom: .6rem;
+    }
+
+    .close {
+        position: absolute;
+        left: calc(100% - 60px);
+        top: .8rem;
+    }
+}

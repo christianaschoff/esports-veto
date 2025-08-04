@@ -1,0 +1,60 @@
+@if(isValid()) {
+    <mat-divider></mat-divider>
+    <h3>        
+        Data for {{title()}}
+    </h3>
+    <div class="qrcodeImage qrcode-container">        
+        <div>
+            <h3>Download & Share</h3>
+            <qrcode class="qrcode"
+                [qrdata]=url()
+                [allowEmptyString]="true"    
+                [cssClass]="'center'"
+                [colorDark]="'#000000ff'"
+                [colorLight]="'#ffffffff'"
+                [elementType]="'img'"
+                [errorCorrectionLevel]="'M'"        
+                [imageHeight]="10"
+                [imageWidth]="10"
+                [margin]="0"
+                [scale]="1"
+                [title]=title()
+                [width]="180"
+                (qrCodeURL)="onChangeURL($event)"
+            ></qrcode>        
+            <a matFab extended class="download" [href]="qrCodeDownloadLink" download="VETO-link-for-{{title()}}"><mat-icon>download</mat-icon>DOWNLOAD</a>
+        </div>
+        <div class="centered">
+            <h3> OR </h3>
+        </div>
+        <div>
+            <h3>Copy & Share</h3>
+            <div style="display:inline-grid; grid-template-columns: 11fr 1fr">
+                <div>
+                    <a [href]="url()" target="_blank" rel="no-follow">{{url()}}</a>
+                </div>
+                <div style="min-width: 3px;">
+                    <button matIconButton [cdkCopyToClipboard]="url()"><mat-icon>content_copy</mat-icon></button>
+                </div>
+            </div>
+            <div class="information">
+                <h4>Information</h4>
+                @switch (type()) {
+                    @case (QRCODE_STYLE.ADMIN) {
+                        Please keep in mind, that every person having that link can access the veto configuration.
+                        With this link you can overwrite vetos etc. So be very cautious.
+                    }
+                    @case (QRCODE_STYLE.OBSERVER) {
+                        Share this link with obsevers, streamers etc.
+                        <br />There will be animations to integrate in streams etc.
+                    }
+                    @case (QRCODE_STYLE.PLAYER) {
+                        <strong>Only</strong> share this with player <strong>{{ title() }}</strong>!
+                        <br />With this link player can do vetos.
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+}

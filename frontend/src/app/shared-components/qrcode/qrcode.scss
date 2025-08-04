@@ -1,0 +1,46 @@
+.qrcode-container {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr 3.5fr;    
+    transition: 0.3s;
+    padding: .8rem;
+        &:hover{
+            background-color: var(--mat-sys-inverse-on-surface);            
+        }
+
+    @media (max-width: 702px) {        
+        grid-template-columns: repeat(1, 1fr);
+        margin: .4rem;
+        margin-bottom: 5rem;
+    }
+
+    .qrcode {
+        @media (max-width: 702px) {        
+            text-align: center;            
+        }   
+    }    
+}
+
+.centered {
+    text-align: center;
+}
+
+.information {
+ max-width: 24rem;
+}
+
+div {
+    min-width: 5rem;
+    .download {
+        width: 11rem;
+        @media (max-width: 702px) {
+            width: 60%;            
+            margin-left: 20%;
+            margin-right: 20%;
+        }   
+    }
+
+    a {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }    
+}

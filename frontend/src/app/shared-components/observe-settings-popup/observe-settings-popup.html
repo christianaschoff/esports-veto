@@ -1,0 +1,28 @@
+   <div class="player-controls-container">
+        <div class="close">
+            <button matIconButton (click)="closeSettings()"><mat-icon>close</mat-icon></button>
+        </div>
+        <h3>Animation Setup</h3>
+        <h4>Animation direction (fly in from)</h4>
+        <mat-button-toggle-group [ngModel]="this.osState.animationStyle()" name="animationDirection" (ngModelChange)="this.setAnimationStyle($event)">
+            <mat-button-toggle value={{AnimationStyle.LEFT}}>Left</mat-button-toggle>
+            <mat-button-toggle value={{AnimationStyle.TOP}}>Top</mat-button-toggle>
+            <mat-button-toggle value={{AnimationStyle.RIGHT}}>Right</mat-button-toggle>
+            <mat-button-toggle value={{AnimationStyle.BOTTOM}}>Bottom</mat-button-toggle>
+        </mat-button-toggle-group>        
+
+        <h4>Canvas size</h4>
+        <mat-button-toggle-group [ngModel]="this.osState.size()" name="resolution" (ngModelChange)="this.setSize($event)">
+            <mat-button-toggle value={{Size.FULLHD}}>1920x1080</mat-button-toggle>
+            <mat-button-toggle value={{Size.HDREADY}}>1280x720</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <h4>Misc</h4>
+        <mat-slide-toggle [ngModel]="this.osState.border()" (ngModelChange)="this.setBorder($event)"></mat-slide-toggle>show border
+        <br /><mat-slide-toggle [ngModel]="this.osState.fullscreen()" (ngModelChange)="this.setFullscreen($event)"></mat-slide-toggle>show fullscreen
+        <br /><mat-slide-toggle [ngModel]="this.osState.showVetoInfo()" (ngModelChange)="this.setVetoInfo($event)"></mat-slide-toggle>show Game Data
+        <br /><mat-slide-toggle [ngModel]="this.osState.livePreview()" (ngModelChange)="this.setLivePreview($event)"></mat-slide-toggle>live preview when veto is ongoing
+        <br />
+        <br /><mat-slide-toggle [ngModel]="this.osState.storeLocally()" (ngModelChange)="this.setSaveLocally($event)"></mat-slide-toggle>save settings locally
+        <div>all data is stored locally on your machine in your browser.</div>
+    </div>

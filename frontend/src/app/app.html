@@ -1,0 +1,13 @@
+@if(!this.fullscreenMode()) {
+  <app-top-bar></app-top-bar>
+}
+  <div [class]="{'main-fullscreen' : this.fullscreenMode(), 'main': !this.fullscreenMode()}">
+    <h1>{{ title }}</h1>
+    @if(!this.fullscreenMode()) {    
+    <app-breadcrumb></app-breadcrumb>
+    }
+    <router-outlet />
+  </div>
+@if(!this.fullscreenMode()) {
+  <app-footer></app-footer>
+}

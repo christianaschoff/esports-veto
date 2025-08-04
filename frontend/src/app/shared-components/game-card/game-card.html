@@ -1,0 +1,13 @@
+<mat-card class="game-card" appearance="outlined" (click)="onSelect()">
+  <mat-card-header>    
+    <mat-card-title>{{game?.name}}</mat-card-title>    
+  </mat-card-header>
+  <img mat-card-image [src]="game?.image" alt="{{game?.name}}">
+  <mat-card-content>
+    <p [innerHTML]="game?.description">      
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="to-upper">
+    <button matButton>Select</button>    
+  </mat-card-actions>
+</mat-card>

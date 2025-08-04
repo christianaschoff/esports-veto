@@ -1,0 +1,137 @@
+
+<div>
+@if (this.state.currentGameState().vetoState === VetoState.VETO_DONE) {
+    
+}
+@else if (this.state.currentGameState().vetoState === VetoState.PLAYER_MISSING) {
+    Veto is on halt
+}
+@else if (this.state.currentGameState().vetoState === VetoState.VETO_MISSING_A || this.state.currentGameState().vetoState === VetoState.VETO_MISSING_B) {
+    Veto is ongoning
+}
+</div>
+
+<!--
+@if (this.state.currentGameState().vetoState !== VetoState.VETO_DONE) {
+    <mat-slide-toggle [ngModel]="this.livePreview()" (ngModelChange)="this.setLivePreview($event)"></mat-slide-toggle>live view
+    @if(this.livePreview()) {
+    <div>
+        <h2>Ban</h2>
+        <div class="pickban-container">
+            @for (item of bans(); track item.id) { 
+                <div class="parallel-box parallel-box-left" style="--index: {{ item.id }}" [class]="{'parallel-box-left': this.osState.animationStyle() === this.AnimationStyle.LEFT, 
+                'parallel-box-top': this.osState.animationStyle() === this.AnimationStyle.TOP, 
+                'parallel-box-right': this.osState.animationStyle() === this.AnimationStyle.RIGHT, 
+                'parallel-box-bottom': this.osState.animationStyle() === this.AnimationStyle.BOTTOM}">
+                    <div class="parallel-mapname">
+                    {{ item.map.name }}
+                    </div>
+                    <div class="parallel-imagebox parallel-imagebox-red">
+                        <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                    </div>
+                    <div class="parallel-player">
+                    {{ item.playerName }}
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div>
+        <h2>Pick</h2>
+        <div class="pickban-container">
+            @for (item of picks(); track item.id) { 
+                <div class="parallel-box parallel-box-left" style="--index: {{ item.id }}" 
+                [class]="{'parallel-box-left': this.osState.animationStyle() === this.AnimationStyle.LEFT, 
+                'parallel-box-top': this.osState.animationStyle() === this.AnimationStyle.TOP, 
+                'parallel-box-right': this.osState.animationStyle() === this.AnimationStyle.RIGHT, 
+                'parallel-box-bottom': this.osState.animationStyle() === this.AnimationStyle.BOTTOM}">
+                    <div class="parallel-mapname">
+                    {{ item.map.name }}
+                    </div>
+                    <div class="parallel-imagebox parallel-imagebox-green">
+                        <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                    </div>
+                    <div class="parallel-player">
+                        {{ item.playerName }}
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+    <button matIconButton (click)="replay()"><mat-icon matListItemIcon>replay</mat-icon></button>
+    }
+}
+-->
+<!-- @if (this.state.currentGameState().vetoState === VetoState.VETO_DONE) { -->
+<div class="pickban-base-container" 
+    [class]="{'pbbc-720': this.osState.size() === this.Size.HDREADY, 
+    'pbbc-1080': this.osState.size() === this.Size.FULLHD, 
+    'pbbc-border': this.osState.border()}">    
+    @if(this.osState.showVetoInfo()) {
+        <h2>{{ this.state.vetoTitle() }} : {{ this.bestOfText() }}</h2>        
+        <h2> {{ this.state.playerA() }} vs {{ this.state.playerB() }}</h2>
+    }    
+    @if(this.bansOneByOneAndCurrent().length > 0) {    
+    <h2>Ban</h2>
+    <div class="pickban-container" [class]="{'pbc-720': this.osState.size() === this.Size.HDREADY, 
+                                             'pbc-1080': this.osState.size() === this.Size.FULLHD}">
+        @for (item of bansOneByOneAndCurrent(); track item.id) { 
+            <div class="parallel-box" style="--index: 0" 
+                [class]="{'parallel-box-left': this.osState.animationStyle() === this.AnimationStyle.LEFT, 
+                'parallel-box-top': this.osState.animationStyle() === this.AnimationStyle.TOP, 
+                'parallel-box-right': this.osState.animationStyle() === this.AnimationStyle.RIGHT, 
+                'parallel-box-bottom': this.osState.animationStyle() === this.AnimationStyle.BOTTOM}">
+                <div class="parallel-mapname">
+                {{ item.map.name }}
+                </div>
+                <div class="parallel-imagebox parallel-imagebox-red">
+                    <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                </div>
+                <div class="parallel-player">
+                 {{ item.playerName }}
+                 </div>
+            </div>
+        }
+    </div>
+    }
+    @if(this.picksOneByOneAndCurrent().length > 0) {     
+    <h2>Pick</h2>
+    <div class="pickban-container" [class]="{'pbc-720': this.osState.size() === this.Size.HDREADY, 
+                                             'pbc-1080': this.osState.size() === this.Size.FULLHD}">
+        @for (item of picksOneByOneAndCurrent(); track item.id) { 
+            <div class="parallel-box parallel-box-left" style="--index: 0" 
+                [class]="{'parallel-box-left': this.osState.animationStyle() === this.AnimationStyle.LEFT, 
+                'parallel-box-top': this.osState.animationStyle() === this.AnimationStyle.TOP, 
+                'parallel-box-right': this.osState.animationStyle() === this.AnimationStyle.RIGHT, 
+                'parallel-box-bottom': this.osState.animationStyle() === this.AnimationStyle.BOTTOM}">
+                <div class="parallel-mapname">
+                {{ item.map.name }}
+                </div>
+                <div class="parallel-imagebox parallel-imagebox-green">
+                    <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                </div>
+                <div class="parallel-player">
+                    {{ item.playerName }}
+                </div>
+            </div>
+        }
+    </div>
+    }   
+</div>
+@if (this.state.currentGameState().vetoState === VetoState.VETO_DONE) { 
+<div class="control-buttons-container">    
+    <button matIconButton (click)="step(0)"><mat-icon matListItemIcon>replay</mat-icon></button>
+    <br /><button matIconButton (click)="step(-1)"><mat-icon matListItemIcon>arrow_back_ios</mat-icon></button>
+    <br /><button matIconButton (click)="step(1)"><mat-icon matListItemIcon>arrow_forward_ios</mat-icon></button>
+    <br /><button matIconButton (click)="step(10000)"><mat-icon matListItemIcon>expand_all</mat-icon></button>
+</div>
+}
+<!-- 
+}
+-->
+
+<div class="open-settings">
+    <button matIconButton (click)="showHideSettings()"><mat-icon>settings</mat-icon></button>
+</div>

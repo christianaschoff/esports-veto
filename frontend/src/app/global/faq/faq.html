@@ -1,0 +1,66 @@
+<h2>Frequently Asked Questions</h2>
+<div>
+    <h3>Is the service free?</h3>
+    <p>Yes. For the time being the service is free without limitation.
+    <br />There are no plans to change that right now.
+    </p>
+
+    <h3>Are there limits how many vetos I can create?</h3>
+    <p>No. There are no limits right now.
+    <br />But there are rate limits, so don't hammer against the endpoints ;)
+    </p>
+
+    <h3>How log are my vetos stored?</h3>    
+    <p>The veto information is stored for 45 days, starting after the creation of the veto process.
+    <br />Why 45 days? Its a gut feeling. Lets find out together, if thats a good timespan or not.
+    </p>
+
+    <h3>Why is there no account where all my vetos are stored?</h3>
+    <p>Since we want to store no personal data, we did not implement any kind of account registration.
+    <br />In addition our goal is to see what are the limits to providing a service without pinpointing it to individual users.
+    <br />That being said - Maybe we will integrate third party accounts to enhance the user experience for you.
+    </p>
+
+    <h3>What data do you store?</h3>    
+    <p><a href="#store"></a>As litte as possible. Of course we need to store data to run the service.
+    <br />We store all the data regarding the veto configuration (including Title and Player/Team names - what is totally optional!).
+    <br />We use a Open Telemetry compliant interface to monitor the health of the system an log transit data.
+    <br />We proivide the option for observers to store animation configuration locally in LocalStorage within your browser, 
+    so you don't need to configure the animations for each veto process all over again - if you want to.
+    <br />We use a JWT (Jvascript Web Token) to do rate limiting and anoymously authenticate you as a user. 
+    This lays the groundwork to connect the veto system to other services in the future.
+    </p>
+
+    <h3>I have lost my link/QRCode... what now?</h3>
+    <p>We do not store any account data.
+    <br />If you are a player or streamer streamer, you can contact the admin of the veto process. 
+    <br />They might send you the data again.</p>
+    <p>If you are the admin of the veto process:
+    <br />You must create a new veto process and share the links/QR Code with participants.
+    <br />That is the downside storing as less data as possible.
+    </p>
+
+    <h3>Can I use the veto system in my (commercial) streams / events?</h3>
+    <p>Yes. You can use the service and integrate it into your streams.
+    <br />You can grab the whole page (but be carefull with your browsers url!) or parts of it.
+    <br />All attributions are appriciated of course ;).</p>
+
+    <h3>Where can I send bug reports to?</h3>
+    <p>First: Sorry that you encountered any problems.
+    <br />Thank you that you want to contribute to the project by reporting bugs to us.
+    <br />The best place is to open a ticket on github.
+    <br />Otherwise feel free to reach out on our discord.
+    </p>
+
+    <h3>Where can I send feature requests to?</h3>    
+    <p>Thank you that you want to contribute to the project by requesting features that you miss.
+    <br />The best place is to open a ticket on <a [href]="'https://github.com/christianaschoff/esports-veto'" target="_blank" rel="noopener noreferrer">github</a>.
+    <br />Otherwise feel free to reach out on our discord.
+    </p>
+
+    <h3>Can I participate in the development?</h3>    
+    <p>Sure! Hop onto <a [href]="'https://github.com/christianaschoff/esports-veto'" target="_blank" rel="noopener noreferrer">github</a> and get going!        
+    <br />Currently we are using Angular with Material Ui for our frontend and .NET Core for our backend.    
+    <br />We will review your pull requests as soon as possible.
+    </p>
+</div>

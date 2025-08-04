@@ -1,0 +1,7 @@
+<h2>What are you playing?</h2>
+<div class="game-card-container">  
+   @for (game of allGames; track game.id) {
+    <app-game-card [game]="game">
+    </app-game-card>    
+   }
+</div>
