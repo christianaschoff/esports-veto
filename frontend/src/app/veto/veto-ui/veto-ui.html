@@ -1,4 +1,3 @@
-
 @if(this.sessionGiven()) {
     <h2>{{ this.state.vetoTitle() }} - {{ this.state.bestOf() }} - {{this.state.playerA() }} vs {{this.state.playerB()}}</h2>
     <h3>Hi {{ this.state.attendee().userName}}</h3>     
@@ -6,10 +5,5 @@
     <app-maplist-veto (propageMapSelection)="handleMapSelection($event)"></app-maplist-veto>
     <app-veto-result></app-veto-result>
 } @else {
-    <h2>No active Veto session</h2>
-    <h3>What to do</h3>
-    <div>
-        <p>Please join a session using the <strong>provided link</strong> or by scanning the provided <strong>QR-Code</strong>.
-        <br />Ask your organizer in case you lost both.</p>
-    </div>
+    <app-no-active-sessions></app-no-active-sessions>
 }

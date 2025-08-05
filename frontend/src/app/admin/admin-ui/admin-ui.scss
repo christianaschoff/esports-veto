@@ -1,0 +1,14 @@
+.overview-container {
+    display: grid;
+    grid-template-columns: 8rem auto;
+    margin-bottom: 2rem;
+    .cell {        
+        align-self: stretch;
+        border-top: solid 1px darkgrey;
+        padding: .6rem 0rem;
+
+        &.fat {
+            font-weight: bold;
+        }
+    }
+}

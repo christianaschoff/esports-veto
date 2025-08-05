@@ -136,6 +136,7 @@ type VetoState = {
     gameId: string;
     maps: string[];
     currentGameState: Veto;
+    hasErrors: boolean;
 }
 
 const initialVetoState: VetoState = {
@@ -150,6 +151,7 @@ const initialVetoState: VetoState = {
     gameId: '',
     maps: [],
     currentGameState: initVeto,
+    hasErrors: false,
 };
 
 export const VetoStore = signalStore(
@@ -160,15 +162,23 @@ export const VetoStore = signalStore(
         setLoading(): void {
             patchState(store, (state) => ( {isLoading: !state.isLoading}))
         },
+
+        setHasErrors(errors: boolean): void {
+            patchState(store, (state) => ( {hasErrors: errors}))
+        },
+
         updateCurrentGameState(vetoState: Veto) {
             patchState(store,(state) => ({currentGameState: vetoState }));
         },
         reset() {
             patchState(store, initialVetoState);
-        },        
+        },
+
         async joinSession(attendee: string, id: string): Promise<void> {
-             this.setLoading();
-            const data = await remoteService.joinSessionAsync(attendee, id);
+            this.setLoading();
+            this.setHasErrors(false);
+            const data = await remoteService.joinSessionAsync(attendee, id)
+                .catch(error => this.setHasErrors(true));
             if(data) {
                 patchState(store, (state)=> ({attendee: {...data }}))
             }
@@ -177,12 +187,15 @@ export const VetoStore = signalStore(
         
         async loadByVetoId(vetoId: string): Promise<void> {
             this.setLoading();
+            this.setHasErrors(false);
 
-            const data = await remoteService.receiveVetoBaseInformationAsync(vetoId);
+            const data = await remoteService.receiveVetoBaseInformationAsync(vetoId)                    
+                    .catch(error => this.setHasErrors(true)
+                    );
+
             if(data) {                
                 const boKey = data.bestOf as keyof typeof BestOf;
-                const modusKey = data.mode as keyof typeof GameModes;
-                console.log(data, boKey, modusKey);
+                const modusKey = data.mode as keyof typeof GameModes;                
 
                 patchState(store, (state) => ({bestOf: data.bestOf as BestOf, 
                                    modus: data.mode as GameModes, 
@@ -191,9 +204,11 @@ export const VetoStore = signalStore(
                                    playerA: data.playerA, 
                                    playerB: data.playerB,
                                    maps: data.maps,
-                                   gameId: data.gameId
+                                   gameId: data.gameId,
+                                   hasErrors: false
                                    }));
             }
+  
             this.setLoading();
         }
      })

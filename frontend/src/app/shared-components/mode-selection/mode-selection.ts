@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -38,9 +38,10 @@ export class ModeSelection implements OnInit, OnDestroy {
   routeSub$?: Subscription;
   createSub$?: Subscription;
 
-  public game: Signal<GameData | null> = signal(null);
-  public createdConstellation: WritableSignal<ConstellationResponse|undefined> = signal(undefined);
-  
+  game: Signal<GameData | null> = signal(null);
+  createdConstellation: WritableSignal<ConstellationResponse|undefined> = signal(undefined);
+  creationErrorText = signal('');
+
   isVetoDetailsVisible: WritableSignal<boolean> = signal(false); 
 
   state = inject(VetoConfigurationStore);
@@ -72,10 +73,20 @@ export class ModeSelection implements OnInit, OnDestroy {
   }
   
   createVeto() {    
-    this.createSub$ = this.remoteService.createRemoteVeto(this.state.constellation()).subscribe(created => {          
-      this.createdConstellation.set(created);
-      window.setTimeout(() => document.getElementById('veto-done')?.scrollIntoView({behavior: 'smooth'}), 1);
-    });
+    this.creationErrorText.set('');
+    this.createSub$ = this.remoteService.createRemoteVeto(this.state.constellation()).subscribe(
+      {
+        next:(created) => {
+          this.createdConstellation.set(created);
+          window.setTimeout(() => document.getElementById('veto-done')?.scrollIntoView({behavior: 'smooth'}), 1);
+        },
+        error: (error) => {
+          this.remoteService.isLoading.set(false);
+          console.log(error);
+          this.creationErrorText.set(error.error);
+        }
+      }      
+    );
   }
 
   setModus(v: GameModes) {    

@@ -15,6 +15,7 @@ public sealed class VetoSystemServiceHub : Hub
     public async Task JoinGroup(string groupid, string userid, string username)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(groupid);
+        ArgumentException.ThrowIfNullOrWhiteSpace(userid);
         await Groups.AddToGroupAsync(Context.ConnectionId, groupid);
         await _coordinator.PlayerPresent(groupid, Context.ConnectionId, userid);
         var currentGameState = await _coordinator.CalculateCurrentGameState(groupid);
@@ -31,6 +32,7 @@ public sealed class VetoSystemServiceHub : Hub
     public async Task UpdateVeto(string groupid, string map)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(groupid);
+        ArgumentException.ThrowIfNullOrWhiteSpace(map);
         var connectionId = Context.ConnectionId;
 
         _coordinator.UpdateVetoMap(connectionId, groupid, map);
@@ -52,11 +54,4 @@ public sealed class VetoSystemServiceHub : Hub
         }
         await base.OnDisconnectedAsync(exception);        
     }
-
-    private async Task EnforceGroupMembership(string groupid)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(groupid);
-        await Groups.AddToGroupAsync(Context.ConnectionId, groupid);
-    }
-
 }

@@ -7,6 +7,9 @@ import { BestOf, GameModes } from '../data/gamemodes.data';
 export class TranslateService {
 
   constructor() { }
+  getGamemodeTextFromString(gamemode: string, lang: string ='en-en'): string { 
+    return this.getGamemodeText(gamemode as GameModes, lang);
+  }
 
   getGamemodeText(gamemode: GameModes, lang: string ='en-en'): string {
     switch (gamemode) {
@@ -20,10 +23,14 @@ export class TranslateService {
     }
   }
 
+getBestofTextFromString(bestof: string, lang: string ='en-en'): string { 
+    return this.getBestofText(bestof as BestOf, lang);
+  }
+
   getBestofText(bestOf: BestOf, lang: string ='en-en'): string {
     switch (bestOf) {
       case BestOf.BO1 : return 'Best of 1';
-      case BestOf.BO3 : return 'Best of 4';
+      case BestOf.BO3 : return 'Best of 3';
       case BestOf.BO5 : return 'Best of 5';
       case BestOf.BO7 : return 'Best of 7';
       case BestOf.FREE : return 'user set';

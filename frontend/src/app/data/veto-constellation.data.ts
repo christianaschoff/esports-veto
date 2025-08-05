@@ -14,6 +14,7 @@ export interface Constellation
 export interface ConstellationResponse {
     playerAId: string,
     playerBId: string,
+    observerId: string,
     vetoId: string,
     title: string,
     playerA: string,

@@ -102,7 +102,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -145,12 +144,17 @@ app.MapGet("/api/token", () =>
 });
 
 app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService) =>
-{
-    ArgumentNullException.ThrowIfNull(veto, nameof(veto));
+{    
+    var errorList = VetoValidator.ValidateVetoObject(veto);
+    if (errorList.Count > 0)
+    {        
+        return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
+    }
+    
     await vetoSystemService.CreateAsync(veto);
     // Console.WriteLine(veto);    
     return Results.Ok(
-        new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId }
+        new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId, veto.observerId }
     );
 })
 .RequireRateLimiting(jwtPolicyName)
@@ -160,8 +164,13 @@ app.MapGet("/api/create/{id}", async ([FromRoute] string id, VetoSystemSetupServ
 {
     ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
     ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id));
-    var find = await vetoSystemService.GetAsync(id);
-    return Results.Ok(find);
+    var veto = await vetoSystemService.GetByVetoIdAsync(id);
+    if (veto == null)
+    {
+        return Results.NotFound("no valid veto session found");
+    }
+    return Results.Ok(
+        new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId, veto.observerId, veto.Maps });
 })
 .RequireRateLimiting(jwtPolicyName)
 .RequireAuthorization();
@@ -171,11 +180,12 @@ app.MapGet("/api/veto/{id}", async ([FromRoute] string id, VetoSystemSetupServic
 {
     ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
     ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id));
+    
     if (!Guid.TryParse(id, out Guid guid))
     {
         return Results.NotFound("no valid veto session provided");
     }
-    var find = await vetoSystemService.GetVetoDataAsync(AttendeeType.Observer, id);
+    var find = await vetoSystemService.GetVetoDataAsync(AttendeeType.Admin, id);
     return Results.Ok(find);
 })
 .RequireRateLimiting(jwtPolicyName)
@@ -194,43 +204,32 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
     var attendeeType = ExtractRoleFromString(role);
     var find = await vetoSystemService.GetVetoDataAsync(attendeeType, id);
     if (find != null)
-    {
-        if (attendeeType == AttendeeType.Observer)
-        {            
-            return Results.Ok(new VetoParticipant(find.vetoId, id, "Observer"));
+    {        
+        if (find.observerId == id)
+        {
+            return Results.Ok(new VetoParticipant(find.vetoId, find.observerId, Constants.OBSERVER));
         }
         if (find.playerAId == id)
         {
             return Results.Ok(new VetoParticipant(find.vetoId, find.playerAId, find.PlayerA));
         }
-        return Results.Ok(new VetoParticipant(find.vetoId, find.playerBId, find.PlayerB));        
+        if (find.playerBId == id)
+        {            
+            return Results.Ok(new VetoParticipant(find.vetoId, find.playerBId, find.PlayerB));
+        }
     }
     return Results.NotFound("no valid veto session provided");
 })
 .RequireRateLimiting(jwtPolicyName)
 .RequireAuthorization();
 
-app.MapGet("/api/veto/spectator/{id}", async ([FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
-{    
-    ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
-    ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id));
-     if (!Guid.TryParse(id, out Guid guid))
-     {
-         return Results.NotFound("no valid veto session provided");
-     }   
-
-    var find = await vetoSystemService.GetAsync(id);
-    return Results.Ok(find);
-})
-.RequireRateLimiting(jwtPolicyName)
-.RequireAuthorization();
 
 app.Run();
 
 #region Helper
 AttendeeType ExtractRoleFromString(string role)
 {
-    if (string.IsNullOrEmpty(role))
+    if (role.Equals(Constants.OBSERVER, StringComparison.CurrentCultureIgnoreCase))
     {
         return AttendeeType.Observer;
     }
@@ -244,6 +243,6 @@ AttendeeType ExtractRoleFromString(string role)
     {
         return AttendeeType.Admin;
     }
-    return AttendeeType.Observer;
+    return AttendeeType.Unknown;
 }
 #endregion

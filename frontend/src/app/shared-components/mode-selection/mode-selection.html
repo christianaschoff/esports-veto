@@ -30,16 +30,20 @@
                 }
                 @else {
                     <button matFab extended class="to-upper" (click)="createVeto()"><mat-icon>bolt</mat-icon>create veto process</button> 
-                }
-
+                }                
             </div>
-            @if(createdConstellation(); as created) {                
+            @if(this.creationErrorText()) {
+                <div class="error">
+                        {{this.creationErrorText()}}
+                </div>
+                }
+            @if(createdConstellation(); as created) {
                 <div id="veto-done">
                     <h2>Veto for {{created.title}}</h2>
                     <app-qrcode [data]="created.vetoId" [title]="'Admin'" [type]="ATTENDEE_TYPE.ADMIN"></app-qrcode>
                     <app-qrcode [data]="created.playerAId" [title]="created.playerA" [type]="ATTENDEE_TYPE.PLAYER"></app-qrcode>
                     <app-qrcode [data]="created.playerBId" [title]="created.playerB" [type]="ATTENDEE_TYPE.PLAYER"></app-qrcode>
-                    <app-qrcode [data]="created.vetoId" [title]="'Spectators'" [type]="ATTENDEE_TYPE.OBSERVER"></app-qrcode>
+                    <app-qrcode [data]="created.observerId" [title]="'Spectators'" [type]="ATTENDEE_TYPE.OBSERVER"></app-qrcode>
                 </div>
             }
         }

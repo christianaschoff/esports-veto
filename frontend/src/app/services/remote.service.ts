@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Constellation, ConstellationResponse, JoinVetoResponse, VetoBaseDataResponse } from '../data/veto-constellation.data';
-import { lastValueFrom, Observable, tap } from 'rxjs';
+import { catchError, lastValueFrom, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'  
@@ -32,11 +32,18 @@ export class RemoteService {
 
   createRemoteVeto(constellation: Constellation) : Observable<ConstellationResponse> {    
     this.isLoading.set(true);
-    return this.httpClient.post<ConstellationResponse>('/api/create', constellation)
-              .pipe(tap(() => this.isLoading.set(false))
+    return this.httpClient.post<ConstellationResponse>('/api/create', constellation)              
+              .pipe(tap(() => this.isLoading.set(false)),
             );     
   }
-    
+  
+async loadRemoteVetoAdminAsync(vetoId: string) : Promise<ConstellationResponse> {
+    this.isLoading.set(true);
+    return lastValueFrom(this.httpClient.get<ConstellationResponse>(`/api/create/${vetoId}`)
+            .pipe(tap(x => this.isLoading.set(false)))
+          );
+  }
+
   async joinSessionAsync(attendee: string, id: string) : Promise<JoinVetoResponse> {
     this.isLoading.set(true);
      return lastValueFrom(this.httpClient.get<JoinVetoResponse>(`/api/veto/${attendee}/${id}`)

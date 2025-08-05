@@ -30,7 +30,7 @@ export class Qrcode {
       var subroute = '';
       switch(this.type()) {
         case ATTENDEE_TYPE.ADMIN: 
-          subroute = 'new';
+          subroute = 'admin';
           break;
         case ATTENDEE_TYPE.OBSERVER: 
           subroute = 'observe';

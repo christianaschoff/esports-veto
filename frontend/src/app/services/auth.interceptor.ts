@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { from, lastValueFrom, Observable } from 'rxjs';
+import { catchError, from, lastValueFrom, Observable } from 'rxjs';
 import { RemoteService } from './remote.service';
 
 @Injectable({
@@ -25,8 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   storeToken(token: string) {
-    this.remoteService.token.set(token);
-    // console.log(this.remoteService.tokenTimeout());
+    this.remoteService.token.set(token);    
   }
 
 }

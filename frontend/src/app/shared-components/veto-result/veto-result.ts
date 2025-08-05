@@ -4,6 +4,7 @@ import { VetoState, VetoStepType } from '../../data/veto.data';
 import { MapsService } from '../../services/maps.service';
 import { Maps } from '../../data/maps.data';
 import { NgOptimizedImage } from '@angular/common';
+import { Copyright } from '../copyright/copyright';
 
 export interface VetoResultData {
   map: Maps,
@@ -15,7 +16,7 @@ export interface VetoResultData {
 
 @Component({
   selector: 'app-veto-result',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, Copyright],
   templateUrl: './veto-result.html',
   styleUrl: './veto-result.scss'
 })

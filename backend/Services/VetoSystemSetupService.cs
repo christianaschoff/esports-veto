@@ -32,9 +32,13 @@ public class VetoSystemSetupService
         }
         if (attendeeType == AttendeeType.Observer)
         {
-            return await _vetoCollection.Find(x => x.vetoId == id).FirstOrDefaultAsync();
+            return await _vetoCollection.Find(x => x.observerId == id).FirstOrDefaultAsync();
         }
-        return await _vetoCollection.Find(x => x.playerAId == id || x.playerBId == id).FirstOrDefaultAsync();
+        if (attendeeType == AttendeeType.Player)
+        {
+            return await _vetoCollection.Find(x => x.playerAId == id || x.playerBId == id).FirstOrDefaultAsync();
+        }
+        return null;
     }
 
     public async Task CreateAsync(VetoSystem newVeto) =>

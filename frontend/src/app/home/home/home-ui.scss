@@ -1,25 +1,3 @@
-.home-select-card {
-    margin:10px;
-    max-width: 350px;
-    min-width: 350px;
-    opacity: 0.95;
-    transition: 0.3s;
-    cursor: pointer;
-    img {
-        max-height: 200px;        
-        transition: 0.3s;
-        opacity: 0.95;
-    }
-
-    &:hover {
-        background-color: var(--mat-sys-surface-dim);
-        opacity: 1;
-        img {
-            opacity: 1;
-        }         
-    }
-}
-
 .jumbo {    
     text-align: center;    
     color: #4b4357;
@@ -30,9 +8,7 @@
         }
         @media(max-width: 470px) {
             font-size: 3.4rem;    
-        }
-        /* margin: 0px 0px 36px 0px;
-        padding: 0px 0px 36px 0px; */
+        }        
     }
     div {
         position: relative;        
@@ -55,8 +31,4 @@
     button {
         text-transform: uppercase;
     }
-}
-
-.example-header-image {  
-  background-size: cover;
 }

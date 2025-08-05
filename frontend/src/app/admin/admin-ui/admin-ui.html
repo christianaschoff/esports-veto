@@ -1,0 +1,22 @@
+@if(this.hasErrors()) {
+    <app-no-active-sessions></app-no-active-sessions>
+}
+@else {
+    <h2>Admin view</h2>
+        <div class="overview-container">
+        <div class="cell">Title</div>        
+        <div class="cell fat">{{ this.constellation()?.title }}</div>
+        <div class="cell">Modus</div>
+        <div class="cell">{{ this.translateService.getGamemodeTextFromString(this.constellation()?.mode ?? '') }}</div>
+        <div class="cell">Series</div>
+        <div class="cell">{{ this.translateService.getBestofTextFromString(this.constellation()?.bestOf ?? '') }}</div>
+        <div class="cell">Admin</div>
+        <div class="cell">{{ this.generateUrl(ATTENDEE_TYPE.ADMIN, this.constellation()?.vetoId) }}</div>
+        <div class="cell fat">{{ this.constellation()?.playerA }}</div>
+        <div class="cell">{{ this.generateUrl(ATTENDEE_TYPE.PLAYER, this.constellation()?.playerAId) }}</div>
+        <div class="cell fat">{{ this.constellation()?.playerB }}</div>
+        <div class="cell">{{ this.generateUrl(ATTENDEE_TYPE.PLAYER, this.constellation()?.playerBId) }}</div>
+        <div class="cell">Observer</div>
+        <div class="cell">{{ this.generateUrl(ATTENDEE_TYPE.OBSERVER, this.constellation()?.observerId) }}</div>
+    </div>
+}

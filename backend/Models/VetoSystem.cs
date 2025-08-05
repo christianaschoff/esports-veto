@@ -11,6 +11,7 @@ public record VetoSystem(string BestOf, string PlayerA, string PlayerB, string T
     public string vetoId = Guid.NewGuid().ToString();
     public string playerAId = Guid.NewGuid().ToString();
     public string playerBId = Guid.NewGuid().ToString();
+    public string observerId = Guid.NewGuid().ToString();
     public string creationDate = DateTime.Now.ToString("s");
 
 }

@@ -22,20 +22,20 @@ export class SignalrService {
     .configureLogging(signalR.LogLevel.Information)
     .withAutomaticReconnect()
     .build();
-    console.log('configured', this.hubConnection.baseUrl);
+    // console.log('configured', this.hubConnection.baseUrl);
 
      this.hubConnection.on('JoinedGroup', (user, id, state: Veto) => {
-      console.log('user:', user, 'id', id, 'gamestate', state);
+      // console.log('user:', user, 'id', id, 'gamestate', state);
       this.vetoStore.updateCurrentGameState(state);
      });
 
      this.hubConnection.on('LeftGroup', (message, state: Veto) => {
-      console.error(message, 'gamestate', state);
+      // console.error(message, 'gamestate', state);
       this.vetoStore.updateCurrentGameState(state);
      });
 
      this.hubConnection.on('VetoUpdated', (message, state: Veto) => {
-      console.info(message, 'gamestate', state);
+      // console.info(message, 'gamestate', state);
       this.vetoStore.updateCurrentGameState(state);
      });
   }

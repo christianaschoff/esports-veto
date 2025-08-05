@@ -9,10 +9,11 @@ import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog'
 import { VetoPopup } from '../veto-popup/veto-popup';
 import { FormsModule } from '@angular/forms';
 import { VetoConstellationService } from '../../services/veto-constellation.service';
+import { Copyright } from "../copyright/copyright";
 
 @Component({
   selector: 'app-maplist-veto',
-  imports: [CommonModule, FormsModule, DialogModule, MatIconModule, NgOptimizedImage],  
+  imports: [CommonModule, FormsModule, DialogModule, MatIconModule, NgOptimizedImage, Copyright],  
   templateUrl: './maplist-veto.html',
   styleUrl: './maplist-veto.scss'
 })
@@ -113,8 +114,7 @@ export class MaplistVeto {
         }
       );
       dialogRef.closed.subscribe(result => {          
-          if(result) {
-            console.log(map.map.name);
+          if(result) {            
             this.propageMapSelection.emit(map.map.name);
           }
       });

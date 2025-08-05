@@ -16,10 +16,11 @@ import { AnimationStyle, Size } from '../../data/oberserver.data';
 import {Dialog} from '@angular/cdk/dialog';
 import { ObserveSettingsPopup } from '../../shared-components/observe-settings-popup/observe-settings-popup';
 import { TranslateService } from '../../services/translate.service';
+import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
 
 @Component({
   selector: 'app-observe-ui',
-  imports: [NgOptimizedImage, MatButtonModule, MatIconModule, MatButtonToggleModule, MatSlideToggleModule, FormsModule],
+  imports: [NgOptimizedImage, MatButtonModule, MatIconModule, MatButtonToggleModule, MatSlideToggleModule, FormsModule, NoActiveSessions],
   templateUrl: './observe-ui.html',
   styleUrl: './observe-ui.scss'
 })

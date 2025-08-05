@@ -12,10 +12,11 @@ import { MatListModule } from '@angular/material/list';
 import { MaplistVeto } from '../../shared-components/maplist-veto/maplist-veto';
 import { VetoStateDisplay } from '../../shared-components/veto-state-display/veto-state-display';
 import { VetoResult } from "../../shared-components/veto-result/veto-result";
+import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
 
 @Component({
   selector: 'app-veto-ui',
-  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult],
+  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult, NoActiveSessions],
   templateUrl: './veto-ui.html',
   styleUrl: './veto-ui.scss'
 })
@@ -30,7 +31,7 @@ export class VetoUi implements OnInit, OnDestroy {
   routeId = signal('');
   attendee = signal('');
 
-  sessionGiven = computed(() => this.attendee() && this.routeId());
+  sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());
 
   constructor() {
     this.route.params.subscribe((params) => {

@@ -122,5 +122,8 @@
 .open-settings {
     position: absolute;
     left: .2rem;
-    top: 5.2rem;
+    top: 6.2rem;
+    @media(max-width: 876px) { 
+        top: 4.2rem;
+    }    
 }

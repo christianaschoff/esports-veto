@@ -5,4 +5,5 @@ public enum AttendeeType
     Admin,
     Player,
     Observer,
+    Unknown,
 }

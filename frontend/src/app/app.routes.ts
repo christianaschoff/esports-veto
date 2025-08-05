@@ -7,11 +7,13 @@ import { Faq } from './global/faq/faq';
 import { About } from './global/about/about';
 import { Help } from './global/help/help';
 import { ObserveUi } from './observe/observe-ui/observe-ui';
+import { AdminUi } from './admin/admin-ui/admin-ui';
 
 
 export const routes: Routes = [
     {path: 'new', component: CreateUi},
     {path: 'new/:id', component: ModeSelection},
+    {path: 'admin/:id', component: AdminUi},
     {path: 'veto', component: VetoUi},
     {path: 'veto/:attendee/:id', component: VetoUi},
     {path: 'observe/:id', component: ObserveUi},
