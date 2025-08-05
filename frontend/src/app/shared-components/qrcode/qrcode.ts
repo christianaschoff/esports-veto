@@ -7,7 +7,7 @@ import {Location} from '@angular/common';
 import { ATTENDEE_TYPE } from '../../data/veto-constellation.data';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { sanitize } from "sanitize-filename-ts";
 
 @Component({
   selector: 'app-qrcode',
@@ -49,6 +49,10 @@ export class Qrcode {
   title = input<string>();
   type = input<ATTENDEE_TYPE>();
   
+  titleSanitized = computed(() => {
+    return sanitize(this.title() ?? '');
+  })
+
   QRCODE_STYLE = ATTENDEE_TYPE;
   public qrCodeDownloadLink: SafeUrl = "";  
 

@@ -64,7 +64,7 @@ export class ModeSelection implements OnInit, OnDestroy {
   ngOnInit() {
    this.routeSub$ = this.route.paramMap.pipe(
       map(params => {
-        var id = params.get('id');        
+        var id = params.get('id');
         this.state.updateGameId(id ? id : '');
         this.breadcrumbService.addPath([{ path: '/new', displayName: 'New' }, {path: '', displayName: id??''}]);
         this.game = (this.gamesService.getDataById(id ? id : undefined))
@@ -81,8 +81,7 @@ export class ModeSelection implements OnInit, OnDestroy {
           window.setTimeout(() => document.getElementById('veto-done')?.scrollIntoView({behavior: 'smooth'}), 1);
         },
         error: (error) => {
-          this.remoteService.isLoading.set(false);
-          console.log(error);
+          this.remoteService.isLoading.set(false);          
           this.creationErrorText.set(error.error);
         }
       }      

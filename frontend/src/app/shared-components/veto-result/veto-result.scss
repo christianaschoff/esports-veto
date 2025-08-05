@@ -27,7 +27,7 @@
         }
 
         .result-container-content {
-            display: contents;                
+            display: contents;
             &:nth-child(odd) * {
                 background-color: rgb(245, 245, 245);                    
                 border-top: solid 1px #e4e4e4;
