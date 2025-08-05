@@ -22,7 +22,7 @@
                 [width]="180"
                 (qrCodeURL)="onChangeURL($event)"
             ></qrcode>        
-            <a matFab extended class="download" [href]="qrCodeDownloadLink" download="VETO-link-for-{{title()}}"><mat-icon>download</mat-icon>DOWNLOAD</a>
+            <a matFab extended class="download to-upper" [href]="qrCodeDownloadLink" download="VETO-link-for-{{title()}}"><mat-icon>download</mat-icon>Download</a>
         </div>
         <div class="centered">
             <h3> OR </h3>

@@ -2,13 +2,31 @@
     display: grid;
     grid-template-columns: 8rem auto;
     margin-bottom: 2rem;
-    .cell {        
-        align-self: stretch;
-        border-top: solid 1px darkgrey;
-        padding: .6rem 0rem;
 
-        &.fat {
-            font-weight: bold;
+    .row {
+        display: contents;
+        
+        & * {            
+            transition: 0.3s;
+        }
+        &:hover * {
+            background-color: #f4effd;
+        }
+            
+        .cell {        
+            align-self: stretch;
+            border-top: solid 1px #a9a9a9;
+            padding: .6rem 0rem;
+    
+            &.fat {
+                font-weight: bold;
+            }                
         }
     }
+
+    
+}
+.download-container {
+    width: 100%;
+    text-align: center;
 }
