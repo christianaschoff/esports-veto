@@ -1,6 +1,6 @@
 <div class="map-visibiliy-container" [class.open]="isVisible()">
 <div class="map-visibiliy-content">
-    <h2>Mappool for a {{ this.state.modus() }} in a {{ this.state.bestOf() }}</h2>
+    <h2>Mappool for a {{ this.translateService.getGamemodeTextFromString(this.state.modus()) }} in a {{ this.state.bestOf() }}</h2>
         <div class="map-container">
         @for (map of maplist(); track map.name) {
             <div class="map">

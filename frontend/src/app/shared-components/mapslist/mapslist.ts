@@ -6,6 +6,7 @@ import { VetoConfigurationStore } from '../../store/store';
 import { Copyright } from "../copyright/copyright";
 import { MatIconModule } from '@angular/material/icon';
 import { BestOf, GameModes } from '../../data/gamemodes.data';
+import { TranslateService } from '../../services/translate.service';
 
 @Component({
   selector: 'app-mapslist',
@@ -16,6 +17,7 @@ import { BestOf, GameModes } from '../../data/gamemodes.data';
 export class Mapslist {  
 
   state = inject(VetoConfigurationStore);
+  translateService = inject(TranslateService);
   isVisible = computed(() => this.state.modus() !== GameModes.UNSET && this.state.bestOf() !== BestOf.UNSET);
   maplist: Signal<Maps[]> = computed(() => this.mapsService.getMaps(this.state.gameId(), this.state.modus()));
   hasImages = computed(() => this.maplist().filter(x => (x.image && x.image.length > 0) ?? false).length > 0);
