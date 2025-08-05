@@ -57,7 +57,8 @@ export class AdminUi implements OnDestroy {
         if(id) {
           var result = await this.remoteService.loadRemoteVetoAdminAsync(id).catch(error => this.hasErrors.set(true));
           if(result) {
-            this.constellation.set(result);
+            this.constellation.set(result);            
+            document.title = `Veto Admin: ${this.constellation()?.title}`;
           }
         }
       })).subscribe();

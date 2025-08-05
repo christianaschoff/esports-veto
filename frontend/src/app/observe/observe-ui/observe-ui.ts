@@ -100,7 +100,8 @@ export class ObserveUi implements OnInit, OnDestroy {
     effect(async () => {          
       if(this.state.attendee() && this.state.attendee().vetoId) {
         await this.vetohub.joinVetoHub(this.state.attendee().vetoId, this.state.attendee().userId, this.state.attendee().userName);
-        await this.state.loadByVetoId(this.state.attendee().vetoId);                
+        await this.state.loadByVetoId(this.state.attendee().vetoId);
+        document.title = `Veto Observe: ${this.state.vetoTitle()}`
       }        
     });
   }

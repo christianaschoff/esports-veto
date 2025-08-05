@@ -9,16 +9,17 @@ import { Help } from './global/help/help';
 import { ObserveUi } from './observe/observe-ui/observe-ui';
 import { AdminUi } from './admin/admin-ui/admin-ui';
 
+const basePageTitle = "Veto System";
 
 export const routes: Routes = [
-    {path: 'new', component: CreateUi},
-    {path: 'new/:id', component: ModeSelection},
-    {path: 'admin/:id', component: AdminUi},
-    {path: 'veto', component: VetoUi},
-    {path: 'veto/:attendee/:id', component: VetoUi},
-    {path: 'observe/:id', component: ObserveUi},
-    {path: 'faq', component: Faq},
-    {path: 'help', component: Help},
-    {path: 'about', component: About},
-    {path: '**', component: HomeUi},
+    {path: 'new', component: CreateUi, title: basePageTitle},
+    {path: 'new/:id', component: ModeSelection, title: basePageTitle},
+    {path: 'admin/:id', component: AdminUi, title: basePageTitle},
+    {path: 'veto', component: VetoUi, title: basePageTitle},
+    {path: 'veto/:attendee/:id', component: VetoUi, title: basePageTitle},
+    {path: 'observe/:id', component: ObserveUi, title: basePageTitle},
+    {path: 'faq', component: Faq, title: basePageTitle},
+    {path: 'help', component: Help, title: basePageTitle},
+    {path: 'about', component: About, title: basePageTitle},
+    {path: '**', component: HomeUi, title: basePageTitle},
 ];
