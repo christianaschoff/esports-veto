@@ -5,10 +5,11 @@ import { TopBar } from "./global/top-bar/top-bar";
 import { Footer } from './global/footer/footer';
 import { environment } from '../environments/environment';
 import { GlobalStore, ObserverStore } from './store/store';
+import { BetaMarker } from './global/beta-marker/beta-marker';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Breadcrumb, TopBar, Footer],
+  imports: [RouterOutlet, Breadcrumb, TopBar, Footer, BetaMarker],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

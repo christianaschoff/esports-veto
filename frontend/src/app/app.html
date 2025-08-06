@@ -1,13 +1,14 @@
 @if(!this.fullscreenMode()) {
   <app-top-bar></app-top-bar>
 }
-  <div [class]="{'main-fullscreen' : this.fullscreenMode(), 'main': !this.fullscreenMode()}">
-    <h1>{{ title }}</h1>
-    @if(!this.fullscreenMode()) {    
+<div [class]="{'main-fullscreen' : this.fullscreenMode(), 'main': !this.fullscreenMode()}">
+  <h1>{{ title }}</h1>
+  @if(!this.fullscreenMode()) {    
     <app-breadcrumb></app-breadcrumb>
-    }
-    <router-outlet />
-  </div>
+  }
+  <router-outlet />
+</div>
 @if(!this.fullscreenMode()) {
+  <app-beta-marker></app-beta-marker>
   <app-footer></app-footer>
 }
