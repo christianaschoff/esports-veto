@@ -1,11 +1,12 @@
 .beta-version-container {
     position: absolute;    
     top: 0rem;
-    left: calc(100% - 20rem);
+    left: calc(100% - 21.5rem);
     z-index: 10000;
     overflow: hidden;
-    height:30rem;
-    width: 20rem;
+    height: 11rem;
+    width: 21.5rem;    
+    pointer-events: none;
 
     @media(max-width: 702px) {        
         left: calc(100% - 17.2rem);
@@ -13,8 +14,9 @@
     }
 
     .beta-box {
-        width: 25rem;
-        height: 4rem;
+        width: 26rem;
+        height: 4rem;    
+
         display: flex;        
         align-items: center;
         justify-content: center;    
@@ -25,6 +27,10 @@
         .beta-content {
             margin-left:4rem;
             color: #ffffff;
+            padding-left: 3rem;
+            @media(max-width: 702px) {        
+                padding-right: 2rem;
+            }   
         }
 
     }
