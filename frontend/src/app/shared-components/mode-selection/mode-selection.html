@@ -23,7 +23,7 @@
 
         @if(this.state.vetoSystem()) {
             <div class="primary-form">
-                @if (remoteService.isLoading()) {
+                @if (this.globalState.isLoading()) {
                     <div class="spinner-small">
                         <mat-spinner [diameter]="42"></mat-spinner>
                     </div>

@@ -17,7 +17,7 @@ import { ConstellationResponse, ATTENDEE_TYPE } from '../../data/veto-constellat
 import { Qrcode } from "../qrcode/qrcode";
 import { Mapslist } from "../mapslist/mapslist";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { VetoConfigurationStore } from '../../store/store';
+import { GlobalStore, VetoConfigurationStore } from '../../store/store';
 import { AdditionalInformation } from "../additional-information/additional-information";
 import { VetoSystem } from "../veto-system/veto-system";
 import { TranslateService } from '../../services/translate.service';
@@ -43,7 +43,7 @@ export class ModeSelection implements OnInit, OnDestroy {
   creationErrorText = signal('');
 
   isVetoDetailsVisible: WritableSignal<boolean> = signal(false); 
-
+  globalState = inject(GlobalStore);
   state = inject(VetoConfigurationStore);
   constructor(private readonly route: ActivatedRoute,              
               private readonly gamesService: GamesService,              
@@ -81,7 +81,7 @@ export class ModeSelection implements OnInit, OnDestroy {
           window.setTimeout(() => document.getElementById('veto-done')?.scrollIntoView({behavior: 'smooth'}), 1);
         },
         error: (error) => {
-          this.remoteService.isLoading.set(false);          
+          this.globalState.setLoading(true);
           this.creationErrorText.set(error.error);
         }
       }      

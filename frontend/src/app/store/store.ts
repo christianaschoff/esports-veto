@@ -11,10 +11,12 @@ import { LocalStorageService } from "../services/local-storage.service";
 
 type GlobalState = {
     observerViewActive: boolean;
+    isLoading: boolean;
 };
 
 const initialGlobalState : GlobalState = {
     observerViewActive: false,
+    isLoading: false
 };
 
 export const GlobalStore = signalStore(
@@ -24,6 +26,9 @@ export const GlobalStore = signalStore(
     withMethods((store) => ({
         setIsOberserverView(isVisible: boolean) {
             patchState(store,(state) => ({ observerViewActive: isVisible }))
+        },
+        setLoading(isLoading: boolean): void {
+            patchState(store, (state) => ( {isLoading: isLoading}))
         },
     }))   
 );
@@ -158,9 +163,10 @@ export const VetoStore = signalStore(
    {providedIn: 'root'},
    withDevtools('VetoState'),
    withState(initialVetoState),
-   withMethods((store, remoteService = inject(RemoteService)) => ({
+   withMethods((store, globalStore = inject(GlobalStore), remoteService = inject(RemoteService)) => ({
         setLoading(): void {
             patchState(store, (state) => ( {isLoading: !state.isLoading}))
+            globalStore.setLoading(store.isLoading());
         },
 
         setHasErrors(errors: boolean): void {

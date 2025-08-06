@@ -1,14 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Constellation, ConstellationResponse, JoinVetoResponse, VetoBaseDataResponse } from '../data/veto-constellation.data';
 import { catchError, lastValueFrom, Observable, tap, throwError } from 'rxjs';
+import { GlobalStore } from '../store/store';
 
 @Injectable({
   providedIn: 'root'  
 })
 export class RemoteService {
-  
-  public isLoading = signal(false);
+    
+  globalState = inject(GlobalStore);
+
   public joinSessionData: WritableSignal<JoinVetoResponse> = signal({} as JoinVetoResponse);
   public token = signal('');
   public tokenTimeout = signal(-1);
@@ -31,30 +33,30 @@ export class RemoteService {
   }
 
   createRemoteVeto(constellation: Constellation) : Observable<ConstellationResponse> {    
-    this.isLoading.set(true);
+    this.globalState.setLoading(true);
     return this.httpClient.post<ConstellationResponse>('/api/create', constellation)              
-              .pipe(tap(() => this.isLoading.set(false)),
+              .pipe(tap(() => this.globalState.setLoading(false)),
             );     
   }
   
 async loadRemoteVetoAdminAsync(vetoId: string) : Promise<ConstellationResponse> {
-    this.isLoading.set(true);
+    this.globalState.setLoading(true);
     return lastValueFrom(this.httpClient.get<ConstellationResponse>(`/api/create/${vetoId}`)
-            .pipe(tap(x => this.isLoading.set(false)))
+            .pipe(tap(x => this.globalState.setLoading(false)))
           );
   }
 
   async joinSessionAsync(attendee: string, id: string) : Promise<JoinVetoResponse> {
-    this.isLoading.set(true);
+    this.globalState.setLoading(true);
      return lastValueFrom(this.httpClient.get<JoinVetoResponse>(`/api/veto/${attendee}/${id}`)
-              .pipe(tap(x => this.isLoading.set(false)))
+              .pipe(tap(x => this.globalState.setLoading(false)))
             );
   }
 
   async receiveVetoBaseInformationAsync(vetoId: string) : Promise<VetoBaseDataResponse> {
-    this.isLoading.set(true);
+    this.globalState.setLoading(true);
     return lastValueFrom(this.httpClient.get<VetoBaseDataResponse>(`/api/veto/${vetoId}`)
-            .pipe(tap(x => this.isLoading.set(false)))
+            .pipe(tap(x => this.globalState.setLoading(false)))
           );
   }
 }

@@ -6,10 +6,11 @@ import { Footer } from './global/footer/footer';
 import { environment } from '../environments/environment';
 import { GlobalStore, ObserverStore } from './store/store';
 import { BetaMarker } from './global/beta-marker/beta-marker';
+import { Spinner } from "./shared-components/spinner/spinner";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Breadcrumb, TopBar, Footer, BetaMarker],
+  imports: [RouterOutlet, Breadcrumb, TopBar, Footer, BetaMarker, Spinner],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
