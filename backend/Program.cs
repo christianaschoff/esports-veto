@@ -24,6 +24,7 @@ builder.Services.Configure<RateLimiterConfig>(builder.Configuration.GetSection("
 builder.Services.AddSingleton<VetoSystemSetupService>();
 builder.Services.AddSingleton<VetoSystemResultService>();
 builder.Services.AddSingleton<VetoCoordinator>();
+builder.Services.AddHealthChecks();
 
 var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfig>();
 
@@ -101,6 +102,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.MapHealthChecks("/healthz");
 
 if (app.Environment.IsDevelopment())
 {
