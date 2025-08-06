@@ -15,7 +15,7 @@ export class GamesService {
     { name: 'StarCraft II', 
       description: 'StarCraft II Veto for competative games', 
       id: 'starcraft2', 
-      image: '/images/extern/sc2.avif',
+      image: '/images/extern/sc2.png',
       gameModes: [GameModes.M1V1, GameModes.M2V2, GameModes.M3V3, GameModes.M4V4],
       bestOf: [BestOf.BO1, BestOf.BO3, BestOf.BO5, BestOf.BO7, BestOf.BO9]
     },

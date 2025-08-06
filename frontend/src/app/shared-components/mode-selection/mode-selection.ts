@@ -81,8 +81,8 @@ export class ModeSelection implements OnInit, OnDestroy {
           window.setTimeout(() => document.getElementById('veto-done')?.scrollIntoView({behavior: 'smooth'}), 1);
         },
         error: (error) => {
-          this.globalState.setLoading(true);
           this.creationErrorText.set(error.error);
+          this.globalState.setLoading(false);
         }
       }      
     );

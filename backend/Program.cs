@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.RateLimiting;
@@ -39,7 +40,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             ValidateLifetime = true,
                             ValidIssuer = "ODGW.de",
                             ValidAudience = "ODGW.de",
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfig?.Key ?? ""))
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(GetToken()))
                         };                        
                     });
 
@@ -131,9 +132,8 @@ app.MapGet("/api/token", () =>
     {
         new Claim(JwtRegisteredClaimNames.Sub, "ODGW"),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
-
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfig?.Key ?? ""));
+    };    
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(GetToken()));
     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
     var token = new JwtSecurityToken(
@@ -153,7 +153,7 @@ app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSy
     {        
         return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
     }
-    
+    Console.WriteLine("TRY to CREATE: {0}", veto);
     await vetoSystemService.CreateAsync(veto);
     // Console.WriteLine(veto);    
     return Results.Ok(
@@ -230,6 +230,16 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
 app.Run();
 
 #region Helper
+
+string GetToken() {
+    string tokenKey = "";
+    if (string.IsNullOrEmpty(tokenConfig?.Key) || tokenConfig.Key == "<YourSecretKey>")
+    {
+        tokenKey = Environment.GetEnvironmentVariable("TOKEN_KEY") ?? "";
+    }
+    return tokenKey;
+}
+
 AttendeeType ExtractRoleFromString(string role)
 {
     if (role.Equals(Constants.OBSERVER, StringComparison.CurrentCultureIgnoreCase))

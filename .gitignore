@@ -117,3 +117,4 @@ frontend/coverage
 frontend/libpeerconnection.log
 frontendtestem.log
 frontend/typings
+.env

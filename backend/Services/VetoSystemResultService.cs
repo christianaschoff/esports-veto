@@ -10,7 +10,11 @@ public class VetoSystemResultService
 
     public VetoSystemResultService(IOptions<VetoSystemDatabaseConfig> dbConfig)
     {
-        var mongoClient = new MongoClient(dbConfig.Value.ConnectionString);
+        var connectionString = dbConfig.Value.ConnectionString;
+        if (string.IsNullOrEmpty(connectionString) || connectionString.Equals("<VetoDatabaseConnectionString>")) {            
+            connectionString = Environment.GetEnvironmentVariable("VETO_DATABASE_CONNECTIONSTRING");
+         }   
+        var mongoClient = new MongoClient(connectionString);
         var mongoDatabase = mongoClient.GetDatabase(dbConfig.Value.DatabaseName);
         _vetoCollection = mongoDatabase.GetCollection<Veto>(dbConfig.Value.VetoResultCollectionName);
     }
