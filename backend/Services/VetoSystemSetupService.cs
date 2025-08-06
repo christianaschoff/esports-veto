@@ -13,7 +13,7 @@ public class VetoSystemSetupService
         var connectionString = dbConfig.Value.ConnectionString;
         if (string.IsNullOrEmpty(connectionString) || connectionString.Equals("<VetoDatabaseConnectionString>")) {            
             connectionString = Environment.GetEnvironmentVariable("VETO_DATABASE_CONNECTIONSTRING");
-         }   
+         }
         var mongoClient = new MongoClient(connectionString);
         var mongoDatabase = mongoClient.GetDatabase(dbConfig.Value.DatabaseName);
         _vetoCollection = mongoDatabase.GetCollection<VetoSystem>(dbConfig.Value.VetoCollectionName);

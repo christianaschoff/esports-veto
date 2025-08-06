@@ -12,7 +12,7 @@ services:
     env_file: .env
     environment:
       # MongoDB connection string (will be overwritten by .env)
-      - ConnectionStrings:MongoDb=Server=mongo;User=root;Password=password
+      - MONGO_URI=mongodb://root:password@mongo:27017/?authSource=admin
       # Any other ASP.NET config values
     networks:
       - appnet
@@ -33,6 +33,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: VetoSystem
     volumes:
       - mongo-data:/data/db          # persist data across restarts
     networks:
