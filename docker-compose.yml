@@ -2,15 +2,15 @@ version: "3.9"
 
 services:
   # --- Backend API --------------------------------------
-  api:
+  esportsapi:
     build:
       context: .
       dockerfile: backend/Dockerfile # change this to official docker repo, if you dont want to build locally
-    image: odgw/backend:latest
+    image: esports-vetosystem:latest
     depends_on:
       - mongo
     env_file: .env
-    environment:      
+    environment:
       - VETO_DATABASE_CONNECTIONSTRING=${VETO_DATABASE_CONNECTIONSTRING}
       - TOKEN_KEY=${TOKEN_KEY}
       - CONTAINER=${CONTAINER}
