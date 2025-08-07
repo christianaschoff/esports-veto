@@ -22,7 +22,15 @@ you can run the app within a container/docker using
 ```shell
    docker compose down -v && docker compose up --build
 ```
+__be careful__: the -v switch will delete all volumes etc.!  
+If you want to preseve the data even after restart of your container, remove the -v parameter!
+
+```shell
+   docker compose down && docker compose up --build
+```
+
 Alternatively you can use to run it as a service in the background
+
 ```docker
     docker compose up -d
 ```
@@ -63,3 +71,12 @@ Generate a key and place it here.
 ### CONTAINER
 
 Tells the .net backend, that it should not enforce SSL/TLS itself, but relies on a reverse-proxy that does SSL Termination in Docker/Kubernetes environment. 
+
+## Connect to Database
+
+You can connect to mongo db using (assuming you kept the default config - otherwise update accordingly)
+
+```shell
+  mongosh --username root --password password --authenticationDatabase admin
+```
+Keep in mind to ssh into your mongo container first.
