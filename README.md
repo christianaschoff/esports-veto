@@ -8,7 +8,7 @@ The Frontend is developed using Angular 20.
 
 ## Backend
 
-The Backend is developed using dotnet Core 9.
+The Backend is developed using .NET Core 9.
 
 ## About
 
