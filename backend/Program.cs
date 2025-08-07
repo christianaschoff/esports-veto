@@ -116,10 +116,17 @@ if (app.Environment.IsDevelopment())
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
-    app.UseHttpsRedirection();
+    if (!doIRunInDocker())
+    {        
+        app.UseHttpsRedirection();
+    }
 }
 app.UseAuthorization();
 app.UseRateLimiter();
+
+// make backend server angular app and allow deeplinking
+app.UseStatusCodePagesWithReExecute("/");
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 
@@ -231,13 +238,22 @@ app.Run();
 
 #region Helper
 
+bool doIRunInDocker()
+{
+    var fromEnv = Environment.GetEnvironmentVariable("CONTAINER");
+    if (!string.IsNullOrEmpty(fromEnv) && bool.TryParse(fromEnv, out bool result))
+    {
+        return result;
+    }
+    return false;
+}
+
 string GetToken() {
-    string tokenKey = "";
     if (string.IsNullOrEmpty(tokenConfig?.Key) || tokenConfig.Key == "<YourSecretKey>")
     {
-        tokenKey = Environment.GetEnvironmentVariable("TOKEN_KEY") ?? "";
+        return Environment.GetEnvironmentVariable("TOKEN_KEY") ?? "";
     }
-    return tokenKey;
+    return tokenConfig.Key;
 }
 
 AttendeeType ExtractRoleFromString(string role)

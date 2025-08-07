@@ -55,6 +55,10 @@ In the appsettings file you will find the structure like that:
 }
 ```
 
+### Run with docker
+
+have a look into the Readme in the base folder!
+
 ### Rate Limiter
 
 You can simply deactivate the rate limiter if you want to. Rate limiter relies on the generated JWTs.  
