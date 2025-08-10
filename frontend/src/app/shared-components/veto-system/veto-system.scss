@@ -19,6 +19,9 @@
             margin-top: .6rem; 
             padding-right: .4rem;
             min-width: 20rem;
+            @media (max-width: 470px) { 
+                min-width: 15rem;
+            }
         }
     }
 

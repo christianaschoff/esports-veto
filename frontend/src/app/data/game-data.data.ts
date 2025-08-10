@@ -7,4 +7,5 @@ export interface GameData {
     image?: string;
     gameModes: GameModes[]
     bestOf: BestOf[]
+    isActive: boolean;
 }

@@ -1,7 +1,15 @@
 <mat-card class="game-card" appearance="outlined" (click)="onSelect()">
-  <mat-card-header>    
+  <mat-card-header>
     <mat-card-title>{{game?.name}}</mat-card-title>    
   </mat-card-header>
+  @if(!game?.isActive) {
+
+    <div class="soon-container to-upper">
+      <div class="soon">
+        soon
+      </div>
+    </div>
+  }
   <img mat-card-image [src]="game?.image" alt="{{game?.name}}">
   <mat-card-content>
     <p [innerHTML]="game?.description">      

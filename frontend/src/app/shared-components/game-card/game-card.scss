@@ -18,6 +18,26 @@
             opacity: 1;
         }         
     }
+
+    .soon-container{
+        position: absolute;
+        top: 0;
+        left: 7.4rem;
+        z-index: 10;
+        overflow: hidden;
+        height: 8rem;
+        width: 5rem;        
+        .soon {
+            width: 8rem;
+            height: 1.5rem;
+            margin-top: 1rem;
+            padding-left:2rem;
+            padding-top: .2rem;
+            transform: rotate(35deg);
+            color: #ffffff;
+            background-color: #a90202;;
+        }
+    }
 }
 
 .to-upper {

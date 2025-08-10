@@ -6,7 +6,11 @@
     max-width: 800px;    
     margin-left: auto;
     margin-right: auto;
+
     width: 100%;
+    @media (max-width: 470px) {
+        width: calc(100% - 2rem);
+    }
 }
 
 .main-fullscreen, .main {     

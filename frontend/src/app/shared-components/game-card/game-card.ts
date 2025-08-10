@@ -19,7 +19,9 @@ export class GameCard {
   }
 
   onSelect() {
-    this.router.navigate(['/new', this.game?.id]);    
+    if(this.game?.isActive) {
+      this.router.navigate(['/new', this.game?.id]);    
+    }
   }
 
 }
