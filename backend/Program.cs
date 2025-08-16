@@ -1,5 +1,6 @@
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.IdentityModel.Tokens.Jwt;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.RateLimiting;
@@ -8,6 +9,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
 using VETO.BusinessLogic;
 using VETO.Models;
@@ -102,6 +106,47 @@ builder.Services.AddCors(options =>
         });
 });
 
+#region openTelemetry
+var vetoSystemMeter = new Meter("VetoSystem", "1.0.0");
+var countTokens = vetoSystemMeter.CreateCounter<int>("vetoSystem.token.count", description: "Counts the number of tokens created");
+
+// Custom ActivitySource for the application
+var vetoActivitySource = new ActivitySource("VetoSystem");
+
+var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
+var openTelemetry = builder.Services.AddOpenTelemetry();
+
+openTelemetry.ConfigureResource(resource => resource
+    .AddService(serviceName: builder.Environment.ApplicationName));
+
+openTelemetry.WithMetrics(metrics => metrics    
+    .AddAspNetCoreInstrumentation()
+    .AddMeter(vetoSystemMeter.Name)
+    .AddMeter("Microsoft.AspNetCore.Hosting")
+    .AddMeter("Microsoft.AspNetCore.Server.Kestrel")    
+    .AddMeter("System.Net.Http")
+    .AddMeter("System.Net.NameResolution")
+    .AddPrometheusExporter());
+
+openTelemetry.WithTracing(tracing =>
+{
+    tracing.AddAspNetCoreInstrumentation();
+    tracing.AddHttpClientInstrumentation();
+    tracing.AddSource(vetoActivitySource.Name);
+    if (tracingOtlpEndpoint != null)
+    {
+        tracing.AddOtlpExporter(otlpOptions =>
+         {
+             otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
+         });
+    }
+    else
+    {
+        tracing.AddConsoleExporter();
+    }
+});
+#endregion
+
 var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
@@ -123,12 +168,10 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseAuthorization();
 app.UseRateLimiter();
-
-// make backend server angular app and allow deeplinking
 app.UseStatusCodePagesWithReExecute("/");
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
+app.MapPrometheusScrapingEndpoint();
 
 app.MapHub<VetoSystemServiceHub>("/api/veto")
 .RequireRateLimiting(jwtPolicyName);
@@ -149,7 +192,9 @@ app.MapGet("/api/token", () =>
         claims: claims,
         expires: DateTime.Now.ToUniversalTime().AddMinutes(30),
         signingCredentials: creds);
-
+    using var activity = vetoActivitySource.StartActivity("TokenActivity");
+    countTokens.Add(1);
+    activity?.SetTag("token", "created");
     return Results.Ok(new JwtSecurityTokenHandler().WriteToken(token));
 });
 
@@ -161,14 +206,14 @@ app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSy
         return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
     }
     Console.WriteLine("TRY to CREATE: {0}", veto);
-    await vetoSystemService.CreateAsync(veto);
-    // Console.WriteLine(veto);    
+    await vetoSystemService.CreateAsync(veto);    
     return Results.Ok(
         new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId, veto.observerId }
     );
 })
 .RequireRateLimiting(jwtPolicyName)
 .RequireAuthorization();
+
 
 app.MapGet("/api/create/{id}", async ([FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
 {
@@ -200,6 +245,7 @@ app.MapGet("/api/veto/{id}", async ([FromRoute] string id, VetoSystemSetupServic
 })
 .RequireRateLimiting(jwtPolicyName)
 .RequireAuthorization();
+
 
 app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
 {    

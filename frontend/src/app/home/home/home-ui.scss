@@ -10,10 +10,11 @@
             font-size: 3.4rem;    
         }        
     }
+    overflow: hidden;
     div {
         position: relative;        
         top: 556px;
-        left: 246px;
+        left: 246px;        
 
         @media(max-width: 702px) {
             top: 356px;
