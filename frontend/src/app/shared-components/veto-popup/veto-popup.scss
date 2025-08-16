@@ -1,15 +1,15 @@
 .popup-container {
     width: 35rem;
-    @media (max-width: 470px) { 
-        width: 19rem;
-    }
     height: 29rem;
     border-radius: .8rem;
     margin: 1rem;
     padding: 1rem;
     background-color: #ffffff;
     text-align: center;
-
+    
+    @media (max-width: 470px) { 
+        width: 19rem;
+    }
     h3, h4 {
         margin: .6rem;
     }    
@@ -46,10 +46,10 @@
 
     .countdown-bar {
         width: 32rem;
+        margin: 1rem 0;
         @media (max-width: 470px) { 
             width: 16rem;
         }
-        margin: 1rem 0;
     }
 
     .to-upper {

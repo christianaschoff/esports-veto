@@ -1,6 +1,7 @@
 .jumbo {    
     text-align: center;    
     color: #4b4357;
+    overflow: hidden;
     h2 {        
         font-size: 8rem;
         @media(max-width: 702px) {
@@ -10,7 +11,6 @@
             font-size: 3.4rem;    
         }        
     }
-    overflow: hidden;
     div {
         position: relative;        
         top: 556px;
