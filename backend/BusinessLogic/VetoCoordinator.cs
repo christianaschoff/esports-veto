@@ -1,9 +1,10 @@
+using VETO.Metrics;
 using VETO.Models;
 using VETO.Services;
 
 namespace VETO.BusinessLogic;
 
-public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, VetoSystemResultService vetoSystemResultService)
+public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, VetoSystemResultService vetoSystemResultService, VetoDoneMetrics vetoDoneMetrics)
 {
     private readonly List<KeyValuePair<string, Veto>> _coordinatorIds = [];
     private readonly List<KeyValuePair<string, string>> _signalRToVetoMap = [];
@@ -19,6 +20,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
 
     public readonly VetoSystemSetupService _vetoSystemSetupService = vetoSystemSetupService;
     private readonly VetoSystemResultService _vetoSystemResultService = vetoSystemResultService;
+    private readonly VetoDoneMetrics _vetoDoneMetrics = vetoDoneMetrics;
 
     public async Task<VetoData> CalculateCurrentGameState(string vetoId)
     {
@@ -129,7 +131,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         }
     }
 
-    private static VetoState CalculateVetoState(Veto currentVeto)
+    private VetoState CalculateVetoState(Veto currentVeto)
     {
         if (IsVetoAlreadyDone(currentVeto))
             return VetoState.VETO_DONE;
@@ -142,6 +144,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         {
             return currentVeto.VetoConfig.playerAId == playerVoteNeeded.PlayerId ? VetoState.VETO_MISSING_A : VetoState.VETO_MISSING_B;
         }
+        _vetoDoneMetrics.VetosDone(1);
         return VetoState.VETO_DONE;
     }
 

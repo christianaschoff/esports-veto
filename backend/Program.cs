@@ -14,6 +14,7 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
 using VETO.BusinessLogic;
+using VETO.Metrics;
 using VETO.Models;
 using VETO.Services;
 
@@ -30,6 +31,10 @@ builder.Services.AddSingleton<VetoSystemSetupService>();
 builder.Services.AddSingleton<VetoSystemResultService>();
 builder.Services.AddSingleton<VetoCoordinator>();
 builder.Services.AddHealthChecks();
+
+builder.Services.AddSingleton<VetoCreationMetrics>();
+builder.Services.AddSingleton<VetoDoneMetrics>();
+builder.Services.AddSingleton<TokenMetrics>();
 
 var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfig>();
 
@@ -107,21 +112,18 @@ builder.Services.AddCors(options =>
 });
 
 #region openTelemetry
-var vetoSystemMeter = new Meter("VetoSystem", "1.0.0");
-var countTokens = vetoSystemMeter.CreateCounter<int>("vetoSystem.token.count", description: "Counts the number of tokens created");
-
-// Custom ActivitySource for the application
 var vetoActivitySource = new ActivitySource("VetoSystem");
-
 var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
 var openTelemetry = builder.Services.AddOpenTelemetry();
 
 openTelemetry.ConfigureResource(resource => resource
     .AddService(serviceName: builder.Environment.ApplicationName));
 
-openTelemetry.WithMetrics(metrics => metrics    
-    .AddAspNetCoreInstrumentation()
-    .AddMeter(vetoSystemMeter.Name)
+openTelemetry.WithMetrics(metrics => metrics
+    .AddAspNetCoreInstrumentation()    
+    .AddMeter(TokenMetrics.Name)
+    .AddMeter(VetoCreationMetrics.Name)
+    .AddMeter(VetoDoneMetrics.Name)
     .AddMeter("Microsoft.AspNetCore.Hosting")
     .AddMeter("Microsoft.AspNetCore.Server.Kestrel")    
     .AddMeter("System.Net.Http")
@@ -176,7 +178,7 @@ app.MapPrometheusScrapingEndpoint();
 app.MapHub<VetoSystemServiceHub>("/api/veto")
 .RequireRateLimiting(jwtPolicyName);
 
-app.MapGet("/api/token", () =>
+app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 {
     var claims = new[]
     {
@@ -192,13 +194,12 @@ app.MapGet("/api/token", () =>
         claims: claims,
         expires: DateTime.Now.ToUniversalTime().AddMinutes(30),
         signingCredentials: creds);
-    using var activity = vetoActivitySource.StartActivity("TokenActivity");
-    countTokens.Add(1);
-    activity?.SetTag("token", "created");
+
+    tokenMetrics.TokenCreated(1);
     return Results.Ok(new JwtSecurityTokenHandler().WriteToken(token));
 });
 
-app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService) =>
+app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService, VetoCreationMetrics vetoCreationMetrics) =>
 {    
     var errorList = VetoValidator.ValidateVetoObject(veto);
     if (errorList.Count > 0)
@@ -206,7 +207,8 @@ app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSy
         return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
     }
     Console.WriteLine("TRY to CREATE: {0}", veto);
-    await vetoSystemService.CreateAsync(veto);    
+    await vetoSystemService.CreateAsync(veto);
+    vetoCreationMetrics.VetosCreated(1);
     return Results.Ok(
         new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId, veto.observerId }
     );
