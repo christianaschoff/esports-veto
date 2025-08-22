@@ -30,8 +30,8 @@ export class VetoUi implements OnInit, OnDestroy {
 
   routeId = signal('');
   attendee = signal('');
-
-  sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());
+  localLoadingBatch = signal(true);
+  sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());  
 
   constructor() {
     this.route.params.subscribe((params) => {
@@ -52,10 +52,11 @@ export class VetoUi implements OnInit, OnDestroy {
     });
     
     effect(async () => {          
-      if(this.state.attendee() && this.state.attendee().vetoId) {
+      if(this.state.attendee() && this.state.attendee().vetoId) {        
         await this.vetohub.joinVetoHub(this.state.attendee().vetoId,this.state.attendee().userId, this.state.attendee().userName);
         await this.state.loadByVetoId(this.state.attendee().vetoId);
         document.title = `Veto: ${this.state.vetoTitle()} - ${this.state.attendee().userName}`
+        this.localLoadingBatch.set(false);
       }        
     });
   }

@@ -1,28 +1,50 @@
 using System.Diagnostics;
-using System.Diagnostics.Metrics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.RateLimiting;
+using AspNetCore.SignalR.OpenTelemetry;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
 using VETO.BusinessLogic;
+using VETO.Database;
 using VETO.Metrics;
 using VETO.Models;
 using VETO.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+ActivitySource? vetoActivitySource = null;
 
-// Add services to the container.
 builder.Services.AddOpenApi();
-builder.Services.AddSignalR();
+
+if (useOpenTelemetry())
+{
+    builder.Services.AddSignalR().AddHubInstrumentation(options =>
+    {
+        options.OnException = static (activity, exception) =>
+        {
+            if (exception is HubException)
+            {
+                activity.SetTag("otel.status_code", "OK");
+            }
+        };
+    });
+    vetoActivitySource = new ActivitySource("VetoSystem");
+}
+else
+{
+    builder.Services.AddSignalR();
+}
+
 
 builder.Services.Configure<VetoSystemDatabaseConfig>(builder.Configuration.GetSection("VetoDatabase"));
 builder.Services.Configure<TokenConfig>(builder.Configuration.GetSection("Token"));
@@ -30,11 +52,16 @@ builder.Services.Configure<RateLimiterConfig>(builder.Configuration.GetSection("
 builder.Services.AddSingleton<VetoSystemSetupService>();
 builder.Services.AddSingleton<VetoSystemResultService>();
 builder.Services.AddSingleton<VetoCoordinator>();
-builder.Services.AddHealthChecks();
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddHealthChecks();
 builder.Services.AddSingleton<VetoCreationMetrics>();
 builder.Services.AddSingleton<VetoDoneMetrics>();
 builder.Services.AddSingleton<TokenMetrics>();
+builder.Services.AddSingleton<VetoRootCallMetrics>();
+builder.Services.AddSingleton<MongoIndices>();
 
 var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfig>();
 
@@ -50,7 +77,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             ValidIssuer = "ODGW.de",
                             ValidAudience = "ODGW.de",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(GetToken()))
-                        };                        
+                        };
+                        if (useOpenTelemetry())
+                        {
+                            options.Events = new JwtBearerEvents
+                            {
+                                OnAuthenticationFailed = context =>
+                                {                                
+                                    using var activity = vetoActivitySource?.StartActivity("Jwt-Error");
+                                    activity?.SetStatus(ActivityStatusCode.Error, $"Authentication failed: {context.Exception.Message}");
+                                    return Task.CompletedTask;
+                                }
+                            };                            
+                        }
                     });
 
 var jwtPolicyName = "jwt";
@@ -64,7 +103,7 @@ builder.Services.AddRateLimiter(limiterOptions =>
         var accessToken = httpContext.Features.Get<IAuthenticateResultFeature>()?
                         .AuthenticateResult?.Properties?.GetTokenValue("access_token")?.ToString()
                     ?? string.Empty;
-        
+
         if (!StringValues.IsNullOrEmpty(accessToken))
         {
             return RateLimitPartition.GetTokenBucketLimiter(accessToken, _ =>
@@ -87,9 +126,18 @@ builder.Services.AddRateLimiter(limiterOptions =>
                 ReplenishmentPeriod = TimeSpan.FromSeconds(15),
                 TokensPerPeriod = 20,
                 AutoReplenishment = true
-            });        
+            });
     });
-    
+
+    if (useOpenTelemetry())
+    {
+        limiterOptions.OnRejected = (context, ct) =>
+        {        
+                using var activity = vetoActivitySource?.StartActivity("Rate-Limiter");                
+                activity?.SetStatus(ActivityStatusCode.Error, $"Rate Limiter hiy failed: {context.HttpContext.Request.Path}");
+                return ValueTask.CompletedTask;
+        };        
+    }
 });
 
 builder.Services.AddHsts(options =>
@@ -112,41 +160,89 @@ builder.Services.AddCors(options =>
 });
 
 #region openTelemetry
-var vetoActivitySource = new ActivitySource("VetoSystem");
-var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
-var openTelemetry = builder.Services.AddOpenTelemetry();
-
-openTelemetry.ConfigureResource(resource => resource
-    .AddService(serviceName: builder.Environment.ApplicationName));
-
-openTelemetry.WithMetrics(metrics => metrics
-    .AddAspNetCoreInstrumentation()    
-    .AddMeter(TokenMetrics.Name)
-    .AddMeter(VetoCreationMetrics.Name)
-    .AddMeter(VetoDoneMetrics.Name)
-    .AddMeter("Microsoft.AspNetCore.Hosting")
-    .AddMeter("Microsoft.AspNetCore.Server.Kestrel")    
-    .AddMeter("System.Net.Http")
-    .AddMeter("System.Net.NameResolution")
-    .AddPrometheusExporter());
-
-openTelemetry.WithTracing(tracing =>
+if (useOpenTelemetry())
 {
-    tracing.AddAspNetCoreInstrumentation();
-    tracing.AddHttpClientInstrumentation();
-    tracing.AddSource(vetoActivitySource.Name);
-    if (tracingOtlpEndpoint != null)
+    var tracingOtlpEndpoint = doIRunInDocker() ? Environment.GetEnvironmentVariable("OTLP_ENDPOINT_URL") : builder.Configuration["OTLP_ENDPOINT_URL"];
+    var tracingZipkinEndpoint = doIRunInDocker() ? Environment.GetEnvironmentVariable("ZIPKIN_ENDPOINT_URL") : builder.Configuration["ZIPKIN_ENDPOINT_URL"];
+    var openTelemetry = builder.Services.AddOpenTelemetry();
+
+    openTelemetry.ConfigureResource(resource => resource
+        .AddService(serviceName: builder.Environment.ApplicationName));
+
+    openTelemetry.WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddMeter(TokenMetrics.Name)
+        .AddMeter(VetoCreationMetrics.Name)
+        .AddMeter(VetoDoneMetrics.Name)
+        .AddMeter(VetoRootCallMetrics.Name)
+        .AddMeter("Microsoft.AspNetCore.Hosting")
+        .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+        .AddMeter("System.Net.Http")
+        .AddMeter("System.Net.NameResolution")
+        .AddOtlpExporter()
+        .AddPrometheusExporter());
+
+    builder.Logging.AddOpenTelemetry(options =>
     {
-        tracing.AddOtlpExporter(otlpOptions =>
-         {
-             otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
-         });
-    }
-    else
+        options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(builder.Environment.ApplicationName));
+        options.IncludeFormattedMessage = true;
+        options.IncludeScopes = true;
+        options.ParseStateValues = true;
+        options.AttachLogsToActivityEvent();
+        options.AddOtlpExporter(otlpOptions =>
+        {
+            if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
+            {
+                otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
+            }
+        });
+        options.AddConsoleExporter();
+    });
+
+    openTelemetry.WithTracing(tracing =>
     {
-        tracing.AddConsoleExporter();
-    }
-});
+        tracing.AddAspNetCoreInstrumentation(options =>
+            {
+                options.Filter = (httpContext) =>
+                {
+                    var path = httpContext.Request.Path;
+                    if (path.StartsWithSegments("/health"))
+                    {
+                        return false;
+                    }
+                    if (path.StartsWithSegments("/healthz"))
+                    {
+                        return false;
+                    }
+                    if (path.StartsWithSegments("/metrics"))
+                    {
+                        return false;
+                    }
+                    return true;
+                };
+            }
+        );
+        if (!string.IsNullOrEmpty(tracingOtlpEndpoint) || !string.IsNullOrEmpty(tracingZipkinEndpoint))
+        {
+            tracing.AddHttpClientInstrumentation();
+            tracing.AddMongoDBInstrumentation();
+            tracing.AddSignalRInstrumentation();
+            if (!string.IsNullOrEmpty(tracingZipkinEndpoint))
+            {
+                tracing.AddZipkinExporter(otlpOptions => otlpOptions.Endpoint = new Uri(tracingZipkinEndpoint));
+            }
+            else if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
+            {
+                tracing.AddOtlpExporter(otlpOptions => otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint));
+            }
+        }
+        else
+        {
+            tracing.AddConsoleExporter();
+        }
+        tracing.AddSource(vetoActivitySource?.Name ?? "");
+    });
+}
 #endregion
 
 var app = builder.Build();
@@ -170,13 +266,48 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseAuthorization();
 app.UseRateLimiter();
-app.UseStatusCodePagesWithReExecute("/");
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.MapPrometheusScrapingEndpoint();
+
+
+if (useOpenTelemetry())
+{
+    app.MapPrometheusScrapingEndpoint();
+}
 
 app.MapHub<VetoSystemServiceHub>("/api/veto")
 .RequireRateLimiting(jwtPolicyName);
+
+app.MapFallbackToFile("/index.html");
+
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value?.ToLower();
+    
+    if (path == "/" && context.Request.Method == "GET")
+    {
+        var metric = app.Services.GetService<VetoRootCallMetrics>();
+        metric?.RootCalled(1);
+    }        
+
+    if (path == null)
+    {
+        await next();
+        return;
+    }
+     var staticExtensions = new[] { ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".ico", ".svg", ".woff", ".woff2", ".ttf", ".eot" };
+    if (staticExtensions.Any(ext => path.EndsWith(ext)) || 
+        path.StartsWith("/api") || 
+        path.StartsWith("/favicon.ico") ||
+        path.StartsWith("/assets"))
+    {
+        await next();
+        return;
+    }
+        
+    context.Request.Path = "/index.html";    
+    await next();
+});
 
 app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 {
@@ -200,13 +331,15 @@ app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 });
 
 app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService, VetoCreationMetrics vetoCreationMetrics) =>
-{    
+{
+    using var activity = vetoActivitySource?.StartActivity("Create-Veto");
     var errorList = VetoValidator.ValidateVetoObject(veto);
     if (errorList.Count > 0)
-    {        
+    {                
+        activity?.SetStatus(ActivityStatusCode.Error, string.Join(",", errorList));
         return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
-    }
-    Console.WriteLine("TRY to CREATE: {0}", veto);
+    }    
+    activity?.SetTag("creation", veto);
     await vetoSystemService.CreateAsync(veto);
     vetoCreationMetrics.VetosCreated(1);
     return Results.Ok(
@@ -281,6 +414,7 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
 .RequireRateLimiting(jwtPolicyName)
 .RequireAuthorization();
 
+app.Services.GetService<MongoIndices>()?.CreateIndexesAsync().Wait();
 
 app.Run();
 
@@ -290,6 +424,16 @@ bool doIRunInDocker()
 {
     var fromEnv = Environment.GetEnvironmentVariable("CONTAINER");
     if (!string.IsNullOrEmpty(fromEnv) && bool.TryParse(fromEnv, out bool result))
+    {
+        return result;
+    }
+    return false;
+}
+
+bool useOpenTelemetry()
+{    
+    var val = doIRunInDocker() ? Environment.GetEnvironmentVariable("UseOpenTelemetry") :  builder.Configuration["UseOpenTelemetry"];
+    if (!string.IsNullOrEmpty(val) && bool.TryParse(val, out bool result))
     {
         return result;
     }
@@ -322,4 +466,5 @@ AttendeeType ExtractRoleFromString(string role)
     }
     return AttendeeType.Unknown;
 }
+
 #endregion

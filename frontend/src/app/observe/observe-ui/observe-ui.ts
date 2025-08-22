@@ -45,6 +45,7 @@ export class ObserveUi implements OnInit, OnDestroy {
 
   sessionGiven = computed(() => this.routeId());
   show = signal(true);
+  localLoadingBatch = signal(true);
 
   livePreview = signal(false);
   isSettingsVisible = signal(false);  
@@ -102,6 +103,7 @@ export class ObserveUi implements OnInit, OnDestroy {
         await this.vetohub.joinVetoHub(this.state.attendee().vetoId, this.state.attendee().userId, this.state.attendee().userName);
         await this.state.loadByVetoId(this.state.attendee().vetoId);
         document.title = `Veto Observe: ${this.state.vetoTitle()}`
+        this.localLoadingBatch.set(false);
       }        
     });
   }

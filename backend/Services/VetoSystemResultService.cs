@@ -1,22 +1,27 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Core.Extensions.DiagnosticSources;
 using VETO.Models;
 
 namespace VETO.Services;
 
 public class VetoSystemResultService
 {
-    private readonly IMongoCollection<Veto> _vetoCollection;
+    private readonly IMongoCollection<Veto> _vetoCollection;    
 
     public VetoSystemResultService(IOptions<VetoSystemDatabaseConfig> dbConfig)
     {
         var connectionString = dbConfig.Value.ConnectionString;
-        if (string.IsNullOrEmpty(connectionString) || connectionString.Equals("<VetoDatabaseConnectionString>")) {            
+        if (string.IsNullOrEmpty(connectionString) || connectionString.Equals("<VetoDatabaseConnectionString>"))
+        {
             connectionString = Environment.GetEnvironmentVariable("VETO_DATABASE_CONNECTIONSTRING");
-         }   
-        var mongoClient = new MongoClient(connectionString);
+        }
+        var settings = MongoClientSettings.FromConnectionString(connectionString);
+        settings.ClusterConfigurator = cb => cb.Subscribe(new DiagnosticsActivityEventSubscriber());
+
+        var mongoClient = new MongoClient(settings);
         var mongoDatabase = mongoClient.GetDatabase(dbConfig.Value.DatabaseName);
-        _vetoCollection = mongoDatabase.GetCollection<Veto>(dbConfig.Value.VetoResultCollectionName);
+        _vetoCollection = mongoDatabase.GetCollection<Veto>(dbConfig.Value.VetoResultCollectionName);        
     }
 
     public async Task<List<Veto>> GetAsync() =>
