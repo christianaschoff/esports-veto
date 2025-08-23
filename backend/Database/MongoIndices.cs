@@ -1,10 +1,8 @@
-using System.Reflection.Emit;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using VETO.Models;
 
 namespace VETO.Database;
-
 
 public class MongoIndices
 {
@@ -43,6 +41,8 @@ public class MongoIndices
         await vetoCollection.Indexes.CreateOneAsync(
             new CreateIndexModel<VetoSystem>(Builders<VetoSystem>.IndexKeys.Ascending(x => x.playerBId)));
 
+        await vetoCollection.Indexes.CreateOneAsync(
+            new CreateIndexModel<VetoSystem>(Builders<VetoSystem>.IndexKeys.Ascending(x => x.observerId)));
 
         await vetoResultCollection.Indexes.CreateOneAsync(
             new CreateIndexModel<Veto>(Builders<Veto>.IndexKeys.Ascending(x => x.Id)));
@@ -55,5 +55,8 @@ public class MongoIndices
 
         await vetoResultCollection.Indexes.CreateOneAsync(
             new CreateIndexModel<Veto>(Builders<Veto>.IndexKeys.Ascending(x => x.VetoConfig.playerAId)));
+
+        await vetoResultCollection.Indexes.CreateOneAsync(
+            new CreateIndexModel<Veto>(Builders<Veto>.IndexKeys.Ascending(x => x.VetoConfig.observerId)));
     }
 }
