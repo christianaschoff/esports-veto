@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /src/
+Disallow: /assets/
+Disallow: /api/
+
+# Allow main application routes
+Allow: /
+Allow: /faq/
+Allow: /about/
+Allow: /help/
+Allow: /new/
