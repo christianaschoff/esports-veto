@@ -27,7 +27,10 @@ In the appsettings file you will find the structure like that:
     "DatabaseName": "DATABASE-NAME",
     "VetoCollectionName": "COLLECTION-NAME",
     "VetoResultCollectionName": "COLLECTION-NAME-2"
-  }  
+  }, 
+  "OTLP_ENDPOINT_URL": "OTLP ENDPOINT",
+  "ZIPKIN_ENDPOINT_URL": "ZIPKIN ENDPOINT",
+  "UseOpenTelemetry": true 
 }
 ```
 ### JWT
@@ -58,6 +61,20 @@ In the appsettings file you will find the structure like that:
 ### Run with docker
 
 have a look into the Readme in the base folder!
+
+### Monitoring & Tracing 
+
+We use OpenTelemtry within the application.  
+To activate Logging and tracing you need to set
+
+```JSON
+  "UseOpenTelemetry": true 
+```
+
+When using OpenTelemtry is enabled, an /metrics Endpoint is added and can be consumed by Tools like Prometheus.  
+Tracing can be done by OTLP over http or Zipkin over gRPC. You can connect that to jaeger or other collectors.  
+You __can__ use Zikin and OTLP side by side, but when the same collector like jaeger is configured, it will receive each span/event two times. That might cause warning messages in jaeger.  
+We recommend to configure just one endpoint. Just leave the other blank oder set it to null. Please consult the documentation of your collector to get the correct endpoints.
 
 ### Rate Limiter
 
