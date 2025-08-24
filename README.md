@@ -53,6 +53,18 @@ TOKEN_KEY=<YourTokenKeyHere>
 CONTAINER=true
 ```
 
+If you want to use OpenTelemetry collectors extend the Env-File like that:
+
+```shell
+OTLP_ENDPOINT_URL=<YourOtplEndpoint>
+ZIPKIN_ENDPOINT_URL=<YourZipkinEndpoint>
+UseOpenTelemetry=true
+```
+
+Be advised: decide, if you want to use Zipkin or an OTLP Connector over json.  
+if both have an url, the backend will send both, but the span will be the same.  
+Tools like jaeger will complain (though work) in the details of a trace and show both of them.
+
 ### VETO_DATABASE_CONNECTIONSTRING
 
 make sure that username and password match with the username an password you chose in the docker-compose.yml

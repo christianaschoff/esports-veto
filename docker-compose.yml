@@ -14,6 +14,9 @@ services:
       - VETO_DATABASE_CONNECTIONSTRING=${VETO_DATABASE_CONNECTIONSTRING}
       - TOKEN_KEY=${TOKEN_KEY}
       - CONTAINER=${CONTAINER}
+      - OTLP_ENDPOINT_URL=${OTLP_ENDPOINT}
+      - ZIPKIN_ENDPOINT_URL=${ZIPKIN_ENDPOINT}
+      - UseOpenTelemetry=${USE_OPENTELEMETRY}
       # Any other ASP.NET config values
     networks:
       - appnet
