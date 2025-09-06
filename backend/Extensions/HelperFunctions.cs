@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication;
@@ -10,6 +12,22 @@ namespace VETO.Extensions;
 
 public static class HelperFunctions
 {
+    private static string _versionInfo = String.Empty;
+
+    public static string GetVersionInfo()
+    {
+        if (String.IsNullOrEmpty(_versionInfo))
+        {            
+            lock (_versionInfo)
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var version = assembly.GetName().Version;
+                _versionInfo = version?.ToString() ?? "";
+            }
+        }
+        return _versionInfo;
+    }
+
     public static bool DoIRunInDocker()
     {
         var fromEnv = Environment.GetEnvironmentVariable("CONTAINER");

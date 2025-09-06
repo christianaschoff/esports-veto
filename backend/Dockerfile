@@ -14,6 +14,10 @@ RUN npm run build -- --output-path=dist
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS dotnet-build
 WORKDIR /src
 
+# build some generic version info
+ARG VERSION=1.0.0
+ARG BUILD_TIMESTAMP=0
+
 # Copy csproj and restore as distinct layers
 COPY backend/*.csproj ./backend/
 RUN dotnet restore ./backend/Veto.csproj
@@ -21,8 +25,15 @@ RUN dotnet restore ./backend/Veto.csproj
 # Copy everything else
 COPY . .
 
+RUN echo "VERSION=$VERSION" && \
+    echo "BUILD_TIMESTAMP=$BUILD_TIMESTAMP" && \
+    echo "Final version will be: $VERSION.$BUILD_TIMESTAMP"
+
 # Publish the API (self‑contained if you prefer, otherwise just trimmed)
-RUN dotnet publish ./backend/Veto.csproj -c Release -o /app/publish
+RUN dotnet publish ./backend/Veto.csproj -c Release -o /app/publish \
+-p:Version="$VERSION.$BUILD_TIMESTAMP" \
+-p:AssemblyVersion="$VERSION.$BUILD_TIMESTAMP" \
+-p:FileVersion="$VERSION.$BUILD_TIMESTAMP"
 
 # ── Stage 3 ── Runtime image ------------------------------------------------
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

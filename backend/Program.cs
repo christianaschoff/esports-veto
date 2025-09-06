@@ -11,7 +11,10 @@ using VETO.Metrics;
 using VETO.Models;
 using VETO.Services;
 using VETO.Extensions;
+using Microsoft.AspNetCore.Http.HttpResults;
 
+
+#region WebApplication Builder
 var builder = WebApplication.CreateBuilder(args);
 
 ActivitySource? vetoActivitySource = null;
@@ -56,7 +59,9 @@ builder.Services.AddCors(options =>
                 .AllowCredentials();
         });
 });
+#endregion
 
+#region App config
 var app = builder.Build();
 
 app.UseExceptionHandler(handler =>
@@ -90,7 +95,6 @@ app.UseRateLimiter();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-
 if (HelperFunctions.UseOpenTelemetry(builder.Configuration))
 {
     app.MapPrometheusScrapingEndpoint();
@@ -100,6 +104,7 @@ app.MapHub<VetoSystemServiceHub>("/api/veto")
 .RequireRateLimiting(jwtPolicyName);
 
 app.MapFallbackToFile("/index.html");
+#endregion
 
 app.Use(async (context, next) =>
 {
@@ -131,7 +136,6 @@ app.Use(async (context, next) =>
 });
 
 #region Endpoints
-
 app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 {
     var claims = new[]
@@ -174,7 +178,6 @@ app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSy
 .AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
 
-
 app.MapGet("/api/create/{id}", async ([FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
 {
     ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
@@ -207,7 +210,7 @@ app.MapGet("/api/veto/{id}", async ([FromRoute] string id, VetoSystemSetupServic
 .RequireAuthorization();
 
 app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
-{    
+{
     ArgumentNullException.ThrowIfNullOrEmpty(role, nameof(role));
     ArgumentNullException.ThrowIfNullOrWhiteSpace(role, nameof(role));
     ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
@@ -219,7 +222,7 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
     var attendeeType = HelperFunctions.ExtractRoleFromString(role);
     var find = await vetoSystemService.GetVetoDataAsync(attendeeType, id);
     if (find != null)
-    {        
+    {
         if (find.observerId == id)
         {
             return Results.Ok(new VetoParticipant(find.vetoId, find.observerId, Constants.OBSERVER));
@@ -229,7 +232,7 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
             return Results.Ok(new VetoParticipant(find.vetoId, find.playerAId, find.PlayerA));
         }
         if (find.playerBId == id)
-        {            
+        {
             return Results.Ok(new VetoParticipant(find.vetoId, find.playerBId, find.PlayerB));
         }
     }
@@ -238,8 +241,12 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
 .RequireRateLimiting(jwtPolicyName)
 .AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
-#endregion
 
+app.MapGet("/api/version", () =>
+{
+    return Results.Ok(new { Version = HelperFunctions.GetVersionInfo() });
+});
+#endregion
 
 app.Services.GetService<MongoIndices>()?.CreateIndexesAsync().Wait();
 
