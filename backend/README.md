@@ -62,7 +62,7 @@ In the appsettings file you will find the structure like that:
 
 have a look into the Readme in the base folder!
 
-### Monitoring & Tracing 
+### Monitoring, Tracing & Logging 
 
 We use OpenTelemtry within the application.  
 To activate Logging and tracing you need to set
@@ -74,7 +74,13 @@ To activate Logging and tracing you need to set
 When using OpenTelemtry is enabled, an /metrics Endpoint is added and can be consumed by Tools like Prometheus.  
 Tracing can be done by OTLP over http or Zipkin over gRPC. You can connect that to jaeger or other collectors.  
 You __can__ use Zikin and OTLP side by side, but when the same collector like jaeger is configured, it will receive each span/event two times. That might cause warning messages in jaeger.  
-We recommend to configure just one endpoint. Just leave the other blank oder set it to null. Please consult the documentation of your collector to get the correct endpoints.
+We recommend to configure just one endpoint. Just leave the other blank oder set it to null. Please consult the documentation of your collector to get the correct endpoints.  
+
+We use Logging and Tracing via OpenTelemetry.  
+If you want __logging__ you can use any Logging System that supports logging via OpenTelemetry, like Graylog.  
+If you want __tracing__ you can use any tracing System that supports tracing via OpenTelemetry, like Jaeger.  
+
+If you want to use both you will need a proxy that separates logs and traces. Otherwise you can use either logging or tracing since both report to the endpoint of OTLP_ENDPOINT_URL.
 
 ### Rate Limiter
 
