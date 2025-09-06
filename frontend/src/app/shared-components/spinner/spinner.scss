@@ -1,6 +1,6 @@
 .spinner-container {
     width: 100%;
-    height: calc(100% - 4rem - 7rem);
+    height: calc(100% - 4rem - 10rem);
     top: 4rem;
     left: 0rem;
     position: fixed;
@@ -8,5 +8,5 @@
     background-color: rgba(255, 255, 255, .45);
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center    
 }

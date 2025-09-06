@@ -3,6 +3,7 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Constellation, ConstellationResponse, JoinVetoResponse, VetoBaseDataResponse } from '../data/veto-constellation.data';
 import { catchError, lastValueFrom, Observable, tap, throwError } from 'rxjs';
 import { GlobalStore } from '../store/store';
+import { Version } from '../data/version.data';
 
 @Injectable({
   providedIn: 'root'  
@@ -58,5 +59,9 @@ async loadRemoteVetoAdminAsync(vetoId: string) : Promise<ConstellationResponse> 
     return lastValueFrom(this.httpClient.get<VetoBaseDataResponse>(`/api/veto/${vetoId}`)
             .pipe(tap(x => this.globalState.setLoading(false)))
           );
+  }
+
+  async versionInfo() : Promise<Version> {
+    return lastValueFrom(this.httpClient.get<Version>('/api/version'))
   }
 }

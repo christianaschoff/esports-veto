@@ -1,9 +1,8 @@
-import { Component, computed, inject} from '@angular/core';
+import { Component, computed, effect, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Breadcrumb } from './global/breadcrumb/breadcrumb';
 import { TopBar } from "./global/top-bar/top-bar";
 import { Footer } from './global/footer/footer';
-import { environment } from '../environments/environment';
 import { GlobalStore, ObserverStore } from './store/store';
 import { BetaMarker } from './global/beta-marker/beta-marker';
 import { Spinner } from "./shared-components/spinner/spinner";
@@ -23,8 +22,14 @@ export class App {
     return this.globalState.observerViewActive() && this.obState.fullscreen();
   });
 
-  constructor() {
-    console.log('isProdBuild', environment.production);
+  constructor() {    
     this.obState.loadFromStorage();    
+    effect(() => {
+      if(!this.globalState.isLoading()) {
+        document.body.classList.remove('no-scroll');
+      } else {
+        document.body.classList.add('no-scroll');
+      }
+    });
   }  
 }
