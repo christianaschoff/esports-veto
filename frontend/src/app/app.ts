@@ -3,7 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { Breadcrumb } from './global/breadcrumb/breadcrumb';
 import { TopBar } from "./global/top-bar/top-bar";
 import { Footer } from './global/footer/footer';
-import { GlobalStore, ObserverStore } from './store/store';
+import { ObserverStore } from './store/observer-store';
+import { GlobalStore } from "./store/global-store";
 import { BetaMarker } from './global/beta-marker/beta-marker';
 import { Spinner } from "./shared-components/spinner/spinner";
 

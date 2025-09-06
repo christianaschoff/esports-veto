@@ -17,10 +17,11 @@ import { ConstellationResponse, ATTENDEE_TYPE } from '../../data/veto-constellat
 import { Qrcode } from "../qrcode/qrcode";
 import { Mapslist } from "../mapslist/mapslist";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GlobalStore, VetoConfigurationStore } from '../../store/store';
+import { GlobalStore } from "../../store/global-store";
 import { AdditionalInformation } from "../additional-information/additional-information";
 import { VetoSystem } from "../veto-system/veto-system";
 import { TranslateService } from '../../services/translate.service';
+import { VetoConfigurationStore } from '../../store/veto-configuration-store';
 
 @Component({
   selector: 'app-mode-selection',

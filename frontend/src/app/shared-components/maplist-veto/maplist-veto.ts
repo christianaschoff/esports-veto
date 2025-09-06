@@ -1,7 +1,5 @@
 import { Component, computed, EventEmitter, inject, Output, signal } from '@angular/core';
-import { VetoStore } from '../../store/store';
 import { MapsService } from '../../services/maps.service';
-import { Maps } from '../../data/maps.data';
 import { MapsStateOfPlay, VetoState, VetoStep, VetoStepType } from '../../data/veto.data';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +8,7 @@ import { VetoPopup } from '../veto-popup/veto-popup';
 import { FormsModule } from '@angular/forms';
 import { VetoConstellationService } from '../../services/veto-constellation.service';
 import { Copyright } from "../copyright/copyright";
+import { VetoStore } from '../../store/veto-store';
 
 @Component({
   selector: 'app-maplist-veto',

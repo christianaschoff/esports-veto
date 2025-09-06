@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GlobalStore } from '../../store/store';
+import { GlobalStore } from "../../store/global-store";
 
 @Component({
   selector: 'app-spinner',

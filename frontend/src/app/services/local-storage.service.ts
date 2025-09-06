@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { OberserverConfig } from '../data/oberserver.data';
+import { ObserverConfig } from '../data/observer.data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  obs = 'oberserver';
+  obs = 'observer';
 
   constructor() { }
-  save(config: OberserverConfig) {
+  save(config: ObserverConfig) {
     localStorage.setItem(this.obs, JSON.stringify(config));
   }
 
@@ -17,7 +17,7 @@ export class LocalStorageService {
     localStorage.removeItem(this.obs);
   }
 
-  load() : OberserverConfig | undefined {
+  load() : ObserverConfig | undefined {
     const data = localStorage.getItem(this.obs);    
     if(data) {
       const parsed = JSON.parse(data);

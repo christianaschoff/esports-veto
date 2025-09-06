@@ -1,6 +1,7 @@
 import { Component, computed, effect, HostListener, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GlobalStore, ObserverStore, VetoStore } from '../../store/store';
+import { ObserverStore } from '../../store/observer-store';
+import { GlobalStore } from "../../store/global-store";
 import { SignalrService } from '../../services/signalr.service';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { MapsStateOfPlayObserver, VetoState, VetoStep } from '../../data/veto.data';
@@ -12,11 +13,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { AnimationStyle, Size } from '../../data/oberserver.data';
+import { AnimationStyle, Size } from '../../data/observer.data';
 import {Dialog} from '@angular/cdk/dialog';
 import { ObserveSettingsPopup } from '../../shared-components/observe-settings-popup/observe-settings-popup';
 import { TranslateService } from '../../services/translate.service';
 import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
+import { VetoStore } from '../../store/veto-store';
 
 @Component({
   selector: 'app-observe-ui',
@@ -89,7 +91,7 @@ export class ObserveUi implements OnInit, OnDestroy {
       if(id) {
         this.routeId.set(id);
         this.state.joinSession('observer', this.routeId());
-        this.globalState.setIsOberserverView(true);
+        this.globalState.setIsObserverView(true);
       }
       else {        
         this.state.reset();
@@ -110,7 +112,7 @@ export class ObserveUi implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.vetohub.leave();
-    this.globalState.setIsOberserverView(false);
+    this.globalState.setIsObserverView(false);
   }
 
   ngOnInit(): void {

@@ -3,7 +3,6 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { RemoteService } from '../../services/remote.service';
 import { ActivatedRoute } from '@angular/router';
 import { SignalrService } from '../../services/signalr.service';
-import { VetoStore } from '../../store/store';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
@@ -13,6 +12,7 @@ import { MaplistVeto } from '../../shared-components/maplist-veto/maplist-veto';
 import { VetoStateDisplay } from '../../shared-components/veto-state-display/veto-state-display';
 import { VetoResult } from "../../shared-components/veto-result/veto-result";
 import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
+import { VetoStore } from '../../store/veto-store';
 
 @Component({
   selector: 'app-veto-ui',

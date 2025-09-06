@@ -2,10 +2,10 @@ import { Component, inject, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AnimationStyle, Size } from '../../data/oberserver.data';
+import { AnimationStyle, Size } from '../../data/observer.data';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { ObserverStore } from '../../store/store';
+import { ObserverStore } from '../../store/observer-store';
 import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
-import { VetoConfigurationStore } from '../../store/store';
 import { BestOf, GameModes } from '../../data/gamemodes.data';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { VETO_ACTION } from '../../data/veto-constellation.data';
 import { VetoConstellationService } from '../../services/veto-constellation.service';
 import { MatButtonModule } from '@angular/material/button';
+import { VetoConfigurationStore } from '../../store/veto-configuration-store';
 
 @Component({
   selector: 'app-veto-system',

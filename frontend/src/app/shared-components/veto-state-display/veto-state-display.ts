@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
-import { VetoStore } from '../../store/store';
 import { VetoState } from '../../data/veto.data';
+import { VetoStore } from '../../store/veto-store';
 
 @Component({
   selector: 'app-veto-state-display',

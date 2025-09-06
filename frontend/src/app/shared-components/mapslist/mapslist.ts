@@ -2,11 +2,11 @@ import { Component, computed, inject, Input, signal, Signal } from '@angular/cor
 import { MapsService } from '../../services/maps.service';
 import { Maps } from '../../data/maps.data';
 import { NgOptimizedImage } from '@angular/common';
-import { VetoConfigurationStore } from '../../store/store';
 import { Copyright } from "../copyright/copyright";
 import { MatIconModule } from '@angular/material/icon';
 import { BestOf, GameModes } from '../../data/gamemodes.data';
 import { TranslateService } from '../../services/translate.service';
+import { VetoConfigurationStore } from '../../store/veto-configuration-store';
 
 @Component({
   selector: 'app-mapslist',

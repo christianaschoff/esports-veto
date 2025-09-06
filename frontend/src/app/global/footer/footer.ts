@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GlobalStore } from '../../store/store';
+import { GlobalStore } from "../../store/global-store";
 import { RemoteService } from '../../services/remote.service';
 
 @Component({

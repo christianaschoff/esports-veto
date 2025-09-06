@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as signalR from '@microsoft/signalr';
-import { VetoConfigurationStore, VetoStore } from '../store/store';
+
 import { Veto, VetoStepType } from '../data/veto.data';
+import { VetoStore } from '../store/veto-store';
 
 export interface IGameState {
   vetoState: number

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Constellation, ConstellationResponse, JoinVetoResponse, VetoBaseDataResponse } from '../data/veto-constellation.data';
 import { catchError, lastValueFrom, Observable, tap, throwError } from 'rxjs';
-import { GlobalStore } from '../store/store';
+import { GlobalStore } from "../store/global-store";
 import { Version } from '../data/version.data';
 
 @Injectable({

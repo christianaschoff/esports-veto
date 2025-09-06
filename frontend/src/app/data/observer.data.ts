@@ -1,4 +1,4 @@
-export interface OberserverConfig {
+export interface ObserverConfig {
     autoplay: boolean,
     animationStyle: AnimationStyle,
     border: boolean,
