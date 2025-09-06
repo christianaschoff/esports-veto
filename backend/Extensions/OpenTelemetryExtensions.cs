@@ -14,7 +14,7 @@ public static class OpenTelemetryExtensions
     public static IServiceCollection AddOpenTelemetrySetup(this IServiceCollection services,                                                           
                                                            WebApplicationBuilder builder,
                                                            ActivitySource? vetoActivitySource)
-    {        
+    {
         if (HelperFunctions.UseOpenTelemetry(builder.Configuration))
         {
             var tracingOtlpEndpoint = HelperFunctions.DoIRunInDocker() ? Environment.GetEnvironmentVariable("OTLP_ENDPOINT_URL") : builder.Configuration["OTLP_ENDPOINT_URL"];
@@ -39,19 +39,25 @@ public static class OpenTelemetryExtensions
 
             builder.Logging.AddOpenTelemetry(options =>
             {
-                options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(builder.Environment.ApplicationName));
+                options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(builder.Environment.ApplicationName))
+                        .AddProcessor(new ActivityEventlogProcessor());
+
                 options.IncludeFormattedMessage = true;
                 options.IncludeScopes = true;
-                options.ParseStateValues = true;
-                options.AttachLogsToActivityEvent();
-                options.AddOtlpExporter(otlpOptions =>
+                options.ParseStateValues = true;                
+                options.AttachLogsToActivityEvent();                
+                
+                if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
                 {
-                    if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
+                    options.AddOtlpExporter(otlpOptions =>
                     {
-                        otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
-                    }
-                });
-                options.AddConsoleExporter();
+                        otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);                        
+                    });
+                }
+                else
+                {
+                    options.AddConsoleExporter();
+                }
             });
 
             openTelemetry.WithTracing(tracing =>
@@ -86,7 +92,7 @@ public static class OpenTelemetryExtensions
                     {
                         tracing.AddZipkinExporter(otlpOptions => otlpOptions.Endpoint = new Uri(tracingZipkinEndpoint));
                     }
-                    else if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
+                    if (!string.IsNullOrEmpty(tracingOtlpEndpoint))
                     {
                         tracing.AddOtlpExporter(otlpOptions => otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint));
                     }
@@ -97,6 +103,8 @@ public static class OpenTelemetryExtensions
                 }
                 tracing.AddSource(vetoActivitySource?.Name ?? "");
             });
+            
+            services.Configure<OpenTelemetryLoggerOptions>(x => x.IncludeScopes = true);
         }
         return services;
     }

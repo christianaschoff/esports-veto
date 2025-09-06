@@ -24,13 +24,17 @@ if (HelperFunctions.UseOpenTelemetry(builder.Configuration))
 
 builder.Services.AddServices(builder);
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+if (!HelperFunctions.UseOpenTelemetry(builder.Configuration))
+{
+    builder.Logging.AddConsole();
+}
 builder.Services.AddHealthChecks();
 
 var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfig>();
 var jwtPolicyName = "jwt";
-builder.Services.AddAuthenticationSetup(builder.Configuration);
 builder.Services.AddOpenTelemetrySetup(builder, vetoActivitySource);
+builder.Services.AddAuthenticationSetup(builder.Configuration, vetoActivitySource);
+
 builder.Services.AddRateLimiter(limiterOptions =>
 {
     HelperFunctions.RateLimiterOptionsCreator(limiterOptions, builder, vetoActivitySource, jwtPolicyName);
@@ -55,6 +59,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseExceptionHandler(handler =>
+{
+    handler.Run(async (ctx) => {
+        app.Logger.LogError("error context {0}", ctx);        
+        await Results.Problem().ExecuteAsync(ctx);
+    });
+});
+
+
 app.MapHealthChecks("/healthz");
 
 if (app.Environment.IsDevelopment())
@@ -76,6 +89,7 @@ app.UseAuthorization();
 app.UseRateLimiter();
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
 
 if (HelperFunctions.UseOpenTelemetry(builder.Configuration))
 {
@@ -117,6 +131,7 @@ app.Use(async (context, next) =>
 });
 
 #region Endpoints
+
 app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 {
     var claims = new[]
@@ -136,17 +151,18 @@ app.MapGet("/api/token", (TokenMetrics tokenMetrics) =>
 
     tokenMetrics.TokenCreated(1);
     return Results.Ok(new JwtSecurityTokenHandler().WriteToken(token));
-});
+})
+.AddEndpointFilter<RequestResponseLogger>();
 
-app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService, VetoCreationMetrics vetoCreationMetrics) =>
+app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSystemService, VetoCreationMetrics vetoCreationMetrics, ILogger<Program> logger) =>
 {
     using var activity = vetoActivitySource?.StartActivity("Create-Veto");
     var errorList = VetoValidator.ValidateVetoObject(veto);
     if (errorList.Count > 0)
-    {                
+    {
         activity?.SetStatus(ActivityStatusCode.Error, string.Join(",", errorList));
         return Results.BadRequest(VetoValidator.FlatenErrors(errorList));
-    }    
+    }
     activity?.SetTag("creation", veto);
     await vetoSystemService.CreateAsync(veto);
     vetoCreationMetrics.VetosCreated(1);
@@ -155,7 +171,9 @@ app.MapPost("/api/create", async (VetoSystem veto, VetoSystemSetupService vetoSy
     );
 })
 .RequireRateLimiting(jwtPolicyName)
+.AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
+
 
 app.MapGet("/api/create/{id}", async ([FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
 {
@@ -170,13 +188,13 @@ app.MapGet("/api/create/{id}", async ([FromRoute] string id, VetoSystemSetupServ
         new { veto.playerAId, veto.playerBId, veto.vetoId, veto.Title, veto.PlayerA, veto.PlayerB, veto.BestOf, veto.Mode, veto.GameId, veto.observerId, veto.Maps });
 })
 .RequireRateLimiting(jwtPolicyName)
+.AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
 
 app.MapGet("/api/veto/{id}", async ([FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
 {
     ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
     ArgumentNullException.ThrowIfNullOrWhiteSpace(id, nameof(id));
-    
     if (!Guid.TryParse(id, out Guid guid))
     {
         return Results.NotFound("no valid veto session provided");
@@ -185,6 +203,7 @@ app.MapGet("/api/veto/{id}", async ([FromRoute] string id, VetoSystemSetupServic
     return Results.Ok(find);
 })
 .RequireRateLimiting(jwtPolicyName)
+.AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
 
 app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] string id, VetoSystemSetupService vetoSystemService) =>
@@ -217,8 +236,10 @@ app.MapGet("/api/veto/{role}/{id}", async ([FromRoute] string role, [FromRoute] 
     return Results.NotFound("no valid veto session provided");
 })
 .RequireRateLimiting(jwtPolicyName)
+.AddEndpointFilter<RequestResponseLogger>()
 .RequireAuthorization();
 #endregion
+
 
 app.Services.GetService<MongoIndices>()?.CreateIndexesAsync().Wait();
 
