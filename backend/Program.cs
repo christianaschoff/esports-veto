@@ -99,7 +99,9 @@ app.MapHub<VetoSystemServiceHub>("/api/veto")
 app.MapFallbackToFile("/index.html");
 #endregion
 
-app.Use(async (context, next) =>
+app.UseSpaRouting();
+
+/*app.Use(async (context, next) =>
 {
     var path = context.Request.Path.Value?.ToLower();
     
@@ -127,6 +129,7 @@ app.Use(async (context, next) =>
     context.Request.Path = "/index.html";    
     await next();
 });
+*/
 
 #region endpoints
 var vetoGroup = app.MapGroup("/api/veto")
