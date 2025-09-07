@@ -31,7 +31,7 @@ export const VetoConfigurationStore = signalStore(
     withDevtools('creationState'),
     withState(initialVetoConfigurationState),
     withMethods((store, mapService = inject(MapsService)) => ({
-        setLoading(): void {
+        toggleLoading(): void {
             patchState(store, (state) => ( { isLoading: !state.isLoading}))
         },
         updateBestOf(bestOf: BestOf) {

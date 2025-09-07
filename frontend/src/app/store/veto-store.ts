@@ -57,7 +57,7 @@ export const VetoStore = signalStore(
    withDevtools('VetoState'),
    withState(initialVetoState),
    withMethods((store, globalStore = inject(GlobalStore), remoteService = inject(RemoteService)) => ({
-        setLoading(): void {
+        toggleLoading(): void {
             patchState(store, (state) => ( {isLoading: !state.isLoading}))
             globalStore.setLoading(store.isLoading());
         },
@@ -74,18 +74,18 @@ export const VetoStore = signalStore(
         },
 
         async joinSession(attendee: string, id: string): Promise<void> {
-            this.setLoading();
+            this.toggleLoading();
             this.setHasErrors(false);
             const data = await remoteService.joinSessionAsync(attendee, id)
                 .catch(error => this.setHasErrors(true));
             if(data) {
                 patchState(store, (state)=> ({attendee: {...data }}))
             }
-            this.setLoading();
+            this.toggleLoading();
         },
         
         async loadByVetoId(vetoId: string): Promise<void> {
-            this.setLoading();
+            this.toggleLoading();
             this.setHasErrors(false);
 
             const data = await remoteService.receiveVetoBaseInformationAsync(vetoId)                    
@@ -93,9 +93,6 @@ export const VetoStore = signalStore(
                     );
 
             if(data) {                
-                const boKey = data.bestOf as keyof typeof BestOf;
-                const modusKey = data.mode as keyof typeof GameModes;                
-
                 patchState(store, (state) => ({bestOf: data.bestOf as BestOf, 
                                    modus: data.mode as GameModes, 
                                    vetoSystem: data.vetoSystem, 
@@ -108,7 +105,7 @@ export const VetoStore = signalStore(
                                    }));
             }
   
-            this.setLoading();
+            this.toggleLoading();
         }
      })
    )
