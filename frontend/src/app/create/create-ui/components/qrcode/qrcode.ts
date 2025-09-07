@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SafeUrl } from '@angular/platform-browser';
 import { QRCodeComponent } from 'angularx-qrcode';
 import {Location} from '@angular/common';
-import { ATTENDEE_TYPE } from '../../data/veto-constellation.data';
+import { ATTENDEE_TYPE } from '../../../../data/veto-constellation.data';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatDividerModule } from '@angular/material/divider';
 import { sanitize } from "sanitize-filename-ts";

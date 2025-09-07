@@ -1,10 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
-import { VetoState, VetoStepType } from '../../data/veto.data';
-import { MapsService } from '../../services/maps.service';
-import { Maps } from '../../data/maps.data';
+import { VetoState, VetoStepType } from '../../../../data/veto.data';
+import { MapsService } from '../../../../services/maps.service';
+import { Maps } from '../../../../data/maps.data';
 import { NgOptimizedImage } from '@angular/common';
-import { Copyright } from '../copyright/copyright';
-import { VetoStore } from '../../store/veto-store';
+import { Copyright } from '../../../../shared-components/copyright/copyright';
+import { VetoStore } from '../../../../store/veto-store';
 
 export interface VetoResultData {
   map: Maps,

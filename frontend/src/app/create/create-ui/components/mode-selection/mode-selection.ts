@@ -2,26 +2,26 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, Signal, 
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { GameData } from '../../data/game-data.data';
-import { GamesService } from '../../services/games.service';
+import { GameData } from '../../../../data/game-data.data';
+import { GamesService } from '../../../../services/games.service';
 import { CommonModule } from '@angular/common';
 import {MatButtonToggleModule } from '@angular/material/button-toggle';
-import { BestOf, GameModes } from '../../data/gamemodes.data';
+import { BestOf, GameModes } from '../../../../data/gamemodes.data';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { BreadcrumbService } from '../../../../services/breadcrumb.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { RemoteService } from '../../services/remote.service';
-import { ConstellationResponse, ATTENDEE_TYPE } from '../../data/veto-constellation.data';
+import { RemoteService } from '../../../../services/remote.service';
+import { ConstellationResponse, ATTENDEE_TYPE } from '../../../../data/veto-constellation.data';
 import { Qrcode } from "../qrcode/qrcode";
 import { Mapslist } from "../mapslist/mapslist";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GlobalStore } from "../../store/global-store";
+import { GlobalStore } from "../../../../store/global-store";
 import { AdditionalInformation } from "../additional-information/additional-information";
-import { VetoSystem } from "../veto-system/veto-system";
-import { TranslateService } from '../../services/translate.service';
-import { VetoConfigurationStore } from '../../store/veto-configuration-store';
+import { TranslateService } from '../../../../services/translate.service';
+import { VetoConfigurationStore } from '../../../../store/veto-configuration-store';
+import { VetoSystem } from '../../../../veto/veto-ui/components/veto-system/veto-system';
 
 @Component({
   selector: 'app-mode-selection',

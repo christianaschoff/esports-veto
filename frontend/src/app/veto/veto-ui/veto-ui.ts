@@ -8,11 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MaplistVeto } from '../../shared-components/maplist-veto/maplist-veto';
-import { VetoStateDisplay } from '../../shared-components/veto-state-display/veto-state-display';
-import { VetoResult } from "../../shared-components/veto-result/veto-result";
+import { MaplistVeto } from './components/maplist-veto/maplist-veto';
 import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
 import { VetoStore } from '../../store/veto-store';
+import { VetoStateDisplay } from './components/veto-state-display/veto-state-display';
+import { VetoResult } from './components/veto-result/veto-result';
 
 @Component({
   selector: 'app-veto-ui',

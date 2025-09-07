@@ -4,8 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import { BestOf, GameModes } from '../../data/gamemodes.data';
-import { VetoConfigurationStore } from '../../store/veto-configuration-store';
+import { BestOf, GameModes } from '../../../../data/gamemodes.data';
+import { VetoConfigurationStore } from '../../../../store/veto-configuration-store';
 
 @Component({
   selector: 'app-additional-information',
