@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { GameData } from '../../data/game-data.data';
+import { GameData } from '../../../../data/game-data.data';
 import { Router } from '@angular/router';
-import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { BreadcrumbService } from '../../../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-game-card',

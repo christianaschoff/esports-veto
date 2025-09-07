@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { GameCard } from '../../shared-components/game-card/game-card';
 import { GameData } from '../../data/game-data.data';
 import { CommonModule } from '@angular/common';
 import { GamesService } from '../../services/games.service';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { GameCard } from './components/game-card/game-card';
 
 @Component({
   selector: 'app-create-ui',
