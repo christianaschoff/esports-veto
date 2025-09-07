@@ -29,29 +29,25 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         await SaveGameState(currentVeto);
         return new VetoData(currentVeto.VetoState, currentVeto.VetoSteps);
     }
-    
+
     public async Task PlayerPresent(string vetoId, string hubId, string userid)
-    {                
+    {
         var currentVeto = await FindVetoAsync(vetoId);
         if (currentVeto is null)
             return;
 
-        if (currentVeto.VetoConfig.playerAId == userid)
-        {
-            currentVeto.PlayerA = hubId;
-            lock (_lock)
-            {                
-                _signalRToVetoMap.Add(new KeyValuePair<string, string>(hubId, userid));
-            }
-        }
+        if (currentVeto.VetoConfig.playerAId == userid)        
+            currentVeto.PlayerA = hubId;    
 
-        if (currentVeto.VetoConfig.playerBId == userid)
-        {
-            lock (_lock)
-            {                
-                _signalRToVetoMap.Add(new KeyValuePair<string, string>(hubId, userid));
-            }
+        if (currentVeto.VetoConfig.playerBId == userid)        
             currentVeto.PlayerB = hubId;
+
+        if (currentVeto.PlayerA == hubId || currentVeto.PlayerB == hubId)
+        {            
+            lock (_lock)
+            {
+                _signalRToVetoMap.Add(new KeyValuePair<string, string>(hubId, userid));
+            }        
         }
     }
 
@@ -112,7 +108,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
                 veto.PlayerA = default;
             if (veto.PlayerB == signalRId)
                 veto.PlayerB = default;
-            _signalRToVetoMap.Remove(vetoMap);
+                _signalRToVetoMap.Remove(vetoMap);
         }       
     }
 
