@@ -57,7 +57,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
 
     public void UpdateVetoMap(string signalRId, string groupId, string map)
     {
-        var vetoMap = _signalRToVetoMap.FirstOrDefault(x => x.Key == signalRId);
+        var vetoMap = FindVetoMapBySignalRId(signalRId);
         if (vetoMap.Equals(default(KeyValuePair<string, string>)))
             return;
 
@@ -73,37 +73,47 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         if (nextStep == null || !IsValidMapSelection(veto, map))
             return;
 
-        var index = veto.VetoSteps.IndexOf(nextStep);
-
         UpdateVetoStep(nextStep, veto, map);
     }
 
     public string? RemovePlayerFromVeto(string signalRId)
     {
-        var vetoMap = _signalRToVetoMap.FirstOrDefault(x => x.Key == signalRId);
-        if (!vetoMap.Equals(default(KeyValuePair<string, string>)))
+        var vetoMap = FindVetoMapBySignalRId(signalRId);
+        if (vetoMap.Equals(default(KeyValuePair<string, string>)))
+            return null;
+
+        string? vetoid = null;
+        var currentVeto = FindVetoByPlayerId(vetoMap.Value);
+        if (!currentVeto.Equals(default(KeyValuePair<string, Veto>)))
         {
-            string? vetoid = null;
-            var currentVeto = FindVetoByPlayerId(vetoMap.Value);
-            if (!currentVeto.Equals(default(KeyValuePair<string, Veto>)))
-            {
-                if (currentVeto.Value.PlayerA == signalRId)
-                {
-                    currentVeto.Value.PlayerA = default;
-                }
-                if (currentVeto.Value.PlayerB == signalRId)
-                {
-                    currentVeto.Value.PlayerB = default;
-                }
-                vetoid = currentVeto.Value.VetoId;
-            }
-            lock (_lock)
-            {
-                _signalRToVetoMap.Remove(vetoMap);
-            }
-            return vetoid;
+            vetoid = currentVeto.Value.VetoId;
+            RemovePlayerFromVetoAndSignalMap(currentVeto.Value, signalRId, vetoMap);
         }
-        return null;
+        else
+        { 
+            lock (_lock)            
+                _signalRToVetoMap.Remove(vetoMap);
+            
+        }
+        return vetoid;            
+    }
+
+
+    private KeyValuePair<string, string> FindVetoMapBySignalRId(string signalRId)
+    {
+        return _signalRToVetoMap.FirstOrDefault(x => x.Key == signalRId);
+    }
+
+    private void RemovePlayerFromVetoAndSignalMap(Veto veto, string signalRId, KeyValuePair<string, string> vetoMap)
+    {
+        lock (_lock)
+        {
+            if (veto.PlayerA == signalRId)
+                veto.PlayerA = default;
+            if (veto.PlayerB == signalRId)
+                veto.PlayerB = default;
+            _signalRToVetoMap.Remove(vetoMap);
+        }       
     }
 
     private async Task<bool> SaveGameState(Veto veto)
