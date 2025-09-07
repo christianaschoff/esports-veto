@@ -58,31 +58,24 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
     public void UpdateVetoMap(string signalRId, string groupId, string map)
     {
         var vetoMap = _signalRToVetoMap.FirstOrDefault(x => x.Key == signalRId);
-        if (!vetoMap.Equals(default(KeyValuePair<string, string>)))
-        {
-            var currentVeto = FindVetoByPlayerId(vetoMap.Value);
-            if (!currentVeto.Equals(default(KeyValuePair<string, Veto>)))
-            {
-                var veto = currentVeto.Value;
-                var isPlayerA = veto.PlayerA == signalRId;
-                if (veto != null && veto?.VetoId == groupId && veto?.VetoSteps != null)
-                {                    
-                    var nextStep = veto.VetoSteps.FirstOrDefault(x => x.StepType == VetoStepType.Unset);
-                    if (nextStep != null
-                       && nextStep.PlayerId == (isPlayerA ? veto.VetoConfig.playerAId : veto.VetoConfig.playerBId)
-                       && !veto.VetoSteps.Exists(x => x.Map == map))
-                    {
-                        var index = veto.VetoSteps.IndexOf(nextStep);
-                        if (index == -1)
-                        {
-                            return;
-                        }                        
-                        nextStep.StepType = IsVeto(++index, veto.VetoConfig.BestOf, veto.VetoConfig.GameId) ? VetoStepType.Ban : VetoStepType.Pick;
-                        nextStep.Map = map;
-                    }
-                }
-            }
-        }
+        if (vetoMap.Equals(default(KeyValuePair<string, string>)))
+            return;
+
+        var currentVeto = FindVetoByPlayerId(vetoMap.Value);
+        if (currentVeto.Equals(default(KeyValuePair<string, Veto>)))
+            return;
+
+        var veto = currentVeto.Value;
+        if (!IsValidPlayerForVeto(veto, signalRId, groupId))
+            return;
+
+        var nextStep = FindNextVetoStep(veto, signalRId);
+        if (nextStep == null || !IsValidMapSelection(veto, map))
+            return;
+
+        var index = veto.VetoSteps.IndexOf(nextStep);
+
+        UpdateVetoStep(nextStep, veto, map);
     }
 
     public string? RemovePlayerFromVeto(string signalRId)
@@ -105,7 +98,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
                 vetoid = currentVeto.Value.VetoId;
             }
             lock (_lock)
-            {                
+            {
                 _signalRToVetoMap.Remove(vetoMap);
             }
             return vetoid;
@@ -191,6 +184,45 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         };
     }
 
+ private bool IsValidPlayerForVeto(Veto veto, string signalRId, string groupId)
+    {        
+        return veto != null &&
+            veto.VetoId == groupId &&
+            veto.VetoSteps != null &&
+            (veto.PlayerA == signalRId || veto.PlayerB == signalRId); 
+    }
+
+    private VetoStep? FindNextVetoStep(Veto veto, string signalRId)
+    {        
+        if (veto?.VetoSteps == null)
+            return null;
+
+        var nextStep = veto.VetoSteps.FirstOrDefault(x => x.StepType == VetoStepType.Unset);
+        if (nextStep == null)
+            return null;
+
+        var isPlayerA = veto.PlayerA == signalRId;
+        var expectedPlayerId = isPlayerA ? veto.VetoConfig.playerAId : veto.VetoConfig.playerBId;
+
+        return nextStep.PlayerId == expectedPlayerId ? nextStep : null;
+    }
+
+    private bool IsValidMapSelection(Veto veto, string map)
+    {
+        return veto?.VetoSteps != null && !veto.VetoSteps.Exists(x => x.Map == map);
+    }
+
+    private void UpdateVetoStep(VetoStep step, Veto veto, string map)
+    {        
+        var index = veto.VetoSteps.IndexOf(step);
+        if (index == -1)
+            return;
+
+        step.StepType = IsVeto(++index, veto.VetoConfig.BestOf, veto.VetoConfig.GameId)
+            ? VetoStepType.Ban : VetoStepType.Pick;
+        step.Map = map;
+    }
+
     private bool IsVeto(int no, string bestof, string gameId)
     {
         return gameId switch
@@ -199,5 +231,4 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
             _ => true,
         };
     }
-
 }
