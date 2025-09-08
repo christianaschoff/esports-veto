@@ -7,6 +7,7 @@ import { ObserverStore } from './store/observer-store';
 import { GlobalStore } from "./store/global-store";
 import { BetaMarker } from './global/beta-marker/beta-marker';
 import { Spinner } from "./shared-components/spinner/spinner";
+import { SocialmediaService } from './services/socialmedia.service';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +16,18 @@ import { Spinner } from "./shared-components/spinner/spinner";
   styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'Esports Veto made easy';  
-  obState = inject(ObserverStore);
-  globalState = inject(GlobalStore);
+  protected title = 'Esports Veto made easy';  //Choose your map. Own your match.
+  private obState = inject(ObserverStore);
+  private globalState = inject(GlobalStore);
+  private socialmediaService = inject(SocialmediaService);
 
   fullscreenMode = computed(() => {
     return this.globalState.observerViewActive() && this.obState.fullscreen();
   });
 
   constructor() {    
-    this.obState.loadFromStorage();    
+    this.obState.loadFromStorage();
+    this.socialmediaService.fallbackMetaTags();
     effect(() => {
       if(!this.globalState.isLoading()) {
         document.body.classList.remove('no-scroll');

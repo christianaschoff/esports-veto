@@ -19,6 +19,7 @@ import { TranslateService } from '../../services/translate.service';
 import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-active-sessions";
 import { VetoStore } from '../../store/veto-store';
 import { ObserveSettingsPopup } from './components/observe-settings-popup/observe-settings-popup';
+import { SocialmediaService } from '../../services/socialmedia.service';
 
 @Component({
   selector: 'app-observe-ui',
@@ -34,6 +35,7 @@ export class ObserveUi implements OnInit, OnDestroy {
   private mapService = inject(MapsService);
   private vetoConstellationService = inject(VetoConstellationService);
   private route = inject(ActivatedRoute);
+  private socialMediaService = inject(SocialmediaService);
   
   state = inject(VetoStore);
   dialog = inject(Dialog);
@@ -92,6 +94,7 @@ export class ObserveUi implements OnInit, OnDestroy {
         this.routeId.set(id);
         this.state.joinSession('observer', this.routeId());
         this.globalState.setIsObserverView(true);
+        this.socialMediaService.updateMetaTags('observer', id);
       }
       else {        
         this.state.reset();

@@ -146,6 +146,7 @@ var createGroup = app.MapGroup("/api/create")
 createGroup.MapCreateEndpoints();
 app.MapTokenEndpoints();
 app.MapVersionEndpoints();
+app.MapSocialMediaLinksdataEndpoints();
 #endregion
 
 app.Services.GetService<MongoIndices>()?.CreateIndexesAsync().Wait();

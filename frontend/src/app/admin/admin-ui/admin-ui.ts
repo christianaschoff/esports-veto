@@ -10,6 +10,7 @@ import { FileSaverModule, FileSaverService } from 'ngx-filesaver';
 import { MatFabButton } from '@angular/material/button';
 import { sanitize } from "sanitize-filename-ts";
 import { MatIconModule } from '@angular/material/icon';
+import { SocialmediaService } from '../../services/socialmedia.service';
 
 @Component({
   selector: 'app-admin-ui',
@@ -19,8 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AdminUi implements OnDestroy {
   routeSub$: Subscription;
-  remoteService = inject(RemoteService);
-  activeRoute = inject(ActivatedRoute);
+  private remoteService = inject(RemoteService);
+  private activeRoute = inject(ActivatedRoute);
+  private socialMediaService = inject(SocialmediaService);
   translateService = inject(TranslateService);
   fileSaver = inject(FileSaverService);
   
@@ -59,6 +61,7 @@ export class AdminUi implements OnDestroy {
           if(result) {
             this.constellation.set(result);            
             document.title = `Veto Admin: ${this.constellation()?.title}`;
+            this.socialMediaService.updateMetaTags('admin', id);
           }
         }
       })).subscribe();

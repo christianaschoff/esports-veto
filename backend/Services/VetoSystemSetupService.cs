@@ -57,8 +57,20 @@ public class VetoSystemSetupService
         return null;
     }
 
-    public async Task CreateAsync(VetoSystem newVeto)
+    public async Task<VetoSystem?> GetVetoDataByAnyAsync(string id)
     {        
+        var filter = Builders<VetoSystem>.Filter.Or(
+            Builders<VetoSystem>.Filter.Eq(x => x.playerAId, id),
+            Builders<VetoSystem>.Filter.Eq(x => x.playerBId, id),
+            Builders<VetoSystem>.Filter.Eq(x => x.vetoId, id),
+            Builders<VetoSystem>.Filter.Eq(x => x.observerId, id)
+        );
+        return await _vetoCollection.Find(filter).FirstOrDefaultAsync();        
+    }
+
+
+    public async Task CreateAsync(VetoSystem newVeto)
+    {
         await _vetoCollection.InsertOneAsync(newVeto);
     }
 

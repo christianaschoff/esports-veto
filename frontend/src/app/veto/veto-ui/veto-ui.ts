@@ -1,6 +1,5 @@
 import { Component,  computed,  effect, inject, OnDestroy, OnInit,signal } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { RemoteService } from '../../services/remote.service';
 import { ActivatedRoute } from '@angular/router';
 import { SignalrService } from '../../services/signalr.service';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-
 import { VetoStore } from '../../store/veto-store';
 import { VetoStateDisplay } from './components/veto-state-display/veto-state-display';
 import { VetoResult } from './components/veto-result/veto-result';
+import { SocialmediaService } from '../../services/socialmedia.service';
 
 @Component({
   selector: 'app-veto-ui',
@@ -22,9 +22,9 @@ import { VetoResult } from './components/veto-result/veto-result';
 })
 export class VetoUi implements OnInit, OnDestroy {
 
-  route = inject(ActivatedRoute);
-  remoteService = inject(RemoteService);
-  breadcrumbService = inject(BreadcrumbService);
+  route = inject(ActivatedRoute);  
+  private socialMediaService = inject(SocialmediaService);
+  private breadcrumbService = inject(BreadcrumbService);
   vetohub = inject(SignalrService);
   state = inject(VetoStore);
 
@@ -41,8 +41,9 @@ export class VetoUi implements OnInit, OnDestroy {
         this.routeId.set(id);  
         this.attendee.set(attendee);                
         if(this.attendee() && this.routeId()) {
-          this.state.joinSession(this.attendee(), this.routeId());
-        }     
+          this.state.joinSession(this.attendee(), this.routeId());          
+        }
+        this.socialMediaService.updateMetaTags(attendee, id);
       } else {        
         this.state.reset();
         this.routeId.set('');

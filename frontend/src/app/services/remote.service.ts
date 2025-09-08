@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Constellation, ConstellationResponse, JoinVetoResponse, VetoBaseDataResponse } from '../data/veto-constellation.data';
-import { catchError, lastValueFrom, Observable, tap, throwError } from 'rxjs';
+import { catchError, lastValueFrom, Observable, tap } from 'rxjs';
 import { GlobalStore } from "../store/global-store";
 import { Version } from '../data/version.data';
+import { SocialMediaData } from '../data/socialmedia.data';
 
 @Injectable({
   providedIn: 'root'  
@@ -64,4 +65,9 @@ async loadRemoteVetoAdminAsync(vetoId: string) : Promise<ConstellationResponse> 
   async versionInfo() : Promise<Version> {
     return lastValueFrom(this.httpClient.get<Version>('/api/version'))
   }
+
+  async getSocialMediaInformation(attendee: string, id: string) : Promise<SocialMediaData> {
+    return lastValueFrom(this.httpClient.get<SocialMediaData>(`/api/socialmediadata/${attendee}/${id}`))
+  }
+
 }

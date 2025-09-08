@@ -9,7 +9,7 @@ import { RemoteService } from './remote.service';
 export class AuthInterceptor implements HttpInterceptor {
   remoteService = inject(RemoteService);  
   intercept(req: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-    if(req.url.includes('/api/token')) {
+    if(req.url.includes('/api/token') || req.url.includes('/api/version') || req.url.includes('/api/social')) {
       return handler.handle(req);
     }
     return from(this.handleAccess(req, handler));

@@ -120,3 +120,4 @@ frontendtestem.log
 frontend/typings
 .env
 Agents.md
+backend/.vscode/settings.json
