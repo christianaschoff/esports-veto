@@ -41,7 +41,7 @@ public static class SocialMediaLinksdataEndpoints
                     
             return Results.Ok(new {
                 title = $"VETO: {find.Title} - {attendee}",
-                description = $"{find.PlayerA} vs {find.PlayerB} ({find.BestOf} / {find.Mode[1..].ToLower()})" ,                             
+                description = $"{find.PlayerA} vs {find.PlayerB} ({find.BestOf} / {find.Mode[1..].ToLower()})",
                 author = "VETO ODGW.de"                
             });
         }

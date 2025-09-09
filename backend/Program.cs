@@ -96,6 +96,7 @@ if (HelperFunctions.UseOpenTelemetry(builder.Configuration))
 app.MapHub<VetoSystemServiceHub>("/api/veto")
 .RequireRateLimiting(jwtPolicyName);
 
+app.UseMiddleware<SocialPreviewMiddleware>();
 app.MapFallbackToFile("/index.html");
 #endregion
 
