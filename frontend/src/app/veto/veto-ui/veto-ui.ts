@@ -42,8 +42,7 @@ export class VetoUi implements OnInit, OnDestroy {
         this.attendee.set(attendee);                
         if(this.attendee() && this.routeId()) {
           this.state.joinSession(this.attendee(), this.routeId());          
-        }
-        this.socialMediaService.updateMetaTags(attendee, id);
+        }        
       } else {        
         this.state.reset();
         this.routeId.set('');

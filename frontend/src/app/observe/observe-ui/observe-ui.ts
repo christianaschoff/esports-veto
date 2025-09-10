@@ -93,8 +93,7 @@ export class ObserveUi implements OnInit, OnDestroy {
       if(id) {
         this.routeId.set(id);
         this.state.joinSession('observer', this.routeId());
-        this.globalState.setIsObserverView(true);
-        this.socialMediaService.updateMetaTags('observer', id);
+        this.globalState.setIsObserverView(true);        
       }
       else {        
         this.state.reset();

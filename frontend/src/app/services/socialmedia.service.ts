@@ -34,7 +34,7 @@ export class SocialmediaService {
   }
   fallbackMetaTags() {    
     this.meta.updateTag({ property: 'og:title', content: 'Veto by ODGW' });
-    this.meta.updateTag({ property: 'og:description', content: 'Check out this shared content' });
+    this.meta.updateTag({ property: 'og:description', content: 'Your Esports Veto Platform' });
     this.meta.updateTag({ property: 'og:image', content: 'images/socialmedia.png' });
     this.meta.updateTag({ name: 'twitter:image', content: 'images/socialmedia.png' });    
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
