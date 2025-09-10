@@ -74,7 +74,7 @@ export class AdminUi implements OnDestroy {
 
   saveFile() {
     if(this.fileSaver.isFileSaverSupported) {      
-      this.fileSaver.saveText(this.text(), this.filename(), {type: "text/plain;charset=utf-8"});
+      this.fileSaver.saveText(this.text(), this.filename());
     }
   }
 
