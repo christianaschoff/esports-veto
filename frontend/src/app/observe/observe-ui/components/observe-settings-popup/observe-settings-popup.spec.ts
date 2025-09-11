@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ObserveSettingsPopup } from './observe-settings-popup';
+import { DialogRef } from '@angular/cdk/dialog';
+import { ObserverStore } from '../../../../store/observer-store';
 
 describe('ObserveSettingsPopup', () => {
   let component: ObserveSettingsPopup;
@@ -8,7 +10,25 @@ describe('ObserveSettingsPopup', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ObserveSettingsPopup]
+      imports: [ObserveSettingsPopup],
+      providers: [
+        { 
+          provide: DialogRef, 
+          useValue: { close: jest.fn() } 
+        },
+        { 
+          provide: ObserverStore, 
+          useValue: { 
+            updateAnimationDirection: jest.fn(),
+            updateSize: jest.fn(),
+            updateShowborder: jest.fn(),
+            updateShowVetoInfo: jest.fn(),
+            updateFullscreen: jest.fn(),
+            updateStoreLocally: jest.fn(),
+            updateLivePreview: jest.fn()
+          } 
+        }
+      ]
     })
     .compileComponents();
 

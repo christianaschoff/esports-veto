@@ -11,7 +11,20 @@ describe('Qrcode', () => {
     await TestBed.configureTestingModule({
       imports: [Qrcode],
       providers: [
-        { provide: DOCUMENT, useValue: {} }
+        { 
+          provide: DOCUMENT, 
+          useValue: {
+            location: {
+              protocol: 'http:',
+              hostname: 'localhost',
+              port: '4200'
+            },
+            querySelectorAll: jest.fn(),
+            createElement: jest.fn().mockReturnValue({ 
+              setAttribute: jest.fn() 
+            })
+          } 
+        }
       ]
     })
     .compileComponents();

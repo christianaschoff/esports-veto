@@ -1,15 +1,27 @@
 import { TestBed } from '@angular/core/testing';
 import { SignalrService } from './signalr.service';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('Signalr', () => {
   let service: SignalrService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), 
-                  provideHttpClientTesting()]
+      providers: [
+        { 
+          provide: SignalrService, 
+          useValue: {
+            hubConnection: {
+              start: jest.fn(),
+              stop: jest.fn(),
+              invoke: jest.fn(),
+              on: jest.fn()
+            },
+            joinVetoHub: jest.fn(),
+            updateVeto: jest.fn(),
+            leave: jest.fn()
+          }
+        }
+      ]
     });
     service = TestBed.inject(SignalrService);
   });
