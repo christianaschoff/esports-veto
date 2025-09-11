@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Qrcode } from './qrcode';
 import { DOCUMENT } from '@angular/core';
+import { ATTENDEE_TYPE } from '../../../../data/veto-constellation.data';
 
 describe('Qrcode', () => {
   let component: Qrcode;
@@ -21,8 +22,10 @@ describe('Qrcode', () => {
             },
             querySelectorAll: jest.fn(),
             createElement: jest.fn().mockReturnValue({ 
-              setAttribute: jest.fn() 
-            })
+              setAttribute: jest.fn(),
+              style: {}
+            }),
+            addEventListener: jest.fn()
           } 
         }
       ]
@@ -34,7 +37,7 @@ describe('Qrcode', () => {
     // Set required inputs to avoid NG0950 error
     (component as any).data.set('test-data');
     (component as any).title.set('test-title');
-    (component as any).type.set(0);
+    (component as any).type.set(ATTENDEE_TYPE.ADMIN);
     
     fixture.detectChanges();
   });

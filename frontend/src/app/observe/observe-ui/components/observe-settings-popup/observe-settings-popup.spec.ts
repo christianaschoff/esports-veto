@@ -25,7 +25,15 @@ describe('ObserveSettingsPopup', () => {
             updateShowVetoInfo: jest.fn(),
             updateFullscreen: jest.fn(),
             updateStoreLocally: jest.fn(),
-            updateLivePreview: jest.fn()
+            updateLivePreview: jest.fn(),
+            animationStyle: jest.fn().mockReturnValue('test'),
+            size: jest.fn().mockReturnValue('test'),
+            border: jest.fn().mockReturnValue(false),
+            showborder: jest.fn().mockReturnValue(true),
+            showVetoInfo: jest.fn().mockReturnValue(true),
+            fullscreen: jest.fn().mockReturnValue(false),
+            storeLocally: jest.fn().mockReturnValue(true),
+            livePreview: jest.fn().mockReturnValue(false)
           } 
         }
       ]

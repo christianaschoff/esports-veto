@@ -57,7 +57,6 @@ export class Qrcode {
   public qrCodeDownloadLink: SafeUrl = "";  
 
   constructor(@Inject(DOCUMENT) private document: Document) {
-
   }
 
   onChangeURL(url: SafeUrl) {

@@ -16,7 +16,7 @@ describe('VetoUi', () => {
       imports: [VetoUi, RouterModule.forRoot([])],
       providers: [provideHttpClient(), 
                   provideHttpClientTesting(),
-                  { provide: SignalrService, useValue: { joinVetoHub: () => {} } }
+                  { provide: SignalrService, useValue: { joinVetoHub: () => {}, leave: () => {}}}
       ]
     })
     .compileComponents();

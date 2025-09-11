@@ -15,7 +15,8 @@ describe('ObserveUi', () => {
       imports: [ObserveUi, RouterModule.forRoot([])],
       providers: [provideHttpClient(), 
                   provideHttpClientTesting(),
-                { provide: SignalrService, useValue: { joinVetoHub: () => {} } }]
+                  { provide: SignalrService, useValue: { joinVetoHub: () => {}, leave: () => {}}}
+                ]
     })
     .compileComponents();
 
