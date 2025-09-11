@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VetoStateDisplay } from './veto-state-display';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('VetoState', () => {
   let component: VetoStateDisplay;
@@ -8,7 +9,9 @@ describe('VetoState', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VetoStateDisplay]
+      imports: [VetoStateDisplay],
+      providers: [provideHttpClient(), 
+                  provideHttpClientTesting()]      
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateUi } from './create-ui';
+import { RemoteService } from '../../services/remote.service';
+import { GlobalStore } from '../../store/global-store';
 
 describe('CreateUi', () => {
   let component: CreateUi;
@@ -8,7 +10,10 @@ describe('CreateUi', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateUi]
+      imports: [CreateUi, GlobalStore],
+      providers: [
+        {provide: RemoteService, useValue: {versionInfo: () => '1234'} }
+      ]
     })
     .compileComponents();
 

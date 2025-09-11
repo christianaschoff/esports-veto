@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeUi } from './home-ui';
+import { RouterModule } from '@angular/router';
 
 describe('Home', () => {
   let component: HomeUi;
@@ -8,7 +9,7 @@ describe('Home', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeUi]
+      imports: [HomeUi, RouterModule.forRoot([])]
     })
     .compileComponents();
 

@@ -12,7 +12,6 @@ import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-
 import { VetoStore } from '../../store/veto-store';
 import { VetoStateDisplay } from './components/veto-state-display/veto-state-display';
 import { VetoResult } from './components/veto-result/veto-result';
-import { SocialmediaService } from '../../services/socialmedia.service';
 
 @Component({
   selector: 'app-veto-ui',
@@ -23,7 +22,6 @@ import { SocialmediaService } from '../../services/socialmedia.service';
 export class VetoUi implements OnInit, OnDestroy {
 
   route = inject(ActivatedRoute);  
-  private socialMediaService = inject(SocialmediaService);
   private breadcrumbService = inject(BreadcrumbService);
   vetohub = inject(SignalrService);
   state = inject(VetoStore);

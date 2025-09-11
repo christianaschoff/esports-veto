@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MaplistVeto } from './maplist-veto';
+import { RouterModule } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('MaplistVeto', () => {
   let component: MaplistVeto;
@@ -8,7 +11,9 @@ describe('MaplistVeto', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MaplistVeto]
+      imports: [MaplistVeto, RouterModule.forRoot([])],
+      providers: [provideHttpClient(), 
+            provideHttpClientTesting()]
     })
     .compileComponents();
 
