@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ObserveUi } from './observe-ui';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { SignalrService } from '../../services/signalr.service';
+import { RouterModule } from '@angular/router';
 
 describe('ObserveUi', () => {
   let component: ObserveUi;
@@ -10,9 +12,10 @@ describe('ObserveUi', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ObserveUi],
+      imports: [ObserveUi, RouterModule.forRoot([])],
       providers: [provideHttpClient(), 
-                  provideHttpClientTesting()]
+                  provideHttpClientTesting(),
+                { provide: SignalrService, useValue: { joinVetoHub: () => {} } }]
     })
     .compileComponents();
 

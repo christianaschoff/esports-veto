@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SocialmediaService } from '../../services/socialmedia.service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { SignalrService } from '../../services/signalr.service';
 
 describe('VetoUi', () => {
   let component: VetoUi;
@@ -14,7 +15,8 @@ describe('VetoUi', () => {
     await TestBed.configureTestingModule({
       imports: [VetoUi, RouterModule.forRoot([])],
       providers: [provideHttpClient(), 
-                  provideHttpClientTesting()
+                  provideHttpClientTesting(),
+                  { provide: SignalrService, useValue: { joinVetoHub: () => {} } }
       ]
     })
     .compileComponents();
