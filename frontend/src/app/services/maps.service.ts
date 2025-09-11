@@ -280,16 +280,16 @@ export class MapsService {
   }
 
   public getMapsByNames(game: string, mode: GameModes, mapNames: string[]): Maps[] {
-    const allMaps = this.maps.filter(x => x.game === game && x.mode === mode); 
+    const allMaps = this.maps.filter(x => x.game === game && x.mode === mode);
     const result: Maps[] = [];
     mapNames.forEach((name) => {
-        var globlaMaps = allMaps.filter(map => map.name === name);
-        if(globlaMaps) {
-          result.push(globlaMaps[0]);
+        var globalMaps = allMaps.filter(map => map.name === name);
+        if(globalMaps && globalMaps.length > 0) {
+          result.push(globalMaps[0]);
         } else {
           result.push({game, mode, name, link: ''});
         }
-    });  
+    });
     return result;
   }
 }
