@@ -1,43 +1,35 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Qrcode } from './qrcode';
-import { DOCUMENT } from '@angular/core';
 import { ATTENDEE_TYPE } from '../../../../data/veto-constellation.data';
 
 describe('Qrcode', () => {
   let component: Qrcode;
   let fixture: ComponentFixture<Qrcode>;
 
+  const mockUrl = {
+  createObjectURL: jest.fn().mockReturnValue('mock-url'),
+  revokeObjectURL: jest.fn()
+};
+
+
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       imports: [Qrcode],
-      providers: [
-        { 
-          provide: DOCUMENT, 
-          useValue: {
-            location: {
-              protocol: 'http:',
-              hostname: 'localhost',
-              port: '4200'
-            },
-            querySelectorAll: jest.fn(),
-            createElement: jest.fn().mockReturnValue({ 
-              setAttribute: jest.fn(),
-              style: {}
-            }),
-            addEventListener: jest.fn()
-          } 
-        }
-      ]
     })
     .compileComponents();
 
+    Object.defineProperty(window, 'URL', {
+      value: mockUrl,
+      writable: true
+    });
+    
     fixture = TestBed.createComponent(Qrcode);
-    component = fixture.componentInstance;
-    // Set required inputs to avoid NG0950 error
-    (component as any).data.set('test-data');
-    (component as any).title.set('test-title');
-    (component as any).type.set(ATTENDEE_TYPE.ADMIN);
+    component = fixture.componentInstance;    
+    fixture.componentRef.setInput('data', 'basedata');
+    fixture.componentRef.setInput('title', 'my title');
+    fixture.componentRef.setInput('type', ATTENDEE_TYPE.ADMIN);
     
     fixture.detectChanges();
   });
