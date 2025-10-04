@@ -12,10 +12,11 @@ import { NoActiveSessions } from "../../shared-components/no-active-sessions/no-
 import { VetoStore } from '../../store/veto-store';
 import { VetoStateDisplay } from './components/veto-state-display/veto-state-display';
 import { VetoResult } from './components/veto-result/veto-result';
+import { ConnectionStatus } from '../../shared/components/connection-status/connection-status';
 
 @Component({
   selector: 'app-veto-ui',
-  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult, NoActiveSessions],
+  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult, NoActiveSessions, ConnectionStatus],
   templateUrl: './veto-ui.html',
   styleUrl: './veto-ui.scss'
 })

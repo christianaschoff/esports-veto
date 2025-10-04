@@ -1,0 +1,29 @@
+<div class="connection-status"
+     [class.connected]="isConnected()"
+     [class.reconnecting]="isReconnecting()"
+     [class.disconnected]="isDisconnected() || isFailed()">
+
+  <div class="status-indicator">
+    <mat-icon [class.spin]="isReconnecting()">{{ statusIcon() }}</mat-icon>
+    <span class="status-text">{{ statusText() }}</span>
+    @if (isReconnecting()) {
+      <mat-spinner diameter="16"></mat-spinner>
+    }
+  </div>
+
+  @if (hasError()) {
+    <div class="error-message">
+      {{ signalrService.connectionError() }}
+    </div>
+  }
+
+  @if (isDisconnected() || isFailed()) {
+    <button mat-stroked-button
+            (click)="retryConnection()"
+            class="retry-button">
+      <mat-icon>refresh</mat-icon>
+      Retry
+    </button>
+  }
+
+</div>

@@ -40,18 +40,28 @@ public sealed class VetoSystemServiceHub : Hub
         await Clients.Group(groupid).SendAsync("VetoUpdated", $"{Context.ConnectionId} sent an update to {groupid}.", currentGameState);
     }
 
+    public async Task Heartbeat(string userId)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(userId);
+        _coordinator.UpdatePlayerPresence(Context.ConnectionId, userId);
+    }
+
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
         if (exception != null)
         {
             Console.WriteLine(exception.ToString());
         }
+
+        // Clean up presence tracking
+        _coordinator.RemovePlayerPresence(Context.ConnectionId);
+
         var groupToNotify = _coordinator.RemovePlayerFromVeto(Context.ConnectionId);
         if (groupToNotify != null)
         {
             var currentGameState = await _coordinator.CalculateCurrentGameState(groupToNotify);
             await Clients.Group(groupToNotify).SendAsync("LeftGroup", $"{Context.ConnectionId} is gone", currentGameState);
         }
-        await base.OnDisconnectedAsync(exception);        
+        await base.OnDisconnectedAsync(exception);
     }
 }

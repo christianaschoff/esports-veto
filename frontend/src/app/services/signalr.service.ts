@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, computed } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as signalR from '@microsoft/signalr';
 
@@ -9,6 +9,14 @@ export interface IGameState {
   vetoState: number
 }
 
+export enum ConnectionState {
+  Disconnected = 'disconnected',
+  Connecting = 'connecting',
+  Connected = 'connected',
+  Reconnecting = 'reconnecting',
+  Failed = 'failed'
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,53 +24,233 @@ export class SignalrService {
 
   private hubConnection: signalR.HubConnection;
   vetoStore = inject(VetoStore);
-  constructor() { 
+
+  // Connection state signals
+  connectionState = signal<ConnectionState>(ConnectionState.Disconnected);
+  connectionError = signal<string>('');
+
+  // Current session info for reconnection
+  private currentVetoId = signal<string>('');
+  private currentUserId = signal<string>('');
+  private currentUserName = signal<string>('');
+
+  // Heartbeat
+  private heartbeatInterval?: number;
+  private readonly HEARTBEAT_INTERVAL = 30000; // 30 seconds
+
+  constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    
-    .withUrl(environment.apiBaseUrl + '/api/veto')
-    .configureLogging(signalR.LogLevel.Information)
-    .withAutomaticReconnect()
-    .build();
-    // console.log('configured', this.hubConnection.baseUrl);
+      .withUrl(environment.apiBaseUrl + '/api/veto')
+      .configureLogging(signalR.LogLevel.Information)
+      .withAutomaticReconnect({
+        nextRetryDelayInMilliseconds: (retryContext) => {
+          // Stop after 3 retries to trigger OnDisconnectedAsync sooner
+          if (retryContext.previousRetryCount >= 3) {
+            console.log('Max reconnection attempts reached, giving up');
+            return null; // Stop reconnecting
+          }
+          // Exponential backoff with max 10 seconds
+          const delay = Math.min(1000 * Math.pow(2, retryContext.previousRetryCount), 10000);
+          console.log(`Reconnecting in ${delay}ms... (attempt ${retryContext.previousRetryCount + 1})`);
+          return delay;
+        }
+      })
+      .build();
 
-     this.hubConnection.on('JoinedGroup', (user, id, state: Veto) => {
-      // console.log('user:', user, 'id', id, 'gamestate', state);
-      this.vetoStore.updateCurrentGameState(state);
-     });
-
-     this.hubConnection.on('LeftGroup', (message, state: Veto) => {
-      // console.error(message, 'gamestate', state);
-      this.vetoStore.updateCurrentGameState(state);
-     });
-
-     this.hubConnection.on('VetoUpdated', (message, state: Veto) => {
-      // console.info(message, 'gamestate', state);
-      this.vetoStore.updateCurrentGameState(state);
-     });
+    this.setupConnectionHandlers();
+    this.setupEventHandlers();
+    this.setupVisibilityAndNetworkHandlers();
   }
 
-public async leave() {
-    await this.hubConnection.stop();    
+  private setupConnectionHandlers() {
+    this.hubConnection.onreconnecting(() => {
+      console.log('SignalR reconnecting...');
+      this.connectionState.set(ConnectionState.Reconnecting);
+      this.connectionError.set('');
+    });
+
+    this.hubConnection.onreconnected(() => {
+      console.log('SignalR reconnected');
+      this.connectionState.set(ConnectionState.Connected);
+      this.connectionError.set('');
+      // Re-join the current veto session
+      this.rejoinCurrentSession();
+      // Restart heartbeat
+      this.startHeartbeat();
+    });
+
+    this.hubConnection.onclose((error) => {
+      console.log('SignalR connection closed', error);
+      this.connectionState.set(ConnectionState.Disconnected);
+      this.stopHeartbeat();
+      if (error) {
+        this.connectionError.set(error.message || 'Connection lost');
+      }
+    });
+  }
+
+  private setupEventHandlers() {
+    this.hubConnection.on('JoinedGroup', (user, id, state: Veto) => {
+      console.log('Joined group:', user, id);
+      this.vetoStore.updateCurrentGameState(state);
+    });
+
+    this.hubConnection.on('LeftGroup', (message, state: Veto) => {
+      console.error('Left group:', message);
+      this.vetoStore.updateCurrentGameState(state);
+    });
+
+    this.hubConnection.on('VetoUpdated', (message, state: Veto) => {
+      console.info('Veto updated:', message);
+      this.vetoStore.updateCurrentGameState(state);
+    });
+  }
+
+  private setupVisibilityAndNetworkHandlers() {
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        console.log('Page hidden, pausing heartbeat');
+        this.stopHeartbeat();
+      } else {
+        console.log('Page visible, resuming heartbeat');
+        if (this.connectionState() === ConnectionState.Connected) {
+          this.startHeartbeat();
+        }
+      }
+    });
+
+    // Handle network changes
+    window.addEventListener('online', () => {
+      console.log('Network online, current state:', this.connectionState());
+      if (this.connectionState() !== ConnectionState.Connected) {
+        this.ensureConnected().catch(err => console.error('Failed to reconnect on network online:', err));
+      }
+    });
+
+    window.addEventListener('offline', () => {
+      console.log('Network offline');
+      this.connectionState.set(ConnectionState.Disconnected);
+      this.stopHeartbeat();
+    });
+  }
+
+  private rejoinCurrentSession() {
+    const vetoId = this.currentVetoId();
+    const userId = this.currentUserId();
+    const userName = this.currentUserName();
+
+    if (vetoId && userId && userName) {
+      console.log('Re-joining veto session after reconnection');
+      this.joinVetoHub(vetoId, userId, userName).catch(err => {
+        console.error('Failed to re-join session:', err);
+      });
+    }
+  }
+
+  private startHeartbeat() {
+    this.stopHeartbeat(); // Clear any existing
+    this.heartbeatInterval = window.setInterval(() => {
+      if (this.connectionState() === ConnectionState.Connected) {
+        this.sendHeartbeat();
+      }
+    }, this.HEARTBEAT_INTERVAL);
+  }
+
+  private stopHeartbeat() {
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = undefined;
+    }
+  }
+
+  private async sendHeartbeat() {
+    try {
+      await this.hubConnection.invoke('Heartbeat', this.currentUserId());
+    } catch (error) {
+      console.warn('Heartbeat failed:', error);
+    }
+  }
+
+  public async leave() {
+    this.stopHeartbeat();
+    this.currentVetoId.set('');
+    this.currentUserId.set('');
+    this.currentUserName.set('');
+    await this.hubConnection.stop();
+    this.connectionState.set(ConnectionState.Disconnected);
   }
 
   public async updateVeto(id: string, map: string) {
-    await this.connect();
+    await this.ensureConnected();
     await this.hubConnection.invoke('UpdateVeto', id, map);
   }
 
-  public async joinVetoHub(id: string, userId: string, user: string) {   
-    await this.connect();
+  public async joinVetoHub(id: string, userId: string, user: string) {
+    // Store session info for reconnection
+    this.currentVetoId.set(id);
+    this.currentUserId.set(userId);
+    this.currentUserName.set(user);
+
+    await this.ensureConnected();
     await this.hubConnection.invoke('JoinGroup', id, userId, user);
   }
-  
-  private async connect() {    
-    if(this.hubConnection.state !== signalR.HubConnectionState.Connected) {      
+
+  private async ensureConnected() {
+    if (this.hubConnection.state === signalR.HubConnectionState.Connected) {
+      console.log('Already connected');
+      return;
+    }
+
+    // If reconnecting, let it finish or stop it
+    if (this.hubConnection.state === signalR.HubConnectionState.Reconnecting) {
+      console.log('Stopping ongoing reconnection attempt');
       try {
-        await this.hubConnection.start();        
+        await this.hubConnection.stop();
       } catch (err) {
-        console.log('connecting to hub error: ', err); 
+        console.warn('Error stopping reconnection:', err);
       }
     }
+
+    this.connectionState.set(ConnectionState.Connecting);
+    console.log('Starting connection...');
+    try {
+      await this.hubConnection.start();
+      console.log('Connection started successfully');
+      this.connectionState.set(ConnectionState.Connected);
+      this.connectionError.set('');
+      this.startHeartbeat();
+      // Re-join current session if we have session info
+      this.rejoinCurrentSession();
+    } catch (err) {
+      console.error('Failed to connect to hub:', err);
+      this.connectionState.set(ConnectionState.Failed);
+      this.connectionError.set(err instanceof Error ? err.message : 'Connection failed');
+      throw err;
+    }
+  }
+
+  // Public method to manually reconnect
+  public async reconnect() {
+    console.log('Manual reconnect initiated, current state:', this.connectionState(), 'hub state:', this.hubConnection.state);
+
+    // Stop any existing connection first
+    try {
+      if (this.hubConnection.state !== signalR.HubConnectionState.Disconnected) {
+        console.log('Stopping existing connection...');
+        await this.hubConnection.stop();
+      }
+    } catch (err) {
+      console.warn('Error stopping connection:', err);
+    }
+
+    // Reset state
+    this.connectionState.set(ConnectionState.Disconnected);
+    this.stopHeartbeat();
+
+    // Attempt fresh connection
+    console.log('Starting fresh connection...');
+    await this.ensureConnected();
   }
 
 }

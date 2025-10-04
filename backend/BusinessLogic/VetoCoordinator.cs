@@ -8,6 +8,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
 {
     private readonly List<KeyValuePair<string, Veto>> _coordinatorIds = [];
     private readonly List<KeyValuePair<string, string>> _signalRToVetoMap = [];
+    private readonly Dictionary<string, DateTime> _playerLastSeen = [];
     private readonly Lock _lock = new();
     private readonly Dictionary<string, int> vetoLimitsSc2 = new()
     {
@@ -25,6 +26,10 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
     public async Task<VetoData> CalculateCurrentGameState(string vetoId)
     {
         var currentVeto = await FindVetoAsync(vetoId) ?? throw new ArgumentOutOfRangeException(nameof(vetoId), "no veto found");
+
+        // Check for inactive players and remove them
+        CheckAndRemoveInactivePlayers(currentVeto);
+
         currentVeto.VetoState = CalculateVetoState(currentVeto);
         await SaveGameState(currentVeto);
         return new VetoData(currentVeto.VetoState, currentVeto.VetoSteps);
@@ -36,18 +41,26 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         if (currentVeto is null)
             return;
 
-        if (currentVeto.VetoConfig.playerAId == userid)        
-            currentVeto.PlayerA = hubId;    
+        if (currentVeto.VetoConfig.playerAId == userid)
+            currentVeto.PlayerA = hubId;
 
-        if (currentVeto.VetoConfig.playerBId == userid)        
+        if (currentVeto.VetoConfig.playerBId == userid)
             currentVeto.PlayerB = hubId;
 
         if (currentVeto.PlayerA == hubId || currentVeto.PlayerB == hubId)
-        {            
+        {
             lock (_lock)
             {
                 _signalRToVetoMap.Add(new KeyValuePair<string, string>(hubId, userid));
-            }        
+            }
+        }
+    }
+
+    public void UpdatePlayerPresence(string hubId, string userid)
+    {
+        lock (_lock)
+        {
+            _playerLastSeen[hubId] = DateTime.UtcNow;
         }
     }
 
@@ -86,12 +99,20 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
             RemovePlayerFromVetoAndSignalMap(currentVeto.Value, signalRId, vetoMap);
         }
         else
-        { 
-            lock (_lock)            
+        {
+            lock (_lock)
                 _signalRToVetoMap.Remove(vetoMap);
-            
+
         }
-        return vetoid;            
+        return vetoid;
+    }
+
+    public void RemovePlayerPresence(string signalRId)
+    {
+        lock (_lock)
+        {
+            _playerLastSeen.Remove(signalRId);
+        }
     }
 
 
@@ -153,6 +174,46 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
     private static bool AreAllPlayersMissing(Veto veto)
     {
         return string.IsNullOrEmpty(veto.PlayerA) || string.IsNullOrEmpty(veto.PlayerB);
+    }
+
+    private async Task CheckAndRemoveInactivePlayers(Veto veto)
+    {
+        const int INACTIVE_TIMEOUT_SECONDS = 90; // 1.5 minutes
+        var now = DateTime.UtcNow;
+
+        // Note: This method is called from CalculateCurrentGameState, which is async,
+        // so we can make this async to send notifications
+
+        var notifications = new List<(string groupId, string message)>();
+
+        lock (_lock)
+        {
+            if (!string.IsNullOrEmpty(veto.PlayerA) && _playerLastSeen.TryGetValue(veto.PlayerA, out var lastSeenA))
+            {
+                if ((now - lastSeenA).TotalSeconds > INACTIVE_TIMEOUT_SECONDS)
+                {
+                    Console.WriteLine($"Player A inactive, removing from veto {veto.VetoId}");
+                    notifications.Add((veto.VetoId, "Player A has disconnected due to inactivity"));
+                    veto.PlayerA = null;
+                    _signalRToVetoMap.RemoveAll(x => x.Key == veto.PlayerA);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(veto.PlayerB) && _playerLastSeen.TryGetValue(veto.PlayerB, out var lastSeenB))
+            {
+                if ((now - lastSeenB).TotalSeconds > INACTIVE_TIMEOUT_SECONDS)
+                {
+                    Console.WriteLine($"Player B inactive, removing from veto {veto.VetoId}");
+                    notifications.Add((veto.VetoId, "Player B has disconnected due to inactivity"));
+                    veto.PlayerB = null;
+                    _signalRToVetoMap.RemoveAll(x => x.Key == veto.PlayerB);
+                }
+            }
+        }
+
+        // Send notifications outside the lock
+        // Note: We don't have access to Clients here, so we need to handle this differently
+        // For now, the state update will notify clients via VetoUpdated
     }
 
     private static bool IsVetoAlreadyDone(Veto veto)
