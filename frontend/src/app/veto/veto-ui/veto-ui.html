@@ -1,9 +1,9 @@
 @if(this.sessionGiven()) {
     @if(!this.localLoadingBatch()) {
         <h2>{{ this.state.vetoTitle() }} - {{ this.state.bestOf() }} - {{this.state.playerA() }} vs {{this.state.playerB()}}</h2>
-        <app-connection-status></app-connection-status>
         <h3>Hi {{ this.state.attendee().userName}}</h3>
         <app-veto-state-display></app-veto-state-display>
+        <app-connection-status></app-connection-status>
         <app-maplist-veto (propageMapSelection)="handleMapSelection($event)"></app-maplist-veto>
         <app-veto-result></app-veto-result>
     }

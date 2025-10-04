@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SignalrService, ConnectionState } from '../../../services/signalr.service';
+import { SignalrService, ConnectionState } from '../../services/signalr.service';
 
 @Component({
   selector: 'app-connection-status',
