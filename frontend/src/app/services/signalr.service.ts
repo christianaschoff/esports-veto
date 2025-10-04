@@ -70,10 +70,10 @@ export class SignalrService {
     });
 
     this.hubConnection.onreconnected(() => {
-      console.log('SignalR reconnected');
+      console.log('SignalR reconnected - updating UI to Connected');
       this.connectionState.set(ConnectionState.Connected);
       this.connectionError.set('');
-      // Re-join the current veto session
+      // Re-join current session after reconnection
       this.rejoinCurrentSession();
       // Restart heartbeat
       this.startHeartbeat();
@@ -123,7 +123,9 @@ export class SignalrService {
     // Handle network changes
     window.addEventListener('online', () => {
       console.log('Network online, current state:', this.connectionState());
-      if (this.connectionState() !== ConnectionState.Connected) {
+      // Only attempt reconnection if not connected and not already reconnecting
+      if (this.connectionState() === ConnectionState.Disconnected ||
+          this.connectionState() === ConnectionState.Failed) {
         this.ensureConnected().catch(err => console.error('Failed to reconnect on network online:', err));
       }
     });
@@ -198,18 +200,22 @@ export class SignalrService {
 
   private async ensureConnected() {
     if (this.hubConnection.state === signalR.HubConnectionState.Connected) {
-      console.log('Already connected');
+      console.log('Already connected - syncing UI state');
+      // Ensure UI state is in sync
+      if (this.connectionState() !== ConnectionState.Connected) {
+        console.log('UI state was out of sync, updating to Connected');
+        this.connectionState.set(ConnectionState.Connected);
+        this.connectionError.set('');
+        this.startHeartbeat();
+        this.rejoinCurrentSession();
+      }
       return;
     }
 
-    // If reconnecting, let it finish or stop it
+    // If already reconnecting, don't interfere - let automatic reconnect finish
     if (this.hubConnection.state === signalR.HubConnectionState.Reconnecting) {
-      console.log('Stopping ongoing reconnection attempt');
-      try {
-        await this.hubConnection.stop();
-      } catch (err) {
-        console.warn('Error stopping reconnection:', err);
-      }
+      console.log('Automatic reconnection already in progress, waiting...');
+      return;
     }
 
     this.connectionState.set(ConnectionState.Connecting);
