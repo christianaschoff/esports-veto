@@ -18,11 +18,11 @@
   }
 
   @if (isDisconnected() || isFailed()) {
-    <button mat-stroked-button
+    <button matButton
             (click)="retryConnection()"
             class="retry-button">
       <mat-icon>refresh</mat-icon>
-      Retry
+      RETRY
     </button>
   }
 
