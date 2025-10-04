@@ -16,7 +16,7 @@ import { ConnectionStatus } from '../../shared-components/connection-status/conn
 
 @Component({
   selector: 'app-veto-ui',
-  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult, NoActiveSessions, ConnectionStatus],
+  imports: [MatButtonModule, MatRadioModule, MatIconModule, MatListModule, FormsModule, MaplistVeto, VetoStateDisplay, VetoResult, NoActiveSessions],
   templateUrl: './veto-ui.html',
   styleUrl: './veto-ui.scss'
 })

@@ -9,8 +9,7 @@ export class GamesService {
 
   constructor() { }
 
-  getData() : Array<GameData> {    
-    // https://blz-contentstack-images.akamaized.net/v3/assets/blt0e00eb71333df64e/bltda1593cf3f8a2cab/6621cf091325716a8e5616ce/game_features_f2p.webp
+  getData() : Array<GameData> {        
    return [
     { name: 'StarCraft II', 
       description: 'StarCraft II Veto for competative games', 

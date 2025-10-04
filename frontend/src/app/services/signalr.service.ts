@@ -1,8 +1,8 @@
-import { inject, Injectable, signal, computed } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as signalR from '@microsoft/signalr';
 
-import { Veto, VetoStepType } from '../data/veto.data';
+import { Veto } from '../data/veto.data';
 import { VetoStore } from '../store/veto-store';
 
 export interface IGameState {
