@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
-import { VetoApiService } from "../services/VetoApiService.js";
-import { MapsService } from "../services/MapsService.js";
-import { CreateVetoInput, CreateVetoResponse, VetoResult } from "../types/index.js";
+import { VetoApiService } from "../services/VetoApiService";
+import { MapsService } from "../services/MapsService";
+import { CreateVetoInput, CreateVetoResponse, VetoResult } from "../types/index";
 
 const MatchupSchema = z.object({
   playerA: z.string().max(25),

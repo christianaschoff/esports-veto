@@ -1,8 +1,8 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { VetoApiService } from "./services/VetoApiService.js";
-import { CreateVetoTool } from "./tools/CreateVetoTool.js";
+import { VetoApiService } from "./services/VetoApiService";
+import { CreateVetoTool } from "./tools/CreateVetoTool";
 
 // Use dev environment for testing
 const BASE_URL = process.env.VETO_BASE_URL || "http://localhost:5254/api";
