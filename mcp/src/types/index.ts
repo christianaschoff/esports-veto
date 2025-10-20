@@ -1,3 +1,9 @@
+export interface Matchup {
+  playerA: string;
+  playerB: string;
+  title?: string;
+}
+
 export interface CreateVetoInput {
   mode: "M1V1" | "M2V2" | "M3V3" | "M4V4";
   bestOf?: "BO1" | "BO3" | "BO5" | "BO7" | "BO9";
@@ -6,6 +12,7 @@ export interface CreateVetoInput {
   title?: string;
   vetoSystem?: "ABBA" | "ABAB";
   count?: number;
+  matchups?: Matchup[];
 }
 
 export interface VetoResult {
