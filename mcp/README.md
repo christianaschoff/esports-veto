@@ -116,7 +116,7 @@ This MCP server provides a single tool called `create_veto` that can be used to 
 | `playerB` | string | No | - | Player B name (max 25 characters) - use with `playerA` and `count` |
 | `title` | string | No | `Match` | Match title (max 50 characters) |
 | `vetoSystem` | string | No | `ABBA` | Veto system: `ABBA` or `ABAB` |
-| `count` | number | No | - | Number of veto sessions to create when using `playerA`/`playerB` (1-5) |
+| `count` | number | No | 1 | Number of veto sessions to create when using `playerA`/`playerB` (1-5, defaults to 1) |
 | `matchups` | array | No | - | Array of matchups for batch creation (max 256 matchups) |
 
 ### Matchups Array Structure
@@ -136,10 +136,10 @@ Create a single BO3 veto session for a 1v1 exhibition match:
   "bestOf": "BO3",
   "playerA": "ProtossMaster",
   "playerB": "ZergQueen",
-  "title": "Championship Finals",
-  "vetoSystem": "ABBA"
+  "title": "Championship Finals"
 }
 ```
+*Note: `count` defaults to 1 when using `playerA`/`playerB`*
 *Use case: Streamed exhibition matches, content creation, or single-elimination tournament finals*
 
 #### Practice Sessions (Multiple Identical)

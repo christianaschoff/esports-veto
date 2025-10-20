@@ -82,6 +82,7 @@ backend/bazel-out
 # Node
 mcp/node_modules
 mcp/dist
+mcp/ai-runners-configs
 frontend/node_modules
 /node_modules
 frontend/dist

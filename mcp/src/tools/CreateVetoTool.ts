@@ -26,14 +26,12 @@ const CreateVetoSchema = z.object({
   return hasMatchups || hasPlayers;
 }, {
   message: "Either 'matchups' array or 'playerA' and 'playerB' must be provided"
-}).refine((data) => {
-  // If using old format, count is required
-  if (!data.matchups && (!data.playerA || !data.playerB)) {
-    return data.count !== undefined;
+}).transform((data) => {
+  // Default count to 1 when using playerA/playerB without count
+  if (data.playerA && data.playerB && !data.matchups && data.count === undefined) {
+    return { ...data, count: 1 };
   }
-  return true;
-}, {
-  message: "When using playerA/playerB, 'count' is required"
+  return data;
 });
 
 export class CreateVetoTool {
@@ -42,7 +40,7 @@ export class CreateVetoTool {
   getToolDefinition(): Tool {
     return {
       name: "create_veto",
-      description: "Create veto sessions for Starcraft 2 esports matches where players take turns banning/picking maps before the game starts. Supports both individual matches and tournament brackets with up to 256 unique player matchups. Processes requests in batches of 5 to prevent API overload. Each veto session generates unique URLs for admin control, both players, and observers.",
+      description: "Create veto sessions for Starcraft 2 esports matches where players take turns banning/picking maps before the game starts. Supports both individual matches (provide playerA/playerB) and tournament brackets with up to 256 unique player matchups. When using playerA/playerB, count defaults to 1. Processes requests in batches of 5 to prevent API overload. Each veto session generates unique URLs for admin control, both players, and observers.",
       inputSchema: {
         type: "object",
         properties: {
@@ -81,9 +79,10 @@ export class CreateVetoTool {
           },
           count: {
             type: "number",
-            description: "Number of identical veto sessions to create when using playerA/playerB (max 5). Use matchups array for different opponents",
+            description: "Number of identical veto sessions to create when using playerA/playerB (max 5, defaults to 1). Use matchups array for different opponents",
             minimum: 1,
-            maximum: 5
+            maximum: 5,
+            default: 1
           },
           matchups: {
             type: "array",
