@@ -80,6 +80,8 @@ backend/out-tsc
 backend/bazel-out
 
 # Node
+mcp/node_modules
+mcp/dist
 frontend/node_modules
 /node_modules
 frontend/dist
