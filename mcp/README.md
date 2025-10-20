@@ -1,18 +1,35 @@
 # Veto MCP Server
 
-A Model Context Protocol (MCP) server for creating and managing veto sessions for Starcraft 2 matches. This server provides tools to create veto sessions with customizable game modes, player names, and match configurations.
+A Model Context Protocol (MCP) server for creating and managing veto sessions for Starcraft 2 esports matches. In Starcraft 2 competitive gaming, veto sessions allow players to take turns banning (removing) and picking (choosing) maps from a pool before the match begins. This strategic process ensures fair map selection and adds excitement to tournaments.
+
+This server provides tools to create veto sessions with customizable game modes, player configurations, and tournament brackets, supporting both individual matches and large-scale competitions with up to 256 unique matchups.
+
+## How Veto Sessions Work
+
+In Starcraft 2 esports, veto sessions are interactive processes where players strategically select the maps they'll play on:
+
+1. **Map Pool**: Each game mode has a predefined set of maps (e.g., M1V1 might have 7 maps)
+2. **Ban/Pick Process**: Players take turns banning maps they don't want to play and picking maps they prefer
+3. **Strategic Depth**: The veto pattern (ABBA/ABAB) determines who bans/picks in which order
+4. **Live Interaction**: Players access unique URLs to participate in real-time veto decisions
+5. **Tournament Integration**: Supports brackets, round-robin tournaments, and playoff series
+
+Each veto session generates:
+- **Admin URL**: Tournament organizers can monitor and control the process
+- **Player URLs**: Each player gets their own interface for making decisions
+- **Observer URL**: Live streaming and spectator access to watch the veto unfold
 
 ## Features
 
-- Create veto sessions for Starcraft 2 matches
-- Support for multiple game modes (M1V1, M2V2, M3V3, M4V4)
-- Configurable best-of formats (BO1, BO3, BO5, BO7, BO9)
-- Custom player names and match titles
-- Multiple veto systems (ABBA, ABAB)
-- Batch creation with up to 256 unique matchups
-- Parallel processing in batches of 5 to prevent endpoint overload
-- Backward compatible with simple veto creation
-- Generates admin, player, and observer URLs
+- **Strategic Map Veto System**: Create interactive veto sessions where players ban/pick Starcraft 2 maps before matches
+- **Multiple Game Formats**: Support for 1v1 (M1V1), 2v2 (M2V2), 3v3 (M3V3), and 4v4 (M4V4) team matches
+- **Flexible Series Length**: Configurable best-of formats (BO1, BO3, BO5, BO7, BO9) for different tournament stages
+- **Custom Branding**: Personalized player names, team names, and match titles
+- **Veto Patterns**: Choose between ABBA and ABAB ban/pick sequences for strategic variety
+- **Tournament Scale**: Batch creation supporting up to 256 unique matchups (512 players) for large brackets
+- **Performance Optimized**: Parallel processing in batches of 5 to prevent API overload during mass creation
+- **Legacy Support**: Backward compatible with simple single/bulk veto creation
+- **Complete Access Control**: Generates unique URLs for tournament admins, both players, and live observers
 
 ## Prerequisites
 
@@ -81,7 +98,13 @@ The server will start and listen for MCP requests via stdio (standard input/outp
 
 ## Usage
 
-This MCP server provides a single tool called `create_veto` that can be used to create veto sessions. It supports both individual veto creation and batch creation with multiple matchups.
+This MCP server provides a single tool called `create_veto` that can be used to create veto sessions for Starcraft 2 matches. Choose the approach that fits your needs:
+
+### When to Use Each Method
+
+- **Single Match**: Use `playerA` + `playerB` + `count: 1` for one-off exhibition matches
+- **Multiple Identical Matches**: Use `playerA` + `playerB` + `count: 2-5` for practice sessions or round-robin with same opponents
+- **Tournament Bracket**: Use `matchups` array for unique player pairings in brackets, playoffs, or diverse competitions
 
 ### Tool Parameters
 
@@ -105,68 +128,76 @@ Each matchup in the `matchups` array should have:
 
 ### Example Usage
 
-#### Single Veto (Legacy Format)
-Create a single BO3 veto session for M1V1 mode:
+#### Exhibition Match (Single Veto)
+Create a single BO3 veto session for a 1v1 exhibition match:
 ```json
 {
   "mode": "M1V1",
   "bestOf": "BO3",
   "playerA": "ProtossMaster",
   "playerB": "ZergQueen",
-  "title": "Championship Finals"
+  "title": "Championship Finals",
+  "vetoSystem": "ABBA"
 }
 ```
+*Use case: Streamed exhibition matches, content creation, or single-elimination tournament finals*
 
-#### Multiple Identical Vetos (Legacy Format)
-Create 3 identical veto sessions for M2V2 mode:
+#### Practice Sessions (Multiple Identical)
+Create 3 identical BO1 veto sessions for team practice:
 ```json
 {
   "mode": "M2V2",
+  "bestOf": "BO1",
   "count": 3,
   "playerA": "Team Alpha",
-  "playerB": "Team Beta"
+  "playerB": "Team Beta",
+  "title": "Practice Session"
 }
 ```
+*Use case: Team practice, round-robin warmups, or multiple matches between same opponents*
 
-#### Batch Creation with Matchups
-Create multiple different veto sessions using the matchups array:
-```json
-{
-  "mode": "M1V1",
-  "bestOf": "BO3",
-  "vetoSystem": "ABBA",
-  "matchups": [
-    {
-      "playerA": "omg",
-      "playerB": "itworks",
-      "title": "Round 1"
-    },
-    {
-      "playerA": "its my name",
-      "playerB": "oh my god",
-      "title": "Round 2"
-    },
-    {
-      "playerA": "PlayerX",
-      "playerB": "PlayerY"
-    }
-  ]
-}
-```
-
-#### Large Tournament (256 Matchups)
-Create up to 256 matchups for a large tournament:
+#### Tournament Bracket (Unique Matchups)
+Create a playoff bracket with unique player pairings:
 ```json
 {
   "mode": "M1V1",
   "bestOf": "BO5",
+  "vetoSystem": "ABBA",
   "matchups": [
-    {"playerA": "Player001", "playerB": "Player002"},
-    {"playerA": "Player003", "playerB": "Player004"},
-    // ... up to 256 matchups
+    {
+      "playerA": "Maru",
+      "playerB": "Cure",
+      "title": "Quarterfinals A"
+    },
+    {
+      "playerA": "Stats",
+      "playerB": "Zest",
+      "title": "Quarterfinals B"
+    },
+    {
+      "playerA": "Dark",
+      "playerB": "Rogue",
+      "title": "Quarterfinals C"
+    }
   ]
 }
 ```
+*Use case: Tournament brackets, playoff series, round-robin tournaments with different opponents*
+
+#### Large Online Tournament (256 Matchups)
+Create a massive online tournament with diverse player pool:
+```json
+{
+  "mode": "M1V1",
+  "bestOf": "BO3",
+  "matchups": [
+    {"playerA": "ProPlayer001", "playerB": "AmateurChamp002", "title": "Group A Round 1"},
+    {"playerA": "StreamerAlpha", "playerB": "RisingStar004", "title": "Group B Round 1"},
+    // ... up to 256 unique matchups for massive tournaments
+  ]
+}
+```
+*Use case: Large online tournaments, community events, or professional league brackets*
 
 ### Batch Processing
 
@@ -174,15 +205,60 @@ When creating multiple veto sessions, the system processes them in parallel batc
 
 ### Response Format
 
-The tool returns a response with:
-- `success`: Boolean indicating if all veto sessions were created successfully
-- `vetos`: Array of successfully created veto sessions with URLs
-- `errors`: Array of errors for failed veto creations (includes matchup index for identification)
+The tool returns a structured response designed for tournament management:
 
-Each veto session includes:
-- Veto ID and player IDs
-- Match details (title, players, mode, maps)
-- URLs for admin, player A, player B, and observer access
+#### Success Response Structure
+```json
+{
+  "success": true,           // true if all veto sessions created successfully
+  "vetos": [                 // Array of created veto sessions (1 per matchup)
+    {
+      "vetoId": "uuid",      // Unique identifier for this veto session
+      "playerAId": "uuid",   // Player A's unique access token
+      "playerBId": "uuid",   // Player B's unique access token
+      "observerId": "uuid",  // Observer/spectator access token
+      "title": "Match Title", // Display name for the match
+      "playerA": "PlayerName", // Team/Player A display name
+      "playerB": "PlayerName", // Team/Player B display name
+      "bestOf": "BO3",       // Series format (BO1, BO3, BO5, BO7, BO9)
+      "mode": "M1V1",        // Game format (M1V1, M2V2, M3V3, M4V4)
+      "maps": ["Map1", "Map2", ...], // Available maps for veto selection
+      "urls": {
+        "admin": "http://localhost:4200/admin/uuid",     // Tournament admin control panel
+        "playerA": {
+          "name": "PlayerName",                          // Player A's display name
+          "url": "http://localhost:4200/veto/player/uuid" // Player A's veto interface
+        },
+        "playerB": {
+          "name": "PlayerName",                          // Player B's display name
+          "url": "http://localhost:4200/veto/player/uuid" // Player B's veto interface
+        },
+        "observer": "http://localhost:4200/observe/uuid"  // Live spectator view
+      }
+    }
+  ],
+  "errors": []              // Empty array if successful, otherwise contains error details
+}
+```
+
+#### URL Usage Guide
+- **Admin URL**: Tournament organizers monitor progress, start/stop vetoes, and resolve disputes
+- **Player URLs**: Each player accesses their personal interface to make ban/pick decisions in real-time
+- **Observer URL**: Streamers, commentators, and fans watch the veto process unfold live
+
+#### Error Response Structure
+```json
+{
+  "success": false,
+  "vetos": [],              // Successfully created vetos (may be partial)
+  "errors": [               // Array of creation failures
+    {
+      "index": 2,           // Matchup index that failed (0-based)
+      "error": "Error message describing what went wrong"
+    }
+  ]
+}
+```
 
 ## Integration with MCP Clients
 

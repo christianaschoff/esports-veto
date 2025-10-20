@@ -42,68 +42,68 @@ export class CreateVetoTool {
   getToolDefinition(): Tool {
     return {
       name: "create_veto",
-      description: "Create one or more veto sessions for Starcraft 2 matches. Supports both individual veto creation and batch creation with matchups.",
+      description: "Create veto sessions for Starcraft 2 esports matches where players take turns banning/picking maps before the game starts. Supports both individual matches and tournament brackets with up to 256 unique player matchups. Processes requests in batches of 5 to prevent API overload. Each veto session generates unique URLs for admin control, both players, and observers.",
       inputSchema: {
         type: "object",
         properties: {
           mode: {
             type: "string",
             enum: ["M1V1", "M2V2", "M3V3", "M4V4"],
-            description: "Game mode: M1V1, M2V2, M3V3, or M4V4"
+            description: "Game format: M1V1 (1 player vs 1 player), M2V2 (2 players vs 2 players), M3V3 (3 vs 3), or M4V4 (4 vs 4 team matches)"
           },
           bestOf: {
             type: "string",
             enum: ["BO1", "BO3", "BO5", "BO7", "BO9"],
-            description: "Best of format: BO1, BO3, BO5, BO7, or BO9 (default: BO3)",
+            description: "Series format meaning 'best of X games' - winner needs to win majority of games (BO3 = first to 2 wins, BO5 = first to 3 wins, etc.)",
             default: "BO3"
           },
           playerA: {
             type: "string",
-            description: "Player A name (max 25 chars) - use with playerB and count for simple creation",
+            description: "Name of Team/Player A (max 25 characters). Use with playerB and count for creating multiple identical matches, or use matchups array for different opponents",
             maxLength: 25
           },
           playerB: {
             type: "string",
-            description: "Player B name (max 25 chars) - use with playerA and count for simple creation",
+            description: "Name of Team/Player B (max 25 characters). Use with playerA and count for creating multiple identical matches, or use matchups array for different opponents",
             maxLength: 25
           },
           title: {
             type: "string",
-            description: "Match title (default: Match, max 50 chars)",
+            description: "Display title for the match/series (default: 'Match', max 50 characters). Used when not specified in individual matchups",
             default: "Match",
             maxLength: 50
           },
           vetoSystem: {
             type: "string",
             enum: ["ABBA", "ABAB"],
-            description: "Veto system: ABBA or ABAB (default: ABBA)",
+            description: "Map selection pattern: ABBA (PlayerA-B-PlayerB-A) or ABAB (PlayerA-B-A-B). Determines who bans/picks maps in which order",
             default: "ABBA"
           },
           count: {
             type: "number",
-            description: "Number of vetos to create when using playerA/playerB (max: 5)",
+            description: "Number of identical veto sessions to create when using playerA/playerB (max 5). Use matchups array for different opponents",
             minimum: 1,
             maximum: 5
           },
           matchups: {
             type: "array",
-            description: "Array of matchups for batch creation (max 256 matchups). Each matchup should have playerA, playerB, and optional title.",
+            description: "Array of unique player matchups for tournament creation (max 256 matchups = 512 players). Each matchup creates a separate veto session. Ideal for brackets, round-robin tournaments, or multiple unique matches. Example: [{'playerA': 'Team Alpha', 'playerB': 'Team Beta', 'title': 'Finals'}]",
             items: {
               type: "object",
               properties: {
                 playerA: {
                   type: "string",
-                  description: "Player A name (max 25 chars)",
+                  description: "Name of first player/team in this specific matchup (max 25 characters)",
                   maxLength: 25
                 },
                 playerB: {
                   type: "string",
-                  description: "Player B name (max 25 chars)",
+                  description: "Name of second player/team in this specific matchup (max 25 characters)",
                   maxLength: 25
                 },
                 title: {
                   type: "string",
-                  description: "Optional match title (max 50 chars)",
+                  description: "Optional custom title for this specific matchup (max 50 characters). Overrides the global title",
                   maxLength: 50
                 }
               },
@@ -112,7 +112,17 @@ export class CreateVetoTool {
             maxItems: 256
           }
         },
-        required: ["mode"]
+        required: ["mode"],
+        oneOf: [
+          {
+            required: ["playerA", "playerB", "count"],
+            not: { required: ["matchups"] }
+          },
+          {
+            required: ["matchups"],
+            not: { anyOf: [{ required: ["playerA"] }, { required: ["playerB"] }, { required: ["count"] }] }
+          }
+        ]
       }
     };
   }
@@ -176,20 +186,20 @@ export class CreateVetoTool {
             playerAId: result.playerAId,
             playerBId: result.playerBId,
             observerId: result.observerId,
-            title: result.Title,
-            playerA: result.PlayerA,
-            playerB: result.PlayerB,
-            bestOf: result.BestOf,
-            mode: result.Mode,
-            maps: result.Maps,
+            title: result.Title || matchup.title,
+            playerA: result.PlayerA || matchup.playerA,
+            playerB: result.PlayerB || matchup.playerB,
+            bestOf: result.BestOf || validatedInput.bestOf,
+            mode: result.Mode || validatedInput.mode,
+            maps: result.Maps || MapsService.getMapsForMode(validatedInput.mode),
             urls: {
               admin: `${baseUrl}/admin/${result.vetoId}`,
               playerA: {
-                name: result.playerA,
+                name: result.playerA || matchup.playerA,
                 url: `${baseUrl}/veto/player/${result.playerAId}`
               },
               playerB: {
-                name: result.playerB,
+                name: result.playerB || matchup.playerB,
                 url: `${baseUrl}/veto/player/${result.playerBId}`
               },
               observer: `${baseUrl}/observe/${result.observerId}`
