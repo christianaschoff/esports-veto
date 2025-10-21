@@ -40,7 +40,7 @@ export class CreateVetoTool {
   getToolDefinition(): Tool {
     return {
       name: "create_veto",
-      description: "Create veto sessions for Starcraft 2 esports matches where players take turns banning/picking maps before the game starts. Supports both individual matches (provide playerA/playerB) and tournament brackets with up to 256 unique player matchups. When using playerA/playerB, count defaults to 1. Processes requests in batches of 5 to prevent API overload. Each veto session generates unique URLs for admin control, both players, and observers.",
+       description: "Create veto sessions for Starcraft 2 esports matches where players take turns banning/picking maps before the game starts. For multiple unique matchups, use the 'matchups' array parameter to create up to 256 different veto sessions in a single efficient batch call. Each veto session generates unique URLs for admin control, both players, and observers.",
       inputSchema: {
         type: "object",
         properties: {
