@@ -55,16 +55,16 @@ export class CreateVetoTool {
             description: "Series format meaning 'best of X games' - winner needs to win majority of games (BO3 = first to 2 wins, BO5 = first to 3 wins, etc.)",
             default: "BO3"
           },
-          playerA: {
-            type: "string",
-            description: "Name of Team/Player A (max 25 characters). Use with playerB and count for creating multiple identical matches, or use matchups array for different opponents",
-            maxLength: 25
-          },
-          playerB: {
-            type: "string",
-            description: "Name of Team/Player B (max 25 characters). Use with playerA and count for creating multiple identical matches, or use matchups array for different opponents",
-            maxLength: 25
-          },
+           playerA: {
+             type: "string",
+             description: "Name of Team/Player A (max 25 characters). Use with playerB for single matches",
+             maxLength: 25
+           },
+           playerB: {
+             type: "string",
+             description: "Name of Team/Player B (max 25 characters). Use with playerA for single matches",
+             maxLength: 25
+           },
           title: {
             type: "string",
             description: "Display title for the match/series (default: 'Match', max 50 characters). Used when not specified in individual matchups",
@@ -77,16 +77,16 @@ export class CreateVetoTool {
             description: "Map selection pattern: ABBA (PlayerA-B-PlayerB-A) or ABAB (PlayerA-B-A-B). Determines who bans/picks maps in which order",
             default: "ABBA"
           },
-          count: {
-            type: "number",
-            description: "Number of identical veto sessions to create when using playerA/playerB (max 5, defaults to 1). Use matchups array for different opponents",
-            minimum: 1,
-            maximum: 5,
-            default: 1
-          },
-          matchups: {
-            type: "array",
-            description: "Array of unique player matchups for tournament creation (max 256 matchups = 512 players). Each matchup creates a separate veto session. Ideal for brackets, round-robin tournaments, or multiple unique matches. Example: [{'playerA': 'Team Alpha', 'playerB': 'Team Beta', 'title': 'Finals'}]",
+           count: {
+             type: "number",
+             description: "Number of identical veto sessions (1-5). Rarely used - for creating multiple copies of the same matchup",
+             minimum: 1,
+             maximum: 5,
+             default: 1
+           },
+           matchups: {
+             type: "array",
+             description: "Array of unique matchups (max 256). **Preferred for multiple different matchups** - creates separate veto sessions for each player pair in one efficient batch call. Example: [{'playerA': 'Team Alpha', 'playerB': 'Team Beta', 'title': 'Finals'}]",
             items: {
               type: "object",
               properties: {

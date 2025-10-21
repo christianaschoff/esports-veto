@@ -22,7 +22,7 @@ This guide provides comprehensive information for AI agents and developers worki
 ## 🛠️ Prerequisites
 
 ### System Requirements
-- **Node.js**: v16.0.0 or higher
+- **Node.js**: v14.0.0 or higher (ES2020 support required)
 - **npm**: Latest stable version
 - **TypeScript**: v5.3.0 or higher
 - **Git**: For version control
@@ -127,13 +127,26 @@ echo '{
 ```
 
 ### Integration Testing
-Test with MCP clients like LM Studio or Claude Desktop using the configuration in `mcp-config-lmstudio.json`.
+Test with MCP clients like LM Studio or Claude Desktop using the configuration examples below.
 
 ## 📡 MCP Configuration
 
 ### LM Studio Setup
 1. Open LM Studio → Program tab → Install → Edit mcp.json
-2. Add the configuration from `mcp-config-lmstudio.json`
+2. Add the following configuration:
+```json
+{
+  "mcpServers": {
+    "veto-mcp-server": {
+      "command": "node",
+      "args": ["/absolute/path/to/dist/index.js"],
+      "env": {
+        "VETO_BASE_URL": "http://localhost:5254/api"
+      }
+    }
+  }
+}
+```
 3. Restart LM Studio
 
 ### Claude Desktop Setup
@@ -377,7 +390,7 @@ NODE_ENV=production
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | timeout 5 node dist/index.js
 
 # Test API connectivity
-curl -f http://localhost:5254/api/health || exit 1
+curl -f http://localhost:5254/api/token || exit 1
 ```
 
 ## 📚 Additional Resources
@@ -386,12 +399,11 @@ curl -f http://localhost:5254/api/health || exit 1
 - `README.md`: User-facing documentation
 - `package.json`: Dependencies and scripts
 - `tsconfig.json`: TypeScript configuration
-- `mcp-config-lmstudio.json`: LM Studio configuration example
 
 ### External Links
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [LM Studio MCP Documentation](https://lmstudio.ai/docs/app/mcp)
-- [Starcraft 2 Esports](https://starcraft2.com/esports)
+- [Starcraft 2 Esports](https://starcraft2.blizzard.com/)
 
 ### Support
 - Check API server logs for backend issues
@@ -400,6 +412,6 @@ curl -f http://localhost:5254/api/health || exit 1
 
 ---
 
-**Last Updated**: $(date)
+**Last Updated**: October 21, 2025
 **Version**: 1.0.0
 **Maintainer**: AI Agent
