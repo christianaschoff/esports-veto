@@ -4,6 +4,8 @@ A Model Context Protocol (MCP) server for creating and managing veto sessions fo
 
 This server provides tools to create veto sessions with customizable game modes, player configurations, and tournament brackets, supporting both individual matches and large-scale competitions with up to 256 unique matchups.
 
+**Created by ODGW Veto System** - Part of the Old Dudes Gone Wild ecosystem for professional esports tournament management.
+
 ## How Veto Sessions Work
 
 In Starcraft 2 esports, veto sessions are interactive processes where players strategically select the maps they'll play on:
@@ -292,6 +294,12 @@ npm test
 ### Logs
 
 The server outputs error logs to stderr. Check the console output for debugging information.
+
+## About ODGW
+
+This Veto MCP Server is developed as part of the **ODGW (Old Dudes Gone Wild)** ecosystem. ODGW provides professional tools and services for esports tournament management, including veto systems, bracket generation, and live streaming integration for competitive gaming communities.
+
+For more information about ODGW services and tools, visit our ecosystem documentation.
 
 ## License
 

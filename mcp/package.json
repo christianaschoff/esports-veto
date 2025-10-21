@@ -1,7 +1,13 @@
 {
   "name": "veto-mcp-server",
   "version": "1.0.0",
+  "description": "ODGW Veto System MCP Server for Starcraft 2 esports tournament management",
   "main": "dist/index.js",
+  "author": "ODGW (Old Dudes Gone Wild)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianaschoff/esports-veto.git"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
