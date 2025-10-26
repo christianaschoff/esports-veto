@@ -44,7 +44,7 @@ export class HttpTransport {
     if (this.config.apiKey) {
       this.app.use('/mcp', (req: Request, res: Response, next) => {
         const authHeader = req.headers.authorization || req.headers['x-api-key'] as string;
-        const apiKey = req.headers['context7_api_key'] as string || authHeader?.replace('Bearer ', '');
+        const apiKey = authHeader?.replace('Bearer ', '');
 
         if (!apiKey || apiKey !== this.config.apiKey) {
           return res.status(401).json({ error: 'Unauthorized' });

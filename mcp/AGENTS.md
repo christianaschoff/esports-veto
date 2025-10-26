@@ -235,7 +235,7 @@ npm run start:http
         "type": "http",
         "url": "http://localhost:3001/mcp",
         "headers": {
-          "CONTEXT7_API_KEY": "your-api-key"
+          "Authorization": "Bearer your-api-key"
         }
       }
     }
@@ -250,7 +250,7 @@ npm run start:http
     "veto-mcp-server": {
       "serverUrl": "http://localhost:3001/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": "your-api-key"
+        "Authorization": "Bearer your-api-key"
       }
     }
   }
