@@ -79,10 +79,13 @@ backend/tmp
 backend/out-tsc
 backend/bazel-out
 
-# Node
+# Node mcp
 mcp/node_modules
 mcp/dist
 mcp/ai-runners-configs
+mcp/DOCKER_DEPLOYMENT_STRATEGY.md
+
+# Node
 frontend/node_modules
 /node_modules
 frontend/dist
