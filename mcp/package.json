@@ -11,16 +11,23 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "start:http": "MCP_TRANSPORT=http node dist/index.js",
     "dev": "ts-node src/index.ts",
+    "dev:http": "MCP_TRANSPORT=http ts-node src/index.ts",
     "test": "node test.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.4.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.4",
+    "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.3.0"
   }
 }

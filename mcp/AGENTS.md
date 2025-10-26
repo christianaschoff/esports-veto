@@ -49,6 +49,12 @@ npm run build
 Create environment variables or `.env` file:
 ```bash
 export VETO_BASE_URL="http://localhost:5254/api"
+# For HTTP transport mode (optional):
+export MCP_TRANSPORT="http"          # "stdio" (default) or "http"
+export MCP_PORT="3001"               # HTTP server port
+export MCP_HOST="localhost"          # HTTP server host
+export MCP_API_KEY="your-secret-key" # API key for authentication
+export MCP_CORS_ORIGINS="http://localhost:3000,http://localhost:4200" # Allowed origins
 ```
 
 ### 4. Verify Backend Connectivity
@@ -176,6 +182,75 @@ Add to `.vscode/settings.json`:
       "cwd": "/absolute/path/to/project",
       "env": {
         "VETO_BASE_URL": "http://localhost:5254/api"
+      }
+    }
+  }
+}
+```
+
+## 🌐 HTTP Transport Configuration
+
+For remote deployment or HTTP-based MCP clients, the server supports HTTP transport using Server-Sent Events (SSE) alongside the default stdio transport.
+
+### Running in HTTP Mode
+
+```bash
+# Development
+npm run dev:http
+
+# Production
+npm run build
+npm run start:http
+```
+
+### HTTP Endpoints
+
+- `GET /health` - Health check endpoint
+- `GET /mcp/sse` - SSE connection establishment
+- `POST /mcp/message?sessionId=<id>` - Message handling
+
+### MCP Client HTTP Configuration
+
+#### Claude Desktop (HTTP):
+```json
+{
+  "mcpServers": {
+    "veto-mcp-server": {
+      "type": "streamableHttp",
+      "url": "http://localhost:3001/mcp",
+      "headers": {
+        "Authorization": "Bearer your-api-key"
+      }
+    }
+  }
+}
+```
+
+#### VS Code (HTTP):
+```json
+{
+  "mcp": {
+    "servers": {
+      "veto-mcp-server": {
+        "type": "http",
+        "url": "http://localhost:3001/mcp",
+        "headers": {
+          "CONTEXT7_API_KEY": "your-api-key"
+        }
+      }
+    }
+  }
+}
+```
+
+#### Windsurf (HTTP):
+```json
+{
+  "mcpServers": {
+    "veto-mcp-server": {
+      "serverUrl": "http://localhost:3001/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "your-api-key"
       }
     }
   }

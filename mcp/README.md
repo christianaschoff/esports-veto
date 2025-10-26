@@ -64,10 +64,18 @@ Each veto session generates:
 You can configure the server using environment variables:
 
 - `VETO_BASE_URL`: The base URL of your Veto API server (default: `http://localhost:5254/api`)
+- `MCP_TRANSPORT`: Transport mode - `stdio` (default) or `http`
+- `MCP_PORT`: HTTP server port (default: `3001`)
+- `MCP_HOST`: HTTP server host (default: `localhost`)
+- `MCP_API_KEY`: API key for HTTP transport authentication
+- `MCP_CORS_ORIGINS`: Comma-separated list of allowed CORS origins
 
 Example:
 ```bash
 export VETO_BASE_URL="https://your-veto-api.com/api"
+export MCP_TRANSPORT="http"
+export MCP_PORT="3001"
+export MCP_API_KEY="your-secret-key"
 ```
 
 ### Development vs Production
@@ -97,6 +105,61 @@ npm run dev
    ```
 
 The server will start and listen for MCP requests via stdio (standard input/output).
+
+### HTTP Transport Mode
+
+For remote deployment or integration with HTTP-based MCP clients, you can run the server in HTTP mode:
+
+#### Development Mode (HTTP)
+```bash
+npm run dev:http
+```
+
+#### Production Mode (HTTP)
+```bash
+npm run build
+npm run start:http
+```
+
+The HTTP server provides:
+- **SSE endpoint**: `GET /mcp/sse` - Establishes Server-Sent Events connection
+- **Message endpoint**: `POST /mcp/message` - Receives JSON-RPC messages
+- **Health check**: `GET /health` - Server status endpoint
+
+#### MCP Client Configuration for HTTP Transport
+
+**Claude Desktop:**
+```json
+{
+  "mcpServers": {
+    "veto-mcp": {
+      "command": "node",
+      "args": ["/path/to/dist/index.js"],
+      "env": {
+        "MCP_TRANSPORT": "http",
+        "MCP_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+**VS Code (HTTP):**
+```json
+{
+  "mcp": {
+    "servers": {
+      "veto-mcp": {
+        "type": "http",
+        "url": "http://localhost:3001/mcp",
+        "headers": {
+          "Authorization": "Bearer your-api-key"
+        }
+      }
+    }
+  }
+}
+```
 
 ## Usage
 
