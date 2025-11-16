@@ -17,34 +17,47 @@ public static class VetoStepsCreator
     private static List<VetoStep> CreateSc2VetoSteps(VetoSystem vetoSystem)
     {
         //if (vetoSystem.bestOf == "BO7" || vetoSystem.vetoSystem == "ABAB")
+        var returnList = new List<VetoStep>();
+
         if (vetoSystem.vetoSystem == Constants.VETO_ABAB)
         {
-            return [
+            returnList = [
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
-                new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
+                /* new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
-                new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset)
-                ];
+                new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset) */
+            ];
+            
+            for(int i = 4; i < vetoSystem.Maps.Length; i++)
+            {
+                returnList.Add(new VetoStep( i % 2 == 0 ? vetoSystem.playerAId : vetoSystem.playerBId, "", VetoStepType.Unset));
+            }
         }
         else
         {
-            return [
+            returnList = [
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
-                new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
+               /* new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset),
                 new VetoStep(vetoSystem.playerAId, "", VetoStepType.Unset),
-                new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset)
+                new VetoStep(vetoSystem.playerBId, "", VetoStepType.Unset) */
             ];
+            
+            for(int i = 4; i < vetoSystem.Maps.Length; i++)
+            {
+                returnList.Add(new VetoStep( i % 2 == 0 ? vetoSystem.playerBId : vetoSystem.playerAId, "", VetoStepType.Unset));
+            }
         }
+        return returnList;
     }
 
 }

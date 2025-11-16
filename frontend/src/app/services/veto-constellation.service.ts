@@ -17,8 +17,8 @@ export class VetoConstellationService {
     return [];
   }
 
-  calculateStarcraft2(cstn: Constellation): VetoRound[] {
-    const laddermaps = 9;
+  calculateStarcraft2(cstn: Constellation): VetoRound[] {  
+    const laddermaps = cstn.maps.length;
     const vetos = laddermaps - (this.getMapsNumber(cstn.bestOf))
     const returnList: VetoRound[] = [];
     

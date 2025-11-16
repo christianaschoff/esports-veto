@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using VETO.Models;
 
 namespace VETO.BusinessLogic;
@@ -21,6 +22,11 @@ public static class VetoValidator
             CheckForExistenceAndInList(veto.BestOf, [Constants.BO1, Constants.BO3, Constants.BO5, Constants.BO7, Constants.BO9], nameof(veto.BestOf));
 
             ArgumentNullException.ThrowIfNull(veto.Maps, nameof(veto.Maps));
+            // ArgumentOutOfRangeException.ThrowIfGreaterThan(veto.Maps.Length, veto.BestOf == Constants.BO9 ? 9 : 7, nameof(veto.Maps));
+            if(veto.BestOf == Constants.BO9)
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThan(veto.Maps.Length, 9, nameof(veto.Maps));
+            }
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(veto.Maps.Length, nameof(veto.Maps));
 
             // TODO: do specific checks for game

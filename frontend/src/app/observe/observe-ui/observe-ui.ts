@@ -127,7 +127,7 @@ export class ObserveUi implements OnInit, OnDestroy {
         return 0;
       }
   
-      const toBan = 9 - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
+      const toBan = this.state.maps().length - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
       const pickNo = (index + 1) - toBan;
       return pickNo > 0 ? pickNo : 0;
   }

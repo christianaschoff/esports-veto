@@ -71,8 +71,9 @@ export class MaplistVeto {
     if(index == -1) {
       return 0;
     }
-
-    const toBan = 9 - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
+    
+    const toBan = this.state.maps().length - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
+    // console.log(toBan, this.state.maps().length, (index + 1));
     const pickNo = (index + 1) - toBan;
     return pickNo > 0 ? pickNo : 0;
   }
@@ -83,7 +84,7 @@ export class MaplistVeto {
       return false;
     }
     
-    const toBan = 9 - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
+    const toBan = this.state.maps().length - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
     const currentVetoInteraction = this.state.currentGameState().vetoSteps.findIndex(x => x.stepType === VetoStepType.Unset);
     return currentVetoInteraction < toBan;    
   }
@@ -93,7 +94,7 @@ export class MaplistVeto {
       return false;
     }
     
-    const toBan = 9 - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
+    const toBan = this.state.maps().length - this.vetoConstellationService.getMapsNumber(this.state.bestOf());
     const currentVetoInteraction = this.state.currentGameState().vetoSteps.findIndex(x => x.stepType === VetoStepType.Unset);
     return currentVetoInteraction >= toBan;    
   }

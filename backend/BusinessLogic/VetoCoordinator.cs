@@ -10,14 +10,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
     private readonly List<KeyValuePair<string, string>> _signalRToVetoMap = [];
     private readonly Dictionary<string, DateTime> _playerLastSeen = [];
     private readonly Lock _lock = new();
-    private readonly Dictionary<string, int> vetoLimitsSc2 = new()
-    {
-        {"BO9", 0},
-        {"BO7", 2},
-        {"BO5", 4},
-        {"BO3", 6},
-        {"BO1", 8}
-    };
+    
 
     public readonly VetoSystemSetupService _vetoSystemSetupService = vetoSystemSetupService;
     private readonly VetoSystemResultService _vetoSystemResultService = vetoSystemResultService;
@@ -285,16 +278,30 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         if (index == -1)
             return;
 
-        step.StepType = IsVeto(++index, veto.VetoConfig.BestOf, veto.VetoConfig.GameId)
+        step.StepType = IsVeto(++index, veto.VetoConfig.BestOf, veto.VetoConfig.GameId, veto.VetoConfig.Maps.Length)
             ? VetoStepType.Ban : VetoStepType.Pick;
         step.Map = map;
     }
 
-    private bool IsVeto(int no, string bestof, string gameId)
+    private int getMapNubmer (string bestof)
     {
+        switch (bestof)
+        {
+            case "BO9": return 9;
+            case "BO7": return 7;
+            case "BO5": return 5;
+            case "BO3": return 3;
+            case "BO1": return 1;
+            default: return 0;
+        }
+    }
+
+    private bool IsVeto(int no, string bestof, string gameId, int mapCount)
+    {
+        var limit = mapCount - getMapNubmer(bestof);
         return gameId switch
         {
-            Constants.STARCRAFT2 => vetoLimitsSc2.TryGetValue(bestof, out int limit) && no <= limit,
+            Constants.STARCRAFT2 => no <= limit,
             _ => true,
         };
     }
