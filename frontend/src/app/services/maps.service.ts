@@ -26,6 +26,10 @@ export class MapsService {
     if(!pinpointSeason) {
       pinpointSeason = seasons[0];
     }
+    const hasMaps = this.seasonMapsState.maps().some(x => x.game === game && x.mode === mode);
+    if(!hasMaps) {
+      return [];
+    }
     return this.getMapsByNames(game, mode, pinpointSeason.maps);
   }
 

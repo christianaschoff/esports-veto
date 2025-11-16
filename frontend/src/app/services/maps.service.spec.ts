@@ -2,21 +2,34 @@ import { TestBed } from '@angular/core/testing';
 import { MapsService } from './maps.service';
 import { GameModes } from '../data/gamemodes.data';
 import { SeasonsAndMapsStore } from '../store/seasons-maps-store';
+import { Maps } from '../data/maps.data';
+import { Season } from '../data/seasons.data';
 
 describe('MapsService', () => {
   let service: MapsService;
 
   beforeEach(() => {
+    const mockMaps: Maps[] = [
+      { game: 'starcraft2', mode: GameModes.M1V1, name: 'Incorporeal LE', link: 'link1' },
+      { game: 'starcraft2', mode: GameModes.M2V2, name: 'Map2', link: 'link2' },
+      { game: 'starcraft2', mode: GameModes.M1V1, name: 'Last Fantasy LE', link: 'link3' },
+    ];
+    const mockSeasons = new Map<GameModes, Season[]>([
+      [GameModes.M1V1, [{ seasonName: 'Season 1', startDate: '2023-01-01', closingDate: '2023-12-31', maps: ['Incorporeal LE', 'Last Fantasy LE'] }]],
+      [GameModes.M2V2, [{ seasonName: 'Season 2', startDate: '2023-01-01', closingDate: '2023-12-31', maps: ['Map2'] }]],
+    ]);
     const mockStore = {
-      seasons: jest.fn().mockReturnValue(new Map([[GameModes.M1V1, ['season1']]])),
-      maps: jest.fn().mockReturnValue(new Map([[GameModes.M1V1, ['season1']]])),
-    } as any;
+      seasons: jest.fn().mockReturnValue(mockSeasons),
+      maps: jest.fn().mockReturnValue(mockMaps),
+      isLoading: jest.fn().mockReturnValue(false),
+      loadSeasons: jest.fn().mockResolvedValue(undefined),
+    };
     TestBed.configureTestingModule({
       providers: [
         MapsService,
-        {provide: SeasonsAndMapsStore, mockStore},
       ]
     });
+    TestBed.overrideProvider(SeasonsAndMapsStore, { useValue: mockStore });
     service = TestBed.inject(MapsService);
   });
 
