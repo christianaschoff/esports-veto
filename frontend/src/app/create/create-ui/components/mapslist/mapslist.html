@@ -1,7 +1,21 @@
 <div class="map-visibiliy-container" [class.open]="isVisible()">
 <div class="map-visibiliy-content">
-    <h2>Mappool for a {{ this.translateService.getGamemodeTextFromString(this.state.modus()) }} in a {{ this.state.bestOf() }}</h2>
-        <div class="map-container">
+    <h2>Mappool for a {{ this.translateService.getGamemodeTextFromString(this.state.modus()) }} in a {{ this.state.bestOf() }}</h2>    
+    <div class="primary-form">
+
+        <mat-form-field>
+            <mat-label>
+                Season
+            </mat-label>
+            <mat-select [(value)]="selectedSeason" #season (selectionChange)="updateSeason(season.value)">
+                @for(season of seasonsList(); track season.seasonName) {
+                    <mat-option [value]="season.seasonName"> <strong>{{season.seasonName}}</strong><br />({{season.startDate}} - {{season.closingDate}})</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="map-container">
         @for (map of maplist(); track map.name) {
             <div class="map">
                 <a [href]="map.link" rel="nofollow noopener" target="_blank">{{ map.name }}</a>

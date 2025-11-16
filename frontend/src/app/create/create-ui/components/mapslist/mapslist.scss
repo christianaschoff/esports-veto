@@ -13,6 +13,24 @@
     } 
 }
 
+.primary-form {
+    display: flex;
+    justify-content: center;    
+    width: 100%;
+    mat-form-field {
+        margin: 0.3rem 0.1rem;
+        width: 100%;
+    }    
+    button {        
+        min-width: 16rem;
+        margin: 2rem 0;
+    }
+
+    .spinner-small {
+        margin-top: 2rem;
+    }
+}
+
 .map-container {
     display: grid;    
     grid-template-columns: repeat(3, 1fr);

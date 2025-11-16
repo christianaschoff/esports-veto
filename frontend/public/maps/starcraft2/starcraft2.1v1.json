@@ -1,0 +1,1406 @@
+[
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "16-Bit LE",
+    "link": "https://liquipedia.net/starcraft2/16-Bit_LE",
+    "introduction": "2018-05-15",
+    "removal": "2018-08-14",
+    "image": "maps/starcraft2/1v1/16-Bit_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "2000 Atmospheres LE",
+    "link": "https://liquipedia.net/starcraft2/2000_Atmospheres_LE",
+    "introduction": "2021-04-06",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/2000_Atmospheres_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Abiogenesis LE",
+    "link": "https://liquipedia.net/starcraft2/Abiogenesis_LE",
+    "introduction": "2018-01-23",
+    "removal": "2018-05-15",
+    "image": "maps/starcraft2/1v1/Abiogenesis_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Abyssal Reef LE",
+    "link": "https://liquipedia.net/starcraft2/Abyssal_Reef_LE",
+    "introduction": "2017-01-24",
+    "removal": "2018-01-22",
+     "image": "maps/starcraft2/1v1/Abyssal_Reef_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Abyssal Reef LE",
+     "link": "https://liquipedia.net/starcraft2/Abyssal_Reef_LE",
+     "introduction": "2024-11-25",
+     "removal": "2025-04-27",
+     "image": "maps/starcraft2/1v1/Abyssal_Reef_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Acolyte LE",
+    "link": "https://liquipedia.net/starcraft2/Acolyte_LE",
+    "introduction": "2017-07-18",
+    "removal": "2017-11-14",
+    "image": "maps/starcraft2/1v1/Acolyte_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Acropolis LE",
+    "link": "https://liquipedia.net/starcraft2/Acropolis_LE",
+    "introduction": "2019-05-21",
+    "removal": "2019-11-26",
+    "image": "maps/starcraft2/1v1/Acropolis_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Alcyone LE",
+    "link": "https://liquipedia.net/starcraft2/Alcyone_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Alcyone_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Altitude LE",
+    "link": "https://liquipedia.net/starcraft2/Altitude_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/Altitude_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Amphion LE",
+    "link": "https://liquipedia.net/starcraft2/Amphion_LE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Amphion_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Amygdala LE",
+    "link": "https://liquipedia.net/starcraft2/Amygdala_LE",
+    "introduction": "2024-11-25",
+    "removal": "2025-04-27",
+    "image": "maps/starcraft2/1v1/Amygdala_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ancient Cistern LE",
+    "link": "https://liquipedia.net/starcraft2/Ancient_Cistern_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/Ancient_Cistern_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Apotheosis LE",
+    "link": "https://liquipedia.net/starcraft2/Apotheosis_LE",
+    "introduction": "2016-07-12",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/Apotheosis_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ascension to Aiur LE",
+    "link": "https://liquipedia.net/starcraft2/Ascension_to_Aiur_LE",
+    "introduction": "2017-05-02",
+    "removal": "2018-01-22",
+    "image": "maps/starcraft2/1v1/Ascension_to_Aiur_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Automaton LE",
+    "link": "https://liquipedia.net/starcraft2/Automaton_LE",
+    "introduction": "2018-11-20",
+    "removal": "2019-05-21",
+    "image": "maps/starcraft2/1v1/Automaton_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Babylon LE",
+    "link": "https://liquipedia.net/starcraft2/Babylon_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/Babylon_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Backwater LE",
+    "link": "https://liquipedia.net/starcraft2/Backwater_LE",
+    "introduction": "2018-01-23",
+    "removal": "2018-05-15",
+    "image": "maps/starcraft2/1v1/Backwater_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Battle on the Boardwalk LE",
+    "link": "https://liquipedia.net/starcraft2/Battle_on_the_Boardwalk_LE",
+    "introduction": "2017-11-14",
+    "removal": "2018-01-22",
+    "image": "maps/starcraft2/1v1/Battle_on_the_Boardwalk_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Beckett Industries LE",
+    "link": "https://liquipedia.net/starcraft2/Beckett_Industries_LE",
+    "introduction": "2021-04-06",
+    "removal": "2021-10-09",
+    "image": "maps/starcraft2/1v1/Beckett_Industries_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Bel'Shir Vestige",
+    "link": "https://liquipedia.net/starcraft2/Bel%27Shir_Vestige",
+    "introduction": "2017-01-24",
+    "removal": "2017-05-02",
+     "image": "maps/starcraft2/1v1/BelShir_Vestige.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Bridgehead",
+     "link": "https://liquipedia.net/starcraft2/Bridgehead",
+     "introduction": "2015-07-14",
+     "removal": "2015-11-10",
+     "image": "maps/starcraft2/1v1/Bridgehead.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Berlingrad LE",
+    "link": "https://liquipedia.net/starcraft2/Berlingrad_LE",
+    "introduction": "2021-10-19",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/Berlingrad_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Blackburn LE",
+    "link": "https://liquipedia.net/starcraft2/Blackburn_LE",
+    "introduction": "2021-04-06",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/Blackburn_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Blackpink LE",
+    "link": "https://liquipedia.net/starcraft2/Blackpink_LE",
+    "introduction": "2017-11-14",
+    "removal": "2018-05-15",
+    "image": "maps/starcraft2/1v1/Blackpink_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Blood Boil LE",
+    "link": "https://liquipedia.net/starcraft2/Blood_Boil_LE",
+    "introduction": "2017-05-02",
+    "removal": "2017-07-18",
+    "image": "maps/starcraft2/1v1/Blood_Boil_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Blueshift LE",
+    "link": "https://liquipedia.net/starcraft2/Blueshift_LE",
+    "introduction": "2018-08-14",
+    "removal": "2019-01-22",
+    "image": "maps/starcraft2/1v1/Blueshift_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Cactus Valley",
+    "link": "https://liquipedia.net/starcraft2/Cactus_Valley",
+    "introduction": "2015-03-31",
+    "removal": "2015-07-14",
+     "image": "maps/starcraft2/1v1/Cactus_Valley.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Cactus Valley",
+     "link": "https://liquipedia.net/starcraft2/Cactus_Valley",
+     "introduction": "2017-01-24",
+     "removal": "2017-05-02",
+     "image": "maps/starcraft2/1v1/Cactus_Valley.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Catallena",
+    "link": "https://liquipedia.net/starcraft2/Catallena",
+    "introduction": "2017-07-18",
+    "removal": "2017-11-14",
+    "image": "maps/starcraft2/1v1/Catallena.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Catalyst LE",
+    "link": "https://liquipedia.net/starcraft2/Catalyst_LE",
+    "introduction": "2017-11-14",
+    "removal": "2018-08-14",
+    "image": "maps/starcraft2/1v1/Catalyst_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Central Protocol",
+    "link": "https://liquipedia.net/starcraft2/Central_Protocol",
+    "introduction": "2015-11-10",
+    "removal": "2016-03-28",
+    "image": "maps/starcraft2/1v1/Central_Protocol.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Cerulean Fall LE",
+    "link": "https://liquipedia.net/starcraft2/Cerulean_Fall_LE",
+    "introduction": "2018-08-14",
+    "removal": "2019-01-22",
+    "image": "maps/starcraft2/1v1/Cerulean_Fall_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Coda",
+    "link": "https://liquipedia.net/starcraft2/Coda",
+    "introduction": "2015-03-31",
+    "removal": "2015-07-14",
+    "image": "maps/starcraft2/1v1/Coda.png"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Cosmic Sapphire LE",
+    "link": "https://liquipedia.net/starcraft2/Cosmic_Sapphire_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Cosmic_Sapphire_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Crimson Court LE",
+    "link": "https://liquipedia.net/starcraft2/Crimson_Court_LE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Crimson_Court_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Curious Minds LE",
+    "link": "https://liquipedia.net/starcraft2/Curious_Minds_LE",
+    "introduction": "2021-10-19",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/Curious_Minds_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Cyber Forest LE",
+    "link": "https://liquipedia.net/starcraft2/Cyber_Forest_LE",
+    "introduction": "2019-01-22",
+    "removal": "2019-08-21",
+    "image": "maps/starcraft2/1v1/Cyber_Forest_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Darkness Sanctuary LE",
+    "link": "https://liquipedia.net/starcraft2/Darkness_Sanctuary_LE",
+    "introduction": "2018-05-15",
+    "removal": "2018-08-14",
+    "image": "maps/starcraft2/1v1/Darkness_Sanctuary_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dasan Station LE",
+    "link": "https://liquipedia.net/starcraft2/Dasan_Station_LE",
+    "introduction": "2016-07-12",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/Dasan_Station_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dash and Terminal",
+    "link": "https://liquipedia.net/starcraft2/Dash_and_Terminal",
+    "introduction": "2015-07-14",
+    "removal": "2015-11-10",
+    "image": "maps/starcraft2/1v1/Dash_and_Terminal_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Data-C LE",
+    "link": "https://liquipedia.net/starcraft2/Data-C_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Data-C_LE.jpeg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Daybreak",
+    "link": "https://liquipedia.net/starcraft2/Daybreak",
+    "introduction": "2016-11-22",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/1v1/Daybreak.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Deathaura LE",
+    "link": "https://liquipedia.net/starcraft2/Deathaura_LE",
+    "introduction": "2020-06-09",
+    "removal": "2021-04-06",
+    "image": "maps/starcraft2/1v1/Deathaura_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Defender's Landing LE",
+    "link": "https://liquipedia.net/starcraft2/Defender%27s_Landing_LE",
+    "introduction": "2017-05-02",
+    "removal": "2017-07-18",
+    "image": "maps/starcraft2/1v1/Defenders_Landing_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Disco Bloodbath LE",
+    "link": "https://liquipedia.net/starcraft2/Disco_Bloodbath_LE",
+    "introduction": "2019-08-21",
+    "removal": "2019-11-26",
+    "image": "maps/starcraft2/1v1/Disco_Bloodbath_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dragon Scales LE",
+    "link": "https://liquipedia.net/starcraft2/Dragon_Scales_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/Dragon_Scales_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dreamcatcher LE",
+    "link": "https://liquipedia.net/starcraft2/Dreamcatcher_LE",
+    "introduction": "2018-05-15",
+    "removal": "2018-11-20",
+    "image": "maps/starcraft2/1v1/Dreamcatcher_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dusk Towers",
+    "link": "https://liquipedia.net/starcraft2/Dusk_Towers",
+    "introduction": "2015-11-10",
+    "removal": "2016-07-12",
+    "image": "maps/starcraft2/1v1/Dusk_Towers.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Dynasty LE",
+    "link": "https://liquipedia.net/starcraft2/Dynasty_LE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Dynasty_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Eastwatch LE",
+    "link": "https://liquipedia.net/starcraft2/Eastwatch_LE",
+    "introduction": "2018-01-23",
+    "removal": "2018-05-15",
+    "image": "maps/starcraft2/1v1/Eastwatch_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Acid Plant LE",
+    "link": "https://liquipedia.net/starcraft2/Acid_Plant_LE",
+    "introduction": "2018-01-23",
+    "removal": "2018-11-20",
+    "image": "maps/starcraft2/1v1/Acid_Plant_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Echo",
+    "link": "https://liquipedia.net/starcraft2/Echo",
+    "introduction": "2015-04-09",
+    "removal": "2015-06-29",
+     "image": "maps/starcraft2/1v1/Echo.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Echo",
+     "link": "https://liquipedia.net/starcraft2/Echo",
+     "introduction": "2016-11-22",
+     "removal": "2017-01-24",
+     "image": "maps/starcraft2/1v1/Echo.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Ephemeron LE",
+    "link": "https://liquipedia.net/starcraft2/Ephemeron_LE",
+    "introduction": "2019-08-21",
+    "removal": "2020-03-10",
+    "image": "maps/starcraft2/1v1/Ephemeron_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Equilibrium LE",
+    "link": "https://liquipedia.net/starcraft2/Equilibrium_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-03-26",
+    "image": "maps/starcraft2/1v1/Equilibrium_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Eternal Empire LE",
+    "link": "https://liquipedia.net/starcraft2/Eternal_Empire_LE",
+    "introduction": "2019-11-26",
+    "removal": "2020-10-01",
+    "image": "maps/starcraft2/1v1/Eternal_Empire_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ever Dream LE",
+    "link": "https://liquipedia.net/starcraft2/Ever_Dream_LE",
+    "introduction": "2020-03-10",
+    "removal": "2020-10-01",
+    "image": "maps/starcraft2/1v1/Ever_Dream_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Fracture LE",
+    "link": "https://liquipedia.net/starcraft2/Fracture_LE",
+    "introduction": "2018-08-14",
+    "removal": "2018-11-20",
+    "image": "maps/starcraft2/1v1/Fracture_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Frost",
+    "link": "https://liquipedia.net/starcraft2/Frost",
+    "introduction": "2016-05-23",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/Frost.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Frostline LE",
+    "link": "https://liquipedia.net/starcraft2/Frostline_LE",
+    "introduction": "2024-11-25",
+    "removal": "2025-04-27",
+    "image": "maps/starcraft2/1v1/Frostline_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Frozen Temple",
+    "link": "https://liquipedia.net/starcraft2/Frozen_Temple",
+    "introduction": "2016-03-28",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/Frozen_Temple.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Galactic Process LE",
+    "link": "https://liquipedia.net/starcraft2/Galactic_Process_LE",
+    "introduction": "2016-07-12",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/Galactic_Process_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ghost River LE",
+    "link": "https://liquipedia.net/starcraft2/Ghost_River_LE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Ghost_River_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Glittering Ashes LE",
+    "link": "https://liquipedia.net/starcraft2/Glittering_Ashes_LE",
+    "introduction": "2021-10-19",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/Glittering_Ashes_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Golden Wall LE",
+    "link": "https://liquipedia.net/starcraft2/Golden_Wall_LE",
+    "introduction": "2020-03-10",
+    "removal": "2020-10-01",
+    "image": "maps/starcraft2/1v1/Golden_Wall_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Goldenaura LE",
+    "link": "https://liquipedia.net/starcraft2/Goldenaura_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Goldenaura_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Gresvan LE",
+    "link": "https://liquipedia.net/starcraft2/Gresvan_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/Gresvan_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Habitation Station",
+    "link": "https://liquipedia.net/starcraft2/Habitation_Station",
+    "introduction": "2016-11-22",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/1v1/Habitation_Station.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Hard Lead LE",
+    "link": "https://liquipedia.net/starcraft2/Hard_Lead_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-03-26",
+    "image": "maps/starcraft2/1v1/Hard_Lead_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Hardwire LE",
+    "link": "https://liquipedia.net/starcraft2/Hardwire_LE",
+    "introduction": "2021-10-19",
+    "removal": "2022-07-19",
+    "image": "maps/starcraft2/1v1/Hardwire_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Hecate LE",
+    "link": "https://liquipedia.net/starcraft2/Hecate_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-03-26",
+    "image": "maps/starcraft2/1v1/Hecate_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Honorgrounds LE",
+    "link": "https://liquipedia.net/starcraft2/Honorgrounds_LE",
+    "introduction": "2017-01-24",
+    "removal": "2017-05-02",
+    "image": "maps/starcraft2/1v1/Honorgrounds_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ice and Chrome LE",
+    "link": "https://liquipedia.net/starcraft2/Ice_and_Chrome_LE",
+    "introduction": "2020-06-09",
+    "removal": "2020-10-01",
+    "image": "maps/starcraft2/1v1/Ice_and_Chrome_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Incorporeal LE",
+    "link": "https://liquipedia.net/starcraft2/Incorporeal_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Incorporeal_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Inferno Pools",
+    "link": "https://liquipedia.net/starcraft2/Inferno_Pools",
+    "introduction": "2015-03-31",
+    "removal": "2015-07-14",
+    "image": "maps/starcraft2/1v1/Inferno_Pools.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Inside and Out LE",
+    "link": "https://liquipedia.net/starcraft2/Inside_and_Out_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Inside_and_Out_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Interloper LE",
+    "link": "https://liquipedia.net/starcraft2/Interloper_LE",
+    "introduction": "2017-07-18",
+    "removal": "2017-11-14",
+    "image": "maps/starcraft2/1v1/Interloper_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Invader LE",
+    "link": "https://liquipedia.net/starcraft2/Invader_LE",
+    "introduction": "2016-03-28",
+    "removal": "2016-07-12",
+    "image": "maps/starcraft2/1v1/Invader_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Iron Fortress",
+    "link": "https://liquipedia.net/starcraft2/Iron_Fortress",
+    "introduction": "2015-03-31",
+    "removal": "2015-07-14",
+    "image": "maps/starcraft2/1v1/Iron_Fortress.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Jagannatha LE",
+    "link": "https://liquipedia.net/starcraft2/Jagannatha_LE",
+    "introduction": "2020-10-01",
+    "removal": "2021-10-19",
+    "image": "maps/starcraft2/1v1/Jagannatha_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Kairos Junction LE",
+    "link": "https://liquipedia.net/starcraft2/Kairos_Junction_LE",
+    "introduction": "2018-11-20",
+    "removal": "2019-08-21",
+    "image": "maps/starcraft2/1v1/Kairos_Junction_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "King's Cove LE",
+    "link": "https://liquipedia.net/starcraft2/King%27s_Cove_LE",
+    "introduction": "2019-01-22",
+    "removal": "2019-08-21",
+      "image": "maps/starcraft2/1v1/Kings_Cove_LE.jpg"
+    },
+    {
+      "game": "starcraft2",
+      "mode": "M1V1",
+      "name": "King's Cove LE",
+      "link": "https://liquipedia.net/starcraft2/King%27s_Cove_LE",
+      "introduction": "2024-11-25",
+      "removal": "2025-04-27",
+      "image": "maps/starcraft2/1v1/Kings_Cove_LE.jpg"
+    },
+    {
+      "game": "starcraft2",
+      "mode": "M1V1",
+      "name": "Korhal Carnage Knockout",
+     "link": "https://liquipedia.net/starcraft2/Korhal_Carnage_Knockout",
+     "introduction": "2016-03-28",
+     "removal": "2016-05-23",
+     "image": "maps/starcraft2/1v1/Korhal_Carnage_Knockout.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Last Fantasy LE",
+    "link": "https://liquipedia.net/starcraft2/Last_Fantasy_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Last_Fantasy_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Lerilak Crest",
+    "link": "https://liquipedia.net/starcraft2/Lerilak_Crest",
+    "introduction": "2015-03-31",
+    "removal": "2016-03-28",
+    "image": "maps/starcraft2/1v1/Lerilak_Crest.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ley Lines",
+    "link": "https://liquipedia.net/starcraft2/Ley_Lines",
+    "introduction": "2024-11-25",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Ley_Lines_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Lightshade LE",
+    "link": "https://liquipedia.net/starcraft2/Lightshade_LE",
+    "introduction": "2020-10-01",
+    "removal": "2021-10-19",
+    "image": "maps/starcraft2/1v1/Lightshade_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Lost and Found LE",
+    "link": "https://liquipedia.net/starcraft2/Lost_and_Found_LE",
+    "introduction": "2018-05-15",
+    "removal": "2018-11-20",
+    "image": "maps/starcraft2/1v1/Lost_and_Found_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Magannatha LE",
+    "link": "https://liquipedia.net/starcraft2/Magannatha_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Magannatha_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Mech Depot LE",
+    "link": "https://liquipedia.net/starcraft2/Mech_Depot_LE",
+    "introduction": "2017-07-18",
+    "removal": "2017-11-14",
+    "image": "maps/starcraft2/1v1/Mech_Depot_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Moondance LE",
+    "link": "https://liquipedia.net/starcraft2/Moondance_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Moondance_LE.jpeg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Moonlight Madness",
+    "link": "https://liquipedia.net/starcraft2/Moonlight_Madness",
+    "introduction": "2015-07-14",
+    "removal": "2015-11-10",
+    "image": "maps/starcraft2/1v1/Moonlight_Madness_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "NeoHumanity LE",
+    "link": "https://liquipedia.net/starcraft2/NeoHumanity_LE",
+    "introduction": "2023-01-23",
+    "removal": "2023-10-02",
+    "image": "maps/starcraft2/1v1/NeoHumanity_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Neon Violet Square LE",
+    "link": "https://liquipedia.net/starcraft2/Neon_Violet_Square_LE",
+    "introduction": "2017-11-14",
+    "removal": "2018-05-15",
+     "image": "maps/starcraft2/1v1/Neon_Violet_Square_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Neon Violet Square LE",
+     "link": "https://liquipedia.net/starcraft2/Neon_Violet_Square_LE",
+     "introduction": "2024-11-25",
+     "removal": "2025-04-27",
+     "image": "maps/starcraft2/1v1/Neon_Violet_Square_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "New Gettysburg LE",
+    "link": "https://liquipedia.net/starcraft2/New_Gettysburg_LE",
+    "introduction": "2016-07-12",
+    "removal": "2016-11-22",
+    "image": "maps/starcraft2/1v1/New_Gettysburg_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "New Repugnancy LE",
+    "link": "https://liquipedia.net/starcraft2/New_Repugnancy_LE",
+    "introduction": "2019-01-22",
+    "removal": "2019-08-21",
+    "image": "maps/starcraft2/1v1/New_Repugnancy_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Newkirk Precinct",
+    "link": "https://liquipedia.net/starcraft2/Newkirk_Precinct",
+    "introduction": "2016-11-22",
+    "removal": "2017-05-02",
+    "image": "maps/starcraft2/1v1/Newkirk_Precinct.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Nightshade LE",
+    "link": "https://liquipedia.net/starcraft2/Nightshade_LE",
+    "introduction": "2019-11-26",
+    "removal": "2020-06-09",
+    "image": "maps/starcraft2/1v1/Nightshade_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Oceanborn LE",
+    "link": "https://liquipedia.net/starcraft2/Oceanborn_LE",
+    "introduction": "2023-09-29",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Oceanborn_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Odyssey LE",
+    "link": "https://liquipedia.net/starcraft2/Odyssey_LE",
+    "introduction": "2017-05-02",
+    "removal": "2018-01-22",
+    "image": "maps/starcraft2/1v1/Odyssey_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Orbital Shipyard",
+    "link": "https://liquipedia.net/starcraft2/Orbital_Shipyard",
+    "introduction": "2015-03-31",
+    "removal": "2016-03-28",
+    "image": "maps/starcraft2/1v1/Orbital_Shipyard.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Overgrowth",
+    "link": "https://liquipedia.net/starcraft2/Overgrowth",
+    "introduction": "2016-11-22",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/1v1/Overgrowth.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Oxide LE",
+    "link": "https://liquipedia.net/starcraft2/Oxide_LE",
+    "introduction": "2020-10-01",
+    "removal": "2021-10-19",
+    "image": "maps/starcraft2/1v1/Oxide_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Paladino Terminal LE",
+    "link": "https://liquipedia.net/starcraft2/Paladino_Terminal_LE",
+    "introduction": "2017-01-24",
+    "removal": "2017-05-02",
+    "image": "maps/starcraft2/1v1/Paladino_Terminal_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Para Site LE",
+    "link": "https://liquipedia.net/starcraft2/Para_Site_LE",
+    "introduction": "2018-08-14",
+    "removal": "2019-01-22",
+    "image": "maps/starcraft2/1v1/Para_Site_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Persephone LE",
+    "link": "https://liquipedia.net/starcraft2/Persephone_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Persephone_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Pillars of Gold LE",
+    "link": "https://liquipedia.net/starcraft2/Pillars_of_Gold_LE",
+    "introduction": "2020-06-09",
+    "removal": "2021-04-06",
+    "image": "maps/starcraft2/1v1/Pillars_of_Gold_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Port Aleksander LE",
+    "link": "https://liquipedia.net/starcraft2/Port_Aleksander_LE",
+    "introduction": "2018-11-20",
+    "removal": "2019-05-21",
+    "image": "maps/starcraft2/1v1/Port_Aleksander_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Post-Youth LE",
+    "link": "https://liquipedia.net/starcraft2/Post-Youth_LE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/1v1/Post-Youth_LE.jpg"
+  },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Pride of Altaris LE",
+     "link": "https://liquipedia.net/starcraft2/Pride_of_Altaris_LE",
+     "introduction": "2021-10-19",
+     "removal": "2022-07-19",
+     "image": "maps/starcraft2/1v1/Pride_of_Altaris_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Prion Terraces",
+     "link": "https://liquipedia.net/starcraft2/Prion_Terraces",
+     "introduction": "2015-11-10",
+     "removal": "2016-05-23",
+     "image": "maps/starcraft2/1v1/Prion_Terraces.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Proxima Station LE",
+     "link": "https://liquipedia.net/starcraft2/Proxima_Station_LE",
+     "introduction": "2017-01-24",
+     "removal": "2017-07-18",
+     "image": "maps/starcraft2/1v1/Proxima_Station_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Purity and Industry LE",
+     "link": "https://liquipedia.net/starcraft2/Purity_and_Industry_LE",
+     "introduction": "2020-03-10",
+     "removal": "2020-06-09",
+     "image": "maps/starcraft2/1v1/Purity_and_Industry_LE.jpg"
+   },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Pylon LE",
+    "link": "https://liquipedia.net/starcraft2/Pylon_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Pylon_LE.jpg"
+  },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Radhuset Station LE",
+     "link": "https://liquipedia.net/starcraft2/Radhuset_Station_LE",
+     "introduction": "2023-09-29",
+     "removal": "2024-03-26",
+     "image": "maps/starcraft2/1v1/Radhuset_Station_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Redshift LE",
+     "link": "https://liquipedia.net/starcraft2/Redshift_LE",
+     "introduction": "2018-05-15",
+     "removal": "2018-08-14",
+     "image": "maps/starcraft2/1v1/Redshift_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Romanticide LE",
+     "link": "https://liquipedia.net/starcraft2/Romanticide_LE",
+     "introduction": "2020-10-01",
+     "removal": "2021-10-19",
+     "image": "maps/starcraft2/1v1/Romanticide_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Royal Blood LE",
+     "link": "https://liquipedia.net/starcraft2/Royal_Blood_LE",
+     "introduction": "2023-01-23",
+     "removal": "2023-10-02",
+     "image": "maps/starcraft2/1v1/Royal_Blood_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Ruins of Endion",
+     "link": "https://liquipedia.net/starcraft2/Ruins_of_Endion",
+     "introduction": "2016-03-28",
+     "removal": "2016-07-12",
+     "image": "maps/starcraft2/1v1/Ruins_of_Endion.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Ruins of Seras",
+     "link": "https://liquipedia.net/starcraft2/Ruins_of_Seras",
+     "introduction": "2015-03-31",
+     "removal": "2016-03-28",
+     "image": "maps/starcraft2/1v1/Ruins_of_Seras.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Sequencer LE",
+     "link": "https://liquipedia.net/starcraft2/Sequencer_LE",
+     "introduction": "2017-05-02",
+     "removal": "2017-07-18",
+     "image": "maps/starcraft2/1v1/Sequencer_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Simulacrum LE",
+     "link": "https://liquipedia.net/starcraft2/Simulacrum_LE",
+     "introduction": "2019-11-26",
+     "removal": "2020-06-09",
+     "image": "maps/starcraft2/1v1/Simulacrum_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Site Delta LE",
+     "link": "https://liquipedia.net/starcraft2/Site_Delta_LE",
+     "introduction": "2023-09-29",
+     "removal": "2024-11-24",
+     "image": "maps/starcraft2/1v1/Site_Delta_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Solaris LE",
+     "link": "https://liquipedia.net/starcraft2/Solaris_LE",
+     "introduction": "2023-09-29",
+     "removal": "2024-03-26",
+     "image": "maps/starcraft2/1v1/Solaris_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Stargazers LE",
+     "link": "https://liquipedia.net/starcraft2/Stargazers_LE",
+     "introduction": "2022-07-20",
+     "removal": "2023-01-23",
+     "image": "maps/starcraft2/1v1/Stargazers_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Stasis LE",
+     "link": "https://liquipedia.net/starcraft2/Stasis_LE",
+     "introduction": "2018-11-20",
+     "removal": "2019-01-22",
+     "image": "maps/starcraft2/1v1/Stasis_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Submarine LE",
+     "link": "https://liquipedia.net/starcraft2/Submarine_LE",
+     "introduction": "2020-06-09",
+     "removal": "2021-04-06",
+     "image": "maps/starcraft2/1v1/Submarine_LE.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Terraform",
+     "link": "https://liquipedia.net/starcraft2/Terraform",
+     "introduction": "2015-07-14",
+     "removal": "2015-11-10",
+     "image": "maps/starcraft2/1v1/Terraform.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "The King Sejong Station",
+     "link": "https://liquipedia.net/starcraft2/The_King_Sejong_Station",
+     "introduction": "2016-05-23",
+     "removal": "2016-11-22",
+     "image": "maps/starcraft2/1v1/The_King_Sejong_Station.jpg"
+   },
+   {
+     "game": "starcraft2",
+     "mode": "M1V1",
+     "name": "Thunderbird LE",
+     "link": "https://liquipedia.net/starcraft2/Thunderbird_LE",
+     "introduction": "2019-05-21",
+     "removal": "2019-11-26",
+     "image": "maps/starcraft2/1v1/Thunderbird_LE.jpg"
+   },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Tokamak LE",
+    "link": "https://liquipedia.net/starcraft2/Tokamak_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Tokamak_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Torches LE",
+    "link": "https://liquipedia.net/starcraft2/Torches_LE",
+    "introduction": "2025-04-28",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Torches_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Zen LE",
+    "link": "https://liquipedia.net/starcraft2/Zen_LE",
+    "introduction": "2019-11-26",
+    "removal": "2020-06-09",
+    "image": "maps/starcraft2/1v1/Zen_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Tropical Sacrifice LE",
+    "link": "https://liquipedia.net/starcraft2/Tropical_Sacrifice_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Tropical_Sacrifice_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Turbo Cruise '84 LE",
+    "link": "https://liquipedia.net/starcraft2/Turbo_Cruise_%2784_LE",
+    "introduction": "2019-05-21",
+    "removal": "2019-08-21",
+    "image": "maps/starcraft2/1v1/Turbo_Cruise_84.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ulrena",
+    "link": "https://liquipedia.net/starcraft2/Ulrena",
+    "introduction": "2015-11-10",
+    "removal": "2016-07-12",
+    "image": "maps/starcraft2/1v1/Ulrena.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ultralove",
+    "link": "https://liquipedia.net/starcraft2/Ultralove",
+    "introduction": "2024-11-25",
+    "removal": "2025-11-12",
+    "image": "maps/starcraft2/1v1/Ultralove_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Vaani Research Station",
+    "link": "https://liquipedia.net/starcraft2/Vaani_Research_Station",
+    "introduction": "2016-11-22",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/1v1/Vaani_Research_Station.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Waterfall LE",
+    "link": "https://liquipedia.net/starcraft2/Waterfall_LE",
+    "introduction": "2022-07-20",
+    "removal": "2023-01-23",
+    "image": "maps/starcraft2/1v1/Waterfall_LE.jpeg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Whirlwind",
+    "link": "https://liquipedia.net/starcraft2/Whirlwind",
+    "introduction": "2016-11-22",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/1v1/Whirlwind.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Whispers of Gold LE",
+    "link": "https://liquipedia.net/starcraft2/Whispers_of_Gold_LE",
+    "introduction": "2024-11-25",
+    "removal": "2025-04-27",
+    "image": "maps/starcraft2/1v1/Whispers_of_Gold_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Winter's Gate LE",
+    "link": "https://liquipedia.net/starcraft2/Winter%27s_Gate_LE",
+    "introduction": "2019-08-21",
+    "removal": "2019-11-26",
+    "image": "maps/starcraft2/1v1/Winters_Gate.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "World of Sleepers LE",
+    "link": "https://liquipedia.net/starcraft2/World_of_Sleepers_LE",
+    "introduction": "2019-08-21",
+    "removal": "2020-03-10",
+    "image": "maps/starcraft2/1v1/World_of_Sleepers_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Year Zero LE",
+    "link": "https://liquipedia.net/starcraft2/Year_Zero_LE",
+    "introduction": "2019-01-22",
+    "removal": "2019-05-21",
+     "image": "maps/starcraft2/1v1/Year_Zero_LE.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "10000 Feet LE",
+    "link": "https://liquipedia.net/starcraft2/10000_Feet_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/10000_Feet.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Celestial Enclave LE",
+    "link": "https://liquipedia.net/starcraft2/Celestial_Enclave_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Celestial_Enclave.jpg"
+   },
+      {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "El Dorado LE",
+    "link": "https://liquipedia.net/starcraft2/El_Dorado_LE",
+    "introduction": "2024-11-25",
+    "removal": "2025-04-27",
+     "image": "maps/starcraft2/1v1/El_Dorado_LE.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Mothership LE",
+    "link": "https://liquipedia.net/starcraft2/Mothership_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Mothership.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Old Republic LE",
+    "link": "https://liquipedia.net/starcraft2/Old_Republic_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Old_Republic.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Ruby Rock LE",
+    "link": "https://liquipedia.net/starcraft2/Ruby_Rock_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Ruby_Rock.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Taito Citadel LE",
+    "link": "https://liquipedia.net/starcraft2/Taito_Citadel_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Taito_Citadel.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Tourmaline LE",
+    "link": "https://liquipedia.net/starcraft2/Tourmaline_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Tourmaline.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "White Rabbit LE",
+    "link": "https://liquipedia.net/starcraft2/White_Rabbit_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/White_Rabbit.jpg"
+   },
+   {
+    "game": "starcraft2",
+    "mode": "M1V1",
+    "name": "Winter Madness LE",
+    "link": "https://liquipedia.net/starcraft2/Winter_Madness_LE",
+    "introduction": "2025-11-12",
+    "removal": "TBD",
+     "image": "maps/starcraft2/1v1/Winter_Madness.jpg"
+   }
+]

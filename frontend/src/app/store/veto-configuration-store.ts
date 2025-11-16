@@ -13,6 +13,7 @@ type VetoConfigurationState = {
     playerA: string;
     playerB: string;
     gameId: string;
+    season: string;
 }
 
 const initialVetoConfigurationState: VetoConfigurationState = {
@@ -23,7 +24,8 @@ const initialVetoConfigurationState: VetoConfigurationState = {
     vetoTitle: '',
     playerA: '',
     playerB: '',
-    gameId: ''
+    gameId: '',
+    season: ''
 };
 
 export const VetoConfigurationStore = signalStore(
@@ -55,6 +57,10 @@ export const VetoConfigurationStore = signalStore(
         updateGameId(gameId: string) {
             patchState(store, (state) => ( { gameId: gameId}))
         },
+        updateSeason(season: string) {            
+            patchState(store, (state) => ( { season: season}))
+        },
+
         reset() {
             patchState(store, initialVetoConfigurationState);
         },
@@ -62,8 +68,8 @@ export const VetoConfigurationStore = signalStore(
             const namePlayerA = store.playerA().length > 0 ? store.playerA() : 'Player A'
             const namePlayerB = store.playerB().length > 0 ? store.playerB() : 'Player B';
             const matchtitle = store.vetoTitle().length > 0 ? store.vetoTitle() : 'Match';
-
-            const mapsList = mapService.getMaps(store.gameId(), store.modus());
+            const season = store.season() !== '' ? store.season() : undefined;
+            const mapsList = mapService.getMaps(store.gameId(), store.modus(), season);
             let mapNames: string[] = [];
             if(mapsList) {
                 mapNames = mapsList.map(x => x.name);

@@ -176,7 +176,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         return string.IsNullOrEmpty(veto.PlayerA) || string.IsNullOrEmpty(veto.PlayerB);
     }
 
-    private async Task CheckAndRemoveInactivePlayers(Veto veto)
+    private void CheckAndRemoveInactivePlayers(Veto veto)
     {
         const int INACTIVE_TIMEOUT_SECONDS = 90; // 1.5 minutes
         var now = DateTime.UtcNow;

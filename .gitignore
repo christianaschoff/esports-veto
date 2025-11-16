@@ -127,3 +127,8 @@ frontend/typings
 .env
 Agents.md
 backend/.vscode/settings.json
+download.md
+/*.js
+/*.json
+/maps
+StarCraft_Processing.md

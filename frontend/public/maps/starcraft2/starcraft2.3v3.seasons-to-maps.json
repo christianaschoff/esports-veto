@@ -1,0 +1,795 @@
+[
+  {
+    "seasonName": "2015 Season 4",
+    "startDate": "2015-11-09",
+    "closingDate": "2016-01-30",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Hills of Peshkov",
+      "Ice Cliffs",
+      "Nephor I",
+      "New Williamsberg"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 1",
+    "startDate": "2016-01-31",
+    "closingDate": "2016-03-27",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Hills of Peshkov",
+      "Ice Cliffs",
+      "Nephor I",
+      "New Williamsberg"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 2",
+    "startDate": "2016-03-28",
+    "closingDate": "2016-05-23",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Hills of Peshkov",
+      "Ice Cliffs",
+      "Nephor I",
+      "New Richmond",
+      "New Williamsberg",
+      "Slaying Field"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2016 Season 2 (new maps)",
+    "startDate": "2016-03-24",
+    "closingDate": "2016-06-19",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Hills of Peshkov",
+      "Ice Cliffs",
+      "Nephor I",
+      "New Richmond",
+      "New Williamsberg",
+      "Slaying Field"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2016 Season 3",
+    "startDate": "2016-06-20",
+    "closingDate": "2016-07-11",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Ice Cliffs",
+      "New Richmond",
+      "New Williamsberg",
+      "Slaying Field"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 4",
+    "startDate": "2016-07-12",
+    "closingDate": "2016-10-17",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Ice Cliffs",
+      "Molten Temple",
+      "New Richmond",
+      "New Williamsberg",
+      "Orbital Depot",
+      "Slaying Field"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2016 Season 5",
+    "startDate": "2016-10-18",
+    "closingDate": "2016-11-21",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Molten Temple",
+      "New Richmond",
+      "Orbital Depot",
+      "Slaying Field"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 6",
+    "startDate": "2016-11-22",
+    "closingDate": "2017-01-23",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Molten Temple",
+      "New Richmond",
+      "Orbital Depot",
+      "Slaying Field"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 1",
+    "startDate": "2017-01-24",
+    "closingDate": "2017-05-01",
+    "maps": [
+      "Avalon Labs",
+      "Backcountry",
+      "Doraelus Hills",
+      "Fields of Shazir",
+      "Molten Temple",
+      "New Richmond",
+      "Orbital Depot",
+      "Slaying Field",
+      "Ujari"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2017 Season 2",
+    "startDate": "2017-05-02",
+    "closingDate": "2017-07-18",
+    "maps": [
+      "Avalon Labs",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Fields of Shazir",
+      "Molten Temple",
+      "New Richmond",
+      "Orbital Depot",
+      "Slaying Field",
+      "Ujari"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2017 Season 3",
+    "startDate": "2017-07-19",
+    "closingDate": "2017-10-18",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Fields of Shazir",
+      "Misty Swamp",
+      "Orbital Depot",
+      "Ujari"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 4",
+    "startDate": "2017-10-19",
+    "closingDate": "2017-11-13",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Fields of Shazir",
+      "Misty Swamp",
+      "Orbital Depot",
+      "Ujari"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 4 (new maps)",
+    "startDate": "2017-11-14",
+    "closingDate": "2018-01-22",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Fields of Shazir",
+      "Misty Swamp",
+      "Orbital Depot",
+      "Ujari"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2018 Season 1",
+    "startDate": "2018-01-23",
+    "closingDate": "2018-05-14",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Fields of Shazir",
+      "Misty Swamp",
+      "Snowbound Colony",
+      "Ujari"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2018 Season 2",
+    "startDate": "2018-05-15",
+    "closingDate": "2018-08-13",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Misty Swamp",
+      "Snowbound Colony",
+      "Stranded Isles",
+      "Ujari"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2018 Season 3",
+    "startDate": "2018-08-14",
+    "closingDate": "2018-11-19",
+    "maps": [
+      "Abandoned Camp",
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Snowbound Colony",
+      "Stranded Isles",
+      "Ujari"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2018 Season 4",
+    "startDate": "2018-11-20",
+    "closingDate": "2019-01-21",
+    "maps": [
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Snowbound Colony",
+      "Stranded Isles",
+      "Ujari",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2019 Season 1",
+    "startDate": "2019-01-22",
+    "closingDate": "2019-05-21",
+    "maps": [
+      "Bastion of the Conclave",
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Rosebud LE",
+      "Snowbound Colony",
+      "Stranded Isles",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2019 Season 2",
+    "startDate": "2019-05-22",
+    "closingDate": "2019-08-21",
+    "maps": [
+      "Bone Temple LE",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Rosebud LE",
+      "Snowbound Colony",
+      "Stranded Isles",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2019 Season 3",
+    "startDate": "2019-08-22",
+    "closingDate": "2019-11-24",
+    "maps": [
+      "Bone Temple LE",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Jungle Depths CE",
+      "Rosebud LE",
+      "Snowbound Colony",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2019 Season 4",
+    "startDate": "2019-11-26",
+    "closingDate": "2020-03-16",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Jungle Depths CE",
+      "Rosebud LE",
+      "Sentinel CE",
+      "Snowbound Colony",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2020 Season 1",
+    "startDate": "2020-03-17",
+    "closingDate": "2020-06-09",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Jungle Depths CE",
+      "Rosebud LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2020 Season 2",
+    "startDate": "2020-06-10",
+    "closingDate": "2020-09-29",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2020 Season 3",
+    "startDate": "2020-09-30",
+    "closingDate": "2021-01-25",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 8
+  },
+  {
+    "seasonName": "2021 Season 1",
+    "startDate": "2021-01-26",
+    "closingDate": "2021-04-05",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 2",
+    "startDate": "2021-04-06",
+    "closingDate": "2021-07-18",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 3",
+    "startDate": "2021-07-19",
+    "closingDate": "2021-10-19",
+    "maps": [
+      "Augustine Fall LE",
+      "Bone Temple LE",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 3 (new maps)",
+    "startDate": "2021-10-20",
+    "closingDate": "2021-11-09",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 4",
+    "startDate": "2021-11-10",
+    "closingDate": "2022-01-04",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 1",
+    "startDate": "2022-01-05",
+    "closingDate": "2022-03-30",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 2",
+    "startDate": "2022-03-31",
+    "closingDate": "2022-07-17",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 3",
+    "startDate": "2022-07-18",
+    "closingDate": "2022-11-09",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 4",
+    "startDate": "2022-11-10",
+    "closingDate": "2023-01-04",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 1",
+    "startDate": "2023-01-05",
+    "closingDate": "2023-01-23",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 1 (new maps)",
+    "startDate": "2023-01-24",
+    "closingDate": "2023-03-31",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 2",
+    "startDate": "2023-04-01",
+    "closingDate": "2023-07-18",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 3",
+    "startDate": "2023-07-19",
+    "closingDate": "2023-09-27",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 3 (new maps)",
+    "startDate": "2023-09-28",
+    "closingDate": "2023-11-09",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 4",
+    "startDate": "2023-11-10",
+    "closingDate": "2024-01-04",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2024 Season 1",
+    "startDate": "2024-01-05",
+    "closingDate": "2024-03-25",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Realities Simulation LE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2024 Season 1 (new maps)",
+    "startDate": "2024-03-26",
+    "closingDate": "2024-03-31",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Mountain Pass CE",
+      "Realities Simulation LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 10
+  },
+  {
+    "seasonName": "2024 Season 2",
+    "startDate": "2024-04-01",
+    "closingDate": "2024-07-18",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Mountain Pass CE",
+      "Realities Simulation LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 10
+  },
+  {
+    "seasonName": "2024 Season 3",
+    "startDate": "2024-07-19",
+    "closingDate": "2024-11-09",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Mountain Pass CE",
+      "Realities Simulation LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 10
+  },
+  {
+    "seasonName": "2024 Season 4",
+    "startDate": "2024-11-10",
+    "closingDate": "2024-11-24",
+    "maps": [
+      "Black Site 2E",
+      "Buried Caverns",
+      "Canyon of Tribulation",
+      "Flashback CE",
+      "Jungle Depths CE",
+      "Mountain Pass CE",
+      "Realities Simulation LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Whitewater Line LE"
+    ],
+    "mapCount": 10
+  },
+  {
+    "seasonName": "2024 Season 4 (new maps)",
+    "startDate": "2024-11-25",
+    "closingDate": "2025-01-04",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 1",
+    "startDate": "2025-01-05",
+    "closingDate": "2025-03-31",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 2",
+    "startDate": "2025-04-01",
+    "closingDate": "2025-04-26",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 2 (new maps)",
+    "startDate": "2025-04-27",
+    "closingDate": "2025-07-18",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 3",
+    "startDate": "2025-07-19",
+    "closingDate": "2025-11-09",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 4",
+    "startDate": "2025-11-10",
+    "closingDate": "2026-01-05",
+    "maps": [
+      "Arkadia",
+      "Desolator",
+      "Lost July",
+      "Megastructure",
+      "Rosebud LE",
+      "Sandstorm CE",
+      "Sentinel CE",
+      "Voracity",
+      "White Chamber"
+    ],
+    "mapCount": 9
+  }
+]

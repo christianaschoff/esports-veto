@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject} from '@angular/core';
+import { Component, computed, effect, inject, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Breadcrumb } from './global/breadcrumb/breadcrumb';
 import { TopBar } from "./global/top-bar/top-bar";
@@ -8,6 +8,8 @@ import { GlobalStore } from "./store/global-store";
 import { BetaMarker } from './global/beta-marker/beta-marker';
 import { Spinner } from "./shared-components/spinner/spinner";
 import { SocialmediaService } from './services/socialmedia.service';
+import { SeasonsAndMapsStore } from './store/seasons-maps-store';
+import { GameModes } from './data/gamemodes.data';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class App {
   protected title = 'Esports Veto made easy';  //Choose your map. Own your match.
   private obState = inject(ObserverStore);
   private globalState = inject(GlobalStore);
+  private seasonAndMapsState = inject(SeasonsAndMapsStore);
   private socialmediaService = inject(SocialmediaService);
 
   fullscreenMode = computed(() => {
@@ -28,6 +31,8 @@ export class App {
   constructor() {    
     this.obState.loadFromStorage();
     this.socialmediaService.fallbackMetaTags();
+    this.seasonAndMapsState.loadSeasons();
+    
     effect(() => {
       if(!this.globalState.isLoading()) {
         document.body.classList.remove('no-scroll');
@@ -35,5 +40,6 @@ export class App {
         document.body.classList.add('no-scroll');
       }
     });
+
   }  
 }

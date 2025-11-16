@@ -1,0 +1,783 @@
+[
+  {
+    "seasonName": "2015 Season 4",
+    "startDate": "2015-11-09",
+    "closingDate": "2016-01-30",
+    "maps": [
+      "Central Protocol",
+      "Dusk Towers",
+      "Lerilak Crest",
+      "Orbital Shipyard",
+      "Prion Terraces",
+      "Ruins of Seras",
+      "Ulrena"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 1",
+    "startDate": "2016-01-31",
+    "closingDate": "2016-03-27",
+    "maps": [
+      "Central Protocol",
+      "Dusk Towers",
+      "Lerilak Crest",
+      "Orbital Shipyard",
+      "Prion Terraces",
+      "Ruins of Seras",
+      "Ulrena"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 2",
+    "startDate": "2016-03-28",
+    "closingDate": "2016-05-23",
+    "maps": [
+      "Dusk Towers",
+      "Frozen Temple",
+      "Invader LE",
+      "Korhal Carnage Knockout",
+      "Prion Terraces",
+      "Ruins of Endion",
+      "Ulrena"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 2 (new maps)",
+    "startDate": "2016-03-24",
+    "closingDate": "2016-06-19",
+    "maps": [
+      "Dusk Towers",
+      "Frost",
+      "Frozen Temple",
+      "Invader LE",
+      "Korhal Carnage Knockout",
+      "Prion Terraces",
+      "Ruins of Endion",
+      "The King Sejong Station",
+      "Ulrena"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2016 Season 3",
+    "startDate": "2016-06-20",
+    "closingDate": "2016-07-11",
+    "maps": [
+      "Dusk Towers",
+      "Frost",
+      "Frozen Temple",
+      "Invader LE",
+      "Ruins of Endion",
+      "The King Sejong Station",
+      "Ulrena"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 4",
+    "startDate": "2016-07-12",
+    "closingDate": "2016-10-17",
+    "maps": [
+      "Apotheosis LE",
+      "Dasan Station LE",
+      "Frost",
+      "Frozen Temple",
+      "Galactic Process LE",
+      "New Gettysburg LE",
+      "The King Sejong Station"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 5",
+    "startDate": "2016-10-18",
+    "closingDate": "2016-11-21",
+    "maps": [
+      "Apotheosis LE",
+      "Dasan Station LE",
+      "Frost",
+      "Frozen Temple",
+      "Galactic Process LE",
+      "New Gettysburg LE",
+      "The King Sejong Station"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2016 Season 6",
+    "startDate": "2016-11-22",
+    "closingDate": "2017-01-23",
+    "maps": [
+      "Daybreak",
+      "Echo",
+      "Habitation Station",
+      "Newkirk Precinct",
+      "Overgrowth",
+      "Vaani Research Station",
+      "Whirlwind"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 1",
+    "startDate": "2017-01-24",
+    "closingDate": "2017-05-01",
+    "maps": [
+      "Abyssal Reef LE",
+      "Bel'Shir Vestige",
+      "Cactus Valley",
+      "Honorgrounds LE",
+      "Newkirk Precinct",
+      "Paladino Terminal LE",
+      "Proxima Station LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 2",
+    "startDate": "2017-05-02",
+    "closingDate": "2017-07-18",
+    "maps": [
+      "Abyssal Reef LE",
+      "Ascension to Aiur LE",
+      "Blood Boil LE",
+      "Defender's Landing LE",
+      "Odyssey LE",
+      "Proxima Station LE",
+      "Sequencer LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 3",
+    "startDate": "2017-07-19",
+    "closingDate": "2017-10-18",
+    "maps": [
+      "Abyssal Reef LE",
+      "Acolyte LE",
+      "Ascension to Aiur LE",
+      "Catallena",
+      "Interloper LE",
+      "Mech Depot LE",
+      "Odyssey LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 4",
+    "startDate": "2017-10-19",
+    "closingDate": "2017-11-13",
+    "maps": [
+      "Abyssal Reef LE",
+      "Acolyte LE",
+      "Ascension to Aiur LE",
+      "Catallena",
+      "Interloper LE",
+      "Mech Depot LE",
+      "Odyssey LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2017 Season 4 (new maps)",
+    "startDate": "2017-11-14",
+    "closingDate": "2018-01-22",
+    "maps": [
+      "Abyssal Reef LE",
+      "Ascension to Aiur LE",
+      "Battle on the Boardwalk LE",
+      "Blackpink LE",
+      "Catalyst LE",
+      "Neon Violet Square LE",
+      "Odyssey LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2018 Season 1",
+    "startDate": "2018-01-23",
+    "closingDate": "2018-05-14",
+    "maps": [
+      "Abiogenesis LE",
+      "Acid Plant LE",
+      "Backwater LE",
+      "Blackpink LE",
+      "Catalyst LE",
+      "Eastwatch LE",
+      "Neon Violet Square LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2018 Season 2",
+    "startDate": "2018-05-15",
+    "closingDate": "2018-08-13",
+    "maps": [
+      "16-Bit LE",
+      "Acid Plant LE",
+      "Catalyst LE",
+      "Darkness Sanctuary LE",
+      "Dreamcatcher LE",
+      "Lost and Found LE",
+      "Redshift LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2018 Season 3",
+    "startDate": "2018-08-14",
+    "closingDate": "2018-11-19",
+    "maps": [
+      "Acid Plant LE",
+      "Blueshift LE",
+      "Cerulean Fall LE",
+      "Dreamcatcher LE",
+      "Fracture LE",
+      "Lost and Found LE",
+      "Para Site LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2018 Season 4",
+    "startDate": "2018-11-20",
+    "closingDate": "2019-01-21",
+    "maps": [
+      "Automaton LE",
+      "Blueshift LE",
+      "Cerulean Fall LE",
+      "Kairos Junction LE",
+      "Para Site LE",
+      "Port Aleksander LE",
+      "Stasis LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2019 Season 1",
+    "startDate": "2019-01-22",
+    "closingDate": "2019-05-21",
+    "maps": [
+      "Automaton LE",
+      "Cyber Forest LE",
+      "Kairos Junction LE",
+      "King's Cove LE",
+      "New Repugnancy LE",
+      "Port Aleksander LE",
+      "Year Zero LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2019 Season 2",
+    "startDate": "2019-05-22",
+    "closingDate": "2019-08-21",
+    "maps": [
+      "Acropolis LE",
+      "Cyber Forest LE",
+      "Kairos Junction LE",
+      "King's Cove LE",
+      "New Repugnancy LE",
+      "Thunderbird LE",
+      "Turbo Cruise '84 LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2019 Season 3",
+    "startDate": "2019-08-22",
+    "closingDate": "2019-11-24",
+    "maps": [
+      "Acropolis LE",
+      "Disco Bloodbath LE",
+      "Ephemeron LE",
+      "Thunderbird LE",
+      "Winter's Gate LE",
+      "World of Sleepers LE"
+    ],
+    "mapCount": 6
+  },
+  {
+    "seasonName": "2019 Season 4",
+    "startDate": "2019-11-26",
+    "closingDate": "2020-03-16",
+    "maps": [
+      "Ephemeron LE",
+      "Eternal Empire LE",
+      "Ever Dream LE",
+      "Golden Wall LE",
+      "Nightshade LE",
+      "Purity and Industry LE",
+      "Simulacrum LE",
+      "Zen LE",
+      "World of Sleepers LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2020 Season 1",
+    "startDate": "2020-03-17",
+    "closingDate": "2020-06-09",
+    "maps": [
+      "Eternal Empire LE",
+      "Ever Dream LE",
+      "Golden Wall LE",
+      "Nightshade LE",
+      "Purity and Industry LE",
+      "Simulacrum LE",
+      "Zen LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2020 Season 2",
+    "startDate": "2020-06-10",
+    "closingDate": "2020-09-29",
+    "maps": [
+      "Deathaura LE",
+      "Eternal Empire LE",
+      "Ever Dream LE",
+      "Golden Wall LE",
+      "Ice and Chrome LE",
+      "Pillars of Gold LE",
+      "Submarine LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2020 Season 3",
+    "startDate": "2020-09-30",
+    "closingDate": "2021-01-25",
+    "maps": [
+      "Deathaura LE",
+      "Jagannatha LE",
+      "Lightshade LE",
+      "Oxide LE",
+      "Pillars of Gold LE",
+      "Romanticide LE",
+      "Submarine LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 1",
+    "startDate": "2021-01-26",
+    "closingDate": "2021-04-05",
+    "maps": [
+      "Deathaura LE",
+      "Jagannatha LE",
+      "Lightshade LE",
+      "Oxide LE",
+      "Pillars of Gold LE",
+      "Romanticide LE",
+      "Submarine LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 2",
+    "startDate": "2021-04-06",
+    "closingDate": "2021-07-18",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Beckett Industries LE",
+      "Blackburn LE",
+      "Jagannatha LE",
+      "Lightshade LE",
+      "Oxide LE",
+      "Romanticide LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 3",
+    "startDate": "2021-07-19",
+    "closingDate": "2021-10-19",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Beckett Industries LE",
+      "Blackburn LE",
+      "Jagannatha LE",
+      "Lightshade LE",
+      "Oxide LE",
+      "Romanticide LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 3 (new maps)",
+    "startDate": "2021-10-20",
+    "closingDate": "2021-11-09",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Berlingrad LE",
+      "Blackburn LE",
+      "Curious Minds LE",
+      "Glittering Ashes LE",
+      "Hardwire LE",
+      "Pride of Altaris LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2021 Season 4",
+    "info": "evenhough Beckett Industries was played in tournaments, it was not part of ladder",
+    "startDate": "2021-11-10",
+    "closingDate": "2022-01-04",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Berlingrad LE",
+      "Blackburn LE",
+      "Curious Minds LE",
+      "Glittering Ashes LE",
+      "Hardwire LE",
+      "Pride of Altaris LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 1",
+    "info": "evenhough Beckett Industries was played in tournaments, it was not part of ladder",
+    "startDate": "2022-01-05",
+    "closingDate": "2022-03-30",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Berlingrad LE",
+      "Blackburn LE",
+      "Curious Minds LE",
+      "Glittering Ashes LE",
+      "Hardwire LE",
+      "Pride of Altaris LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 2",
+    "startDate": "2022-03-31",
+    "closingDate": "2022-07-17",
+    "maps": [
+      "2000 Atmospheres LE",
+      "Berlingrad LE",
+      "Blackburn LE",
+      "Curious Minds LE",
+      "Glittering Ashes LE",
+      "Hardwire LE",
+      "Pride of Altaris LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 3",
+    "startDate": "2022-07-18",
+    "closingDate": "2022-11-09",
+    "maps": [
+      "Cosmic Sapphire LE",
+      "Data-C LE",
+      "Inside and Out LE",
+      "Moondance LE",
+      "Stargazers LE",
+      "Tropical Sacrifice LE",
+      "Waterfall LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2022 Season 4",
+    "startDate": "2022-11-10",
+    "closingDate": "2023-01-04",
+    "maps": [
+      "Cosmic Sapphire LE",
+      "Data-C LE",
+      "Inside and Out LE",
+      "Moondance LE",
+      "Stargazers LE",
+      "Tropical Sacrifice LE",
+      "Waterfall LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 1",
+    "startDate": "2023-01-05",
+    "closingDate": "2023-01-23",
+    "maps": [
+      "Cosmic Sapphire LE",
+      "Data-C LE",
+      "Inside and Out LE",
+      "Moondance LE",
+      "Stargazers LE",
+      "Tropical Sacrifice LE",
+      "Waterfall LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 1 (new maps)",
+    "startDate": "2023-01-24",
+    "closingDate": "2023-03-31",
+    "maps": [
+      "Altitude LE",
+      "Ancient Cistern LE",
+      "Babylon LE",
+      "Dragon Scales LE",
+      "Gresvan LE",
+      "NeoHumanity LE",
+      "Royal Blood LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 2",
+    "startDate": "2023-04-01",
+    "closingDate": "2023-07-18",
+    "maps": [
+      "Altitude LE",
+      "Ancient Cistern LE",
+      "Babylon LE",
+      "Dragon Scales LE",
+      "Gresvan LE",
+      "NeoHumanity LE",
+      "Royal Blood LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 3",
+    "startDate": "2023-07-19",
+    "closingDate": "2023-09-27",
+    "maps": [
+      "Altitude LE",
+      "Ancient Cistern LE",
+      "Babylon LE",
+      "Dragon Scales LE",
+      "Gresvan LE",
+      "NeoHumanity LE",
+      "Royal Blood LE"
+    ],
+    "mapCount": 7
+  },
+  {
+    "seasonName": "2023 Season 3 (new maps)",
+    "startDate": "2023-09-28",
+    "closingDate": "2023-11-09",
+    "maps": [
+      "Alcyone LE",
+      "Equilibrium LE",
+      "Goldenaura LE",
+      "Hard Lead LE",
+      "Hecate LE",
+      "Oceanborn LE",
+      "Radhuset Station LE",
+      "Site Delta LE",
+      "Solaris LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2023 Season 4",
+    "startDate": "2023-11-10",
+    "closingDate": "2024-01-04",
+    "maps": [
+      "Alcyone LE",
+      "Equilibrium LE",
+      "Goldenaura LE",
+      "Hard Lead LE",
+      "Hecate LE",
+      "Oceanborn LE",
+      "Radhuset Station LE",
+      "Site Delta LE",
+      "Solaris LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 1",
+    "startDate": "2024-01-05",
+    "closingDate": "2024-03-25",
+    "maps": [
+      "Alcyone LE",
+      "Equilibrium LE",
+      "Goldenaura LE",
+      "Hard Lead LE",
+      "Hecate LE",
+      "Oceanborn LE",
+      "Radhuset Station LE",
+      "Site Delta LE",
+      "Solaris LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 1 (new maps)",
+    "startDate": "2024-03-26",
+    "closingDate": "2024-03-31",
+    "maps": [
+      "Alcyone LE",
+      "Amphion LE",
+      "Crimson Court LE",
+      "Dynasty LE",
+      "Ghost River LE",
+      "Goldenaura LE",
+      "Oceanborn LE",
+      "Post-Youth LE",
+      "Site Delta LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 2",
+    "startDate": "2024-04-01",
+    "closingDate": "2024-07-18",
+    "maps": [
+      "Alcyone LE",
+      "Amphion LE",
+      "Crimson Court LE",
+      "Dynasty LE",
+      "Ghost River LE",
+      "Goldenaura LE",
+      "Oceanborn LE",
+      "Post-Youth LE",
+      "Site Delta LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 3",
+    "startDate": "2024-07-19",
+    "closingDate": "2024-11-09",
+    "maps": [
+      "Alcyone LE",
+      "Amphion LE",
+      "Crimson Court LE",
+      "Dynasty LE",
+      "Ghost River LE",
+      "Goldenaura LE",
+      "Oceanborn LE",
+      "Post-Youth LE",
+      "Site Delta LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 4",
+    "startDate": "2024-11-10",
+    "closingDate": "2024-11-24",
+    "maps": [
+      "Alcyone LE",
+      "Amphion LE",
+      "Crimson Court LE",
+      "Dynasty LE",
+      "Ghost River LE",
+      "Goldenaura LE",
+      "Oceanborn LE",
+      "Post-Youth LE",
+      "Site Delta LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2024 Season 4 (new maps)",
+    "startDate": "2024-11-25",
+    "closingDate": "2025-01-04",
+    "maps": [
+      "Abyssal Reef LE",
+      "Amygdala LE",
+      "Frostline LE",
+      "King's Cove LE",
+      "Ley Lines",
+      "Neon Violet Square LE",
+      "Ultralove",
+      "Whispers of Gold LE",
+      "El Dorado LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 1",
+    "startDate": "2025-01-05",
+    "closingDate": "2025-03-31",
+    "maps": [
+      "Abyssal Reef LE",
+      "Amygdala LE",
+      "Frostline LE",
+      "King's Cove LE",
+      "Ley Lines",
+      "Neon Violet Square LE",
+      "Ultralove",
+      "Whispers of Gold LE",
+      "El Dorado LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 2",
+    "startDate": "2025-04-01",
+    "closingDate": "2025-04-26",
+    "maps": [
+      "Abyssal Reef LE",
+      "Amygdala LE",
+      "Frostline LE",
+      "King's Cove LE",
+      "Ley Lines",
+      "Neon Violet Square LE",
+      "Ultralove",
+      "Whispers of Gold LE",
+      "El Dorado LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 2 (new maps)",
+    "startDate": "2025-04-27",
+    "closingDate": "2025-07-18",
+    "maps": [
+      "Incorporeal LE",
+      "Last Fantasy LE",
+      "Ley Lines",
+      "Magannatha LE",
+      "Persephone LE",
+      "Pylon LE",
+      "Tokamak LE",
+      "Torches LE",
+      "Ultralove"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 3",
+    "startDate": "2025-07-19",
+    "closingDate": "2025-11-09",
+    "maps": [
+      "Incorporeal LE",
+      "Last Fantasy LE",
+      "Ley Lines",
+      "Magannatha LE",
+      "Persephone LE",
+      "Pylon LE",
+      "Tokamak LE",
+      "Torches LE",
+      "Ultralove"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2025 Season 4",
+    "startDate": "2025-11-10",
+    "closingDate": "2026-01-05",
+    "maps": [
+      "10000 Feet LE",
+      "Celestial Enclave LE",
+      "Mothership LE",
+      "Old Republic LE",
+      "Ruby Rock LE",
+      "Taito Citadel LE",
+      "Tourmaline LE",
+      "White Rabbit LE",
+      "Winter Madness LE"
+    ],
+    "mapCount": 9
+  }
+]

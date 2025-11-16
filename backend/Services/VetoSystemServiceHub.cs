@@ -40,7 +40,7 @@ public sealed class VetoSystemServiceHub : Hub
         await Clients.Group(groupid).SendAsync("VetoUpdated", $"{Context.ConnectionId} sent an update to {groupid}.", currentGameState);
     }
 
-    public async Task Heartbeat(string userId)
+    public void Heartbeat(string userId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(userId);
         _coordinator.UpdatePlayerPresence(Context.ConnectionId, userId);

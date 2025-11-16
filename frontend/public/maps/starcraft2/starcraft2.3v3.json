@@ -1,0 +1,371 @@
+[
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Abandoned Camp",
+    "link": "https://liquipedia.net/starcraft2/Abandoned_Camp",
+    "introduction": "2017-07-18",
+    "removal": "2018-08-14",
+    "image": "maps/starcraft2/3v3/Abandoned_Camp.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Arkadia",
+    "link": "https://liquipedia.net/starcraft2/Arkadia",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Arkadia.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Augustine Fall LE",
+    "link": "https://liquipedia.net/starcraft2/Augustine_Fall_LE",
+    "introduction": "2019-11-26",
+    "removal": "2021-10-19",
+    "image": "maps/starcraft2/3v3/Augustine_Fall_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Avalon Labs",
+    "link": "https://liquipedia.net/starcraft2/Avalon_Labs",
+    "introduction": "2015-11-10",
+    "removal": "2017-05-02",
+    "image": "maps/starcraft2/3v3/Avalon_Labs.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Backcountry",
+    "link": "https://liquipedia.net/starcraft2/Backcountry",
+    "introduction": "2015-06-29",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/3v3/Backcountry.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Bastion of the Conclave",
+    "link": "https://liquipedia.net/starcraft2/Bastion_of_the_Conclave",
+    "introduction": "2017-05-02",
+    "removal": "2019-01-22",
+    "image": "maps/starcraft2/3v3/Bastion_of_the_Conclave.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Black Site 2E",
+    "link": "https://liquipedia.net/starcraft2/Black_Site_2E",
+    "introduction": "2017-05-02",
+    "removal": "2019-05-21",
+    "image": "maps/starcraft2/3v3/Black_Site_2E.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Black Site 2E",
+    "link": "https://liquipedia.net/starcraft2/Black_Site_2E",
+    "introduction": "2021-10-19",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Black_Site_2E.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Bone Temple LE",
+    "link": "https://liquipedia.net/starcraft2/Bone_Temple_LE",
+    "introduction": "2019-05-21",
+    "removal": "2021-10-19",
+    "image": "maps/starcraft2/3v3/Bone_Temple_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Buried Caverns",
+    "link": "https://liquipedia.net/starcraft2/Buried_Caverns",
+    "introduction": "2017-11-14",
+    "removal": "2019-11-26",
+    "image": "maps/starcraft2/3v3/Buried_Caverns.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Buried Caverns",
+    "link": "https://liquipedia.net/starcraft2/Buried_Caverns",
+    "introduction": "2021-10-19",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Buried_Caverns.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Canyon of Tribulation",
+    "link": "https://liquipedia.net/starcraft2/Canyon_of_Tribulation",
+    "introduction": "2018-08-14",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Canyon_of_Tribulation.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Desolator",
+    "link": "https://liquipedia.net/starcraft2/Desolator",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Desolator.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Doraelus Hills",
+    "link": "https://liquipedia.net/starcraft2/Doraelus_Hills",
+    "introduction": "2015-11-10",
+    "removal": "2017-01-24",
+    "image": "maps/starcraft2/3v3/Doraelus_Hills.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Fields of Shazir",
+    "link": "https://liquipedia.net/starcraft2/Fields_of_Shazir",
+    "introduction": "2017-01-24",
+    "removal": "2018-01-23",
+    "image": "maps/starcraft2/3v3/Fields_of_Shazir.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Flashback CE",
+    "link": "https://liquipedia.net/starcraft2/Flashback_CE",
+    "introduction": "2020-06-09",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Flashback_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Hills of Peshkov",
+    "link": "https://liquipedia.net/starcraft2/Hills_of_Peshkov",
+    "introduction": "2015-01-12",
+    "removal": "2016-03-28",
+    "image": "maps/starcraft2/3v3/Hills_of_Peshkov.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Ice Cliffs",
+    "link": "https://liquipedia.net/starcraft2/Ice_Cliffs",
+    "introduction": "2015-04-15",
+    "removal": "2016-07-12",
+    "image": "maps/starcraft2/3v3/Ice_Cliffs.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Jungle Depths CE",
+    "link": "https://liquipedia.net/starcraft2/Jungle_Depths_CE",
+    "introduction": "2019-08-21",
+    "removal": "2020-10-01",
+    "image": "maps/starcraft2/3v3/Jungle_Depths_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Jungle Depths CE",
+    "link": "https://liquipedia.net/starcraft2/Jungle_Depths_CE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Jungle_Depths_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Lost July",
+    "link": "https://liquipedia.net/starcraft2/Lost_July",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Lost_July.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Megastructure",
+    "link": "https://liquipedia.net/starcraft2/Megastructure",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Megastructure.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Misty Swamp",
+    "link": "https://liquipedia.net/starcraft2/Misty_Swamp",
+    "introduction": "2017-07-18",
+    "removal": "2018-05-15",
+    "image": "maps/starcraft2/3v3/Misty_Swamp.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Molten Temple",
+    "link": "https://liquipedia.net/starcraft2/Molten_Temple",
+    "introduction": "2016-07-12",
+    "removal": "2017-07-18",
+    "image": "maps/starcraft2/3v3/Molten_Temple.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Mountain Pass CE",
+    "link": "https://liquipedia.net/starcraft2/Mountain_Pass_CE",
+    "introduction": "2024-03-26",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Mountain_Pass_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Nephor I",
+    "link": "https://liquipedia.net/starcraft2/Nephor_I",
+    "introduction": "2015-04-15",
+    "removal": "2016-03-28",
+    "image": "maps/starcraft2/3v3/Nephor_I.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "New Richmond",
+    "link": "https://liquipedia.net/starcraft2/New_Richmond",
+    "introduction": "2016-03-28",
+    "removal": "2017-05-02",
+    "image": "maps/starcraft2/3v3/New_Richmond.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "New Williamsberg",
+    "link": "https://liquipedia.net/starcraft2/New_Williamsberg",
+    "introduction": "2015-06-29",
+    "removal": "2016-07-12",
+    "image": "maps/starcraft2/3v3/New_Williamsberg.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Orbital Depot",
+    "link": "https://liquipedia.net/starcraft2/Orbital_Depot",
+    "introduction": "2016-07-12",
+    "removal": "2017-11-14",
+    "image": "maps/starcraft2/3v3/Orbital_Depot.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Realities Simulation LE",
+    "link": "https://liquipedia.net/starcraft2/Realities_Simulation_LE",
+    "introduction": "2020-10-01",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Realities_Simulation_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Rosebud LE",
+    "link": "https://liquipedia.net/starcraft2/Rosebud_LE",
+    "introduction": "2019-01-22",
+    "removal": "2020-06-09",
+    "image": "maps/starcraft2/3v3/Rosebud_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Rosebud LE",
+    "link": "https://liquipedia.net/starcraft2/Rosebud_LE",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Rosebud_LE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Sandstorm CE",
+    "link": "https://liquipedia.net/starcraft2/Sandstorm_CE",
+    "introduction": "2024-03-26",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Sandstorm_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Sentinel CE",
+    "link": "https://liquipedia.net/starcraft2/Sentinel_CE",
+    "introduction": "2020-03-10",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Sentinel_CE.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Slaying Field",
+    "link": "https://liquipedia.net/starcraft2/Slaying_Field",
+    "introduction": "2016-03-28",
+    "removal": "2017-07-18",
+    "image": "maps/starcraft2/3v3/Slaying_Field.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Snowbound Colony",
+    "link": "https://liquipedia.net/starcraft2/Snowbound_Colony",
+    "introduction": "2018-01-23",
+    "removal": "2020-03-10",
+    "image": "maps/starcraft2/3v3/Snowbound_Colony.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Stranded Isles",
+    "link": "https://liquipedia.net/starcraft2/Stranded_Isles",
+    "introduction": "2018-05-15",
+    "removal": "2019-08-21",
+    "image": "maps/starcraft2/3v3/Stranded_Isles.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Ujari",
+    "link": "https://liquipedia.net/starcraft2/Ujari",
+    "introduction": "2017-01-24",
+    "removal": "2018-11-20",
+    "image": "maps/starcraft2/3v3/Ujari.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Voracity",
+    "link": "https://liquipedia.net/starcraft2/Voracity",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/Voracity.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "White Chamber",
+    "link": "https://liquipedia.net/starcraft2/White_Chamber",
+    "introduction": "2024-11-25",
+    "removal": "TBD",
+    "image": "maps/starcraft2/3v3/White_Chamber.jpg"
+  },
+  {
+    "game": "starcraft2",
+    "mode": "M3V3",
+    "name": "Whitewater Line LE",
+    "link": "https://liquipedia.net/starcraft2/Whitewater_Line_LE",
+    "introduction": "2018-11-20",
+    "removal": "2024-11-24",
+    "image": "maps/starcraft2/3v3/Whitewater_Line_LE.jpg"
+  }
+]

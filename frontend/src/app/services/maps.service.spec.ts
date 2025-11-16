@@ -1,12 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { MapsService } from './maps.service';
 import { GameModes } from '../data/gamemodes.data';
+import { SeasonsAndMapsStore } from '../store/seasons-maps-store';
 
 describe('MapsService', () => {
   let service: MapsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    const mockStore = {
+      seasons: jest.fn().mockReturnValue(new Map([[GameModes.M1V1, ['season1']]])),
+      maps: jest.fn().mockReturnValue(new Map([[GameModes.M1V1, ['season1']]])),
+    } as any;
+    TestBed.configureTestingModule({
+      providers: [
+        MapsService,
+        {provide: SeasonsAndMapsStore, mockStore},
+      ]
+    });
     service = TestBed.inject(MapsService);
   });
 

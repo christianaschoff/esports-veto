@@ -5,5 +5,7 @@ export interface Maps {
     mode: GameModes;
     name: string;
     link: string;
+    introduction?: string;
+    retired?: string;
     image?: string;
 }
