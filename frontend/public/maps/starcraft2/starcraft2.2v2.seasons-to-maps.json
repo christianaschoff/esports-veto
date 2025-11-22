@@ -135,11 +135,10 @@
       "Magma Mines",
       "Moebius Facility XX-1",
       "Shadowed Jungle",
-      "Shrines of Lizul",
-      "Sludge City",
+      "Shrines of Lizul",      
       "Snowy Mesa"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2017 Season 2",
@@ -196,13 +195,12 @@
       "Arctic Gates",
       "Flooded City",
       "Overgrown Facility",
-      "Seeds of Aiur",
-      "Shadowed Jungle",
+      "Seeds of Aiur",      
       "Shrines of Lizul",
       "Snowy Mesa",
       "Traitor's Exile"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 1",
@@ -214,18 +212,16 @@
       "Flooded City",
       "Overgrown Facility",
       "Seeds of Aiur",
-      "Shrines of Lizul",
-      "Snowy Mesa",
+      "Shrines of Lizul",      
       "Traitor's Exile"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 2",
     "startDate": "2018-05-15",
     "closingDate": "2018-08-13",
-    "maps": [
-      "Arctic Gates",
+    "maps": [      
       "Dusty Gorge",
       "Flooded City",
       "Overgrown Facility",
@@ -234,7 +230,7 @@
       "Shrines of Lizul",
       "Traitor's Exile"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 3",
@@ -244,13 +240,12 @@
       "Dusty Gorge",
       "Flooded City",
       "Overgrown Facility",
-      "Redstorm",
-      "Seeds of Aiur",
+      "Redstorm",      
       "Shrines of Lizul",
       "Traitor's Exile",
       "Ulzaan"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 4",
@@ -260,13 +255,12 @@
       "Dusty Gorge",
       "Emerald City CE",
       "Flooded City",
-      "Overgrown Facility",
-      "Redstorm",
+      "Overgrown Facility",      
       "Shrines of Lizul",
       "Traitor's Exile",
       "Ulzaan"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 1",
@@ -278,11 +272,10 @@
       "Emerald City CE",
       "Flooded City",
       "Overgrown Facility",
-      "Shrines of Lizul",
-      "Traitor's Exile",
+      "Shrines of Lizul",      
       "Ulzaan"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 2",
@@ -366,8 +359,7 @@
     "startDate": "2020-09-30",
     "closingDate": "2021-01-25",
     "maps": [
-      "Arctic Dream LE",
-      "Divergence CE",
+      "Arctic Dream LE",      
       "Efflorescence LE",
       "Emerald City CE",
       "Heavy Artillery LE",
@@ -375,7 +367,7 @@
       "Polka LE",
       "Rhoskallian LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2021 Season 1",

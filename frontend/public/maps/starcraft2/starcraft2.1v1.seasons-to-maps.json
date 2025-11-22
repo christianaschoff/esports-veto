@@ -289,16 +289,17 @@
   {
     "seasonName": "2019 Season 3",
     "startDate": "2019-08-22",
-    "closingDate": "2019-11-24",
+    "closingDate": "2019-11-25",
     "maps": [
       "Acropolis LE",
       "Disco Bloodbath LE",
-      "Ephemeron LE",
+      "Ephemeron LE",      
       "Thunderbird LE",
+      "Triton LE",
       "Winter's Gate LE",
       "World of Sleepers LE"
     ],
-    "mapCount": 6
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 4",
@@ -306,16 +307,14 @@
     "closingDate": "2020-03-16",
     "maps": [
       "Ephemeron LE",
-      "Eternal Empire LE",
-      "Ever Dream LE",
-      "Golden Wall LE",
+      "Eternal Empire LE",            
       "Nightshade LE",
       "Purity and Industry LE",
       "Simulacrum LE",
       "Zen LE",
       "World of Sleepers LE"
     ],
-    "mapCount": 9
+    "mapCount": 7
   },
   {
     "seasonName": "2020 Season 1",

@@ -198,19 +198,17 @@
       "Forgotten Sanctuary",
       "Last Remnant",
       "Old Estate",
-      "Primeval Wilds",
-      "Refinery XJ-17",
+      "Primeval Wilds",      
       "Rooftop Terrace",
       "Tropic Shores"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 1",
     "startDate": "2018-01-23",
     "closingDate": "2018-05-14",
-    "maps": [
-      "Alaeni Enclave CE",
+    "maps": [      
       "Forgotten Sanctuary",
       "Last Remnant",
       "Old Estate",
@@ -219,7 +217,7 @@
       "Troizinia LE",
       "Tropic Shores"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 2",
@@ -232,10 +230,9 @@
       "Old Estate",
       "Primeval Wilds",
       "Rooftop Terrace",
-      "Troizinia LE",
-      "Tropic Shores"
+      "Troizinia LE"      
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 3",
@@ -245,8 +242,7 @@
       "Forgotten Sanctuary",
       "Last Impact",
       "Last Remnant",
-      "Old Estate",
-      "Primeval Wilds",
+      "Old Estate",      
       "Rooftop Terrace",
       "Sacred Grounds",
       "Troizinia LE"
@@ -257,8 +253,7 @@
     "seasonName": "2018 Season 4",
     "startDate": "2018-11-20",
     "closingDate": "2019-01-21",
-    "maps": [
-      "Forgotten Sanctuary",
+    "maps": [      
       "Last Impact",
       "Last Remnant",
       "Multiprocessor CE",
@@ -267,7 +262,7 @@
       "Sacred Grounds",
       "Troizinia LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 1",
@@ -277,13 +272,12 @@
       "Last Impact",
       "Last Remnant",
       "Multiprocessor CE",
-      "Old Estate",
-      "Rooftop Terrace",
+      "Old Estate",      
       "Sacred Grounds",
       "Shipwrecked LE",
       "Troizinia LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 2",
@@ -369,14 +363,13 @@
     "maps": [
       "Concord LE",
       "Fortitude LE",
-      "Mementos LE",
-      "Multiprocessor CE",
+      "Mementos LE",      
       "Nekodrec LE",
       "Old Estate",
       "Shipwrecked LE",
       "Tuonela LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2021 Season 1",

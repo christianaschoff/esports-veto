@@ -199,11 +199,10 @@
       "Black Site 2E",
       "Buried Caverns",
       "Fields of Shazir",
-      "Misty Swamp",
-      "Orbital Depot",
+      "Misty Swamp",      
       "Ujari"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 1",
@@ -213,13 +212,12 @@
       "Abandoned Camp",
       "Bastion of the Conclave",
       "Black Site 2E",
-      "Buried Caverns",
-      "Fields of Shazir",
+      "Buried Caverns",      
       "Misty Swamp",
       "Snowbound Colony",
       "Ujari"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 2",
@@ -229,20 +227,18 @@
       "Abandoned Camp",
       "Bastion of the Conclave",
       "Black Site 2E",
-      "Buried Caverns",
-      "Misty Swamp",
+      "Buried Caverns",      
       "Snowbound Colony",
       "Stranded Isles",
       "Ujari"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 3",
     "startDate": "2018-08-14",
     "closingDate": "2018-11-19",
-    "maps": [
-      "Abandoned Camp",
+    "maps": [      
       "Bastion of the Conclave",
       "Black Site 2E",
       "Buried Caverns",
@@ -251,7 +247,7 @@
       "Stranded Isles",
       "Ujari"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2018 Season 4",
@@ -263,18 +259,16 @@
       "Buried Caverns",
       "Canyon of Tribulation",
       "Snowbound Colony",
-      "Stranded Isles",
-      "Ujari",
+      "Stranded Isles",      
       "Whitewater Line LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 1",
     "startDate": "2019-01-22",
     "closingDate": "2019-05-21",
-    "maps": [
-      "Bastion of the Conclave",
+    "maps": [      
       "Black Site 2E",
       "Buried Caverns",
       "Canyon of Tribulation",
@@ -283,7 +277,7 @@
       "Stranded Isles",
       "Whitewater Line LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2019 Season 2",
@@ -370,13 +364,12 @@
       "Augustine Fall LE",
       "Bone Temple LE",
       "Canyon of Tribulation",
-      "Flashback CE",
-      "Jungle Depths CE",
+      "Flashback CE",      
       "Realities Simulation LE",
       "Sentinel CE",
       "Whitewater Line LE"
     ],
-    "mapCount": 8
+    "mapCount": 7
   },
   {
     "seasonName": "2021 Season 1",
@@ -622,8 +615,7 @@
     "seasonName": "2024 Season 1 (new maps)",
     "startDate": "2024-03-26",
     "closingDate": "2024-03-31",
-    "maps": [
-      "Black Site 2E",
+    "maps": [      
       "Buried Caverns",
       "Canyon of Tribulation",
       "Flashback CE",
@@ -634,14 +626,13 @@
       "Sentinel CE",
       "Whitewater Line LE"
     ],
-    "mapCount": 10
+    "mapCount": 9
   },
   {
     "seasonName": "2024 Season 2",
     "startDate": "2024-04-01",
     "closingDate": "2024-07-18",
-    "maps": [
-      "Black Site 2E",
+    "maps": [      
       "Buried Caverns",
       "Canyon of Tribulation",
       "Flashback CE",
@@ -652,14 +643,13 @@
       "Sentinel CE",
       "Whitewater Line LE"
     ],
-    "mapCount": 10
+    "mapCount": 9
   },
   {
     "seasonName": "2024 Season 3",
     "startDate": "2024-07-19",
     "closingDate": "2024-11-09",
-    "maps": [
-      "Black Site 2E",
+    "maps": [      
       "Buried Caverns",
       "Canyon of Tribulation",
       "Flashback CE",
@@ -670,14 +660,13 @@
       "Sentinel CE",
       "Whitewater Line LE"
     ],
-    "mapCount": 10
+    "mapCount": 9
   },
   {
     "seasonName": "2024 Season 4",
     "startDate": "2024-11-10",
     "closingDate": "2024-11-24",
-    "maps": [
-      "Black Site 2E",
+    "maps": [      
       "Buried Caverns",
       "Canyon of Tribulation",
       "Flashback CE",
@@ -688,7 +677,7 @@
       "Sentinel CE",
       "Whitewater Line LE"
     ],
-    "mapCount": 10
+    "mapCount": 9
   },
   {
     "seasonName": "2024 Season 4 (new maps)",
