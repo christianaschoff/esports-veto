@@ -1,6 +1,6 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { CallToolRequestSchema, InitializeRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { VetoApiService } from "./services/VetoApiService";
 import { MapsService } from "./services/MapsService";
 import { CreateVetoTool } from "./tools/CreateVetoTool";
@@ -13,6 +13,22 @@ const BASE_URL = process.env.VETO_BASE_URL || "http://localhost:5254/api";
 const server = new Server({
   name: "veto-mcp-server",
   version: "1.0.0",
+});
+
+// Set capabilities to allow tools handlers
+(server as any)._capabilities = { tools: {} };
+
+server.setRequestHandler(InitializeRequestSchema, async () => {
+  return {
+    protocolVersion: "2024-11-05",
+    capabilities: {
+      tools: {},
+    },
+    serverInfo: {
+      name: "veto-mcp-server",
+      version: "1.0.0",
+    },
+  };
 });
 
 const apiService = new VetoApiService(BASE_URL);
