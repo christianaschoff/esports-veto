@@ -128,7 +128,7 @@ export class CreateVetoTool {
 
   async execute(input: CreateVetoInput): Promise<CreateVetoResponse> {
     const validatedInput = CreateVetoSchema.parse(input);
-    const maps = MapsService.getMapsForMode(validatedInput.mode);
+    const maps = await MapsService.getMapsForMode(validatedInput.mode);
 
     if (maps.length === 0) {
       throw new Error(`No maps found for mode: ${validatedInput.mode}`);
@@ -190,7 +190,7 @@ export class CreateVetoTool {
             playerB: result.PlayerB || matchup.playerB,
             bestOf: result.BestOf || validatedInput.bestOf,
             mode: result.Mode || validatedInput.mode,
-            maps: result.Maps || MapsService.getMapsForMode(validatedInput.mode),
+            maps: result.Maps || await MapsService.getMapsForMode(validatedInput.mode),
             urls: {
               admin: `${baseUrl}/admin/${result.vetoId}`,
               playerA: {

@@ -45,3 +45,11 @@ export interface CreateVetoResponse {
   vetos: VetoResult[];
   errors: Array<{ index: number; error: string }>;
 }
+
+export interface Season {
+  seasonName: string;
+  startDate: string;
+  closingDate: string;
+  maps: string[];
+  mapCount: number;
+}

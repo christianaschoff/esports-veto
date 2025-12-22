@@ -2,7 +2,9 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { VetoApiService } from "./services/VetoApiService";
+import { MapsService } from "./services/MapsService";
 import { CreateVetoTool } from "./tools/CreateVetoTool";
+import { GetMapsTool } from "./tools/GetMapsTool";
 import { HttpTransport } from "./transports/HttpTransport";
 
 // Use dev environment for testing
@@ -14,7 +16,9 @@ const server = new Server({
 });
 
 const apiService = new VetoApiService(BASE_URL);
+MapsService.setBaseUrl(BASE_URL.replace('/api', ''));
 const createVetoTool = new CreateVetoTool(apiService);
+const getMapsTool = new GetMapsTool();
 
 async function main() {
   // Detect transport mode from environment variables or command line args
@@ -36,7 +40,7 @@ async function main() {
     httpTransport.registerHandlers(
       async () => {
         return {
-          tools: [createVetoTool.getToolDefinition()],
+          tools: [createVetoTool.getToolDefinition(), getMapsTool.getToolDefinition()],
         };
       },
       async (request) => {
@@ -45,6 +49,18 @@ async function main() {
         if (name === "create_veto") {
           try {
             const result = await createVetoTool.execute(args as any);
+            return {
+              content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+            };
+          } catch (error) {
+            return {
+              content: [{ type: "text", text: `Error: ${error instanceof Error ? error.message : String(error)}` }],
+              isError: true,
+            };
+          }
+        } else if (name === "get_maps") {
+          try {
+            const result = await getMapsTool.execute(args as any);
             return {
               content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
             };
@@ -65,7 +81,7 @@ async function main() {
     // Default stdio transport mode - set up handlers
     server.setRequestHandler(ListToolsRequestSchema, async () => {
       return {
-        tools: [createVetoTool.getToolDefinition()],
+        tools: [createVetoTool.getToolDefinition(), getMapsTool.getToolDefinition()],
       };
     });
 
@@ -75,6 +91,18 @@ async function main() {
       if (name === "create_veto") {
         try {
           const result = await createVetoTool.execute(args as any);
+          return {
+            content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          };
+        } catch (error) {
+          return {
+            content: [{ type: "text", text: `Error: ${error instanceof Error ? error.message : String(error)}` }],
+            isError: true,
+          };
+        }
+      } else if (name === "get_maps") {
+        try {
+          const result = await getMapsTool.execute(args as any);
           return {
             content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
           };

@@ -32,6 +32,7 @@ Each veto session generates:
 - **Performance Optimized**: Parallel processing in batches of 5 to prevent API overload during mass creation
 - **Legacy Support**: Backward compatible with simple single/bulk veto creation
 - **Complete Access Control**: Generates unique URLs for tournament admins, both players, and live observers
+- **Dynamic Map Pools**: Season-based map retrieval with caching for optimal performance
 
 ## Prerequisites
 
@@ -163,7 +164,7 @@ The HTTP server provides:
 
 ## Usage
 
-This MCP server provides a single tool called `create_veto` that can be used to create veto sessions for Starcraft 2 matches. Choose the approach that fits your needs:
+This MCP server provides two tools: `create_veto` for creating veto sessions and `get_maps` for querying map pools. Choose the approach that fits your needs:
 
 ### When to Use Each Method
 
@@ -263,6 +264,42 @@ Create a massive online tournament with diverse player pool:
 }
 ```
 *Use case: Large online tournaments, community events, or professional league brackets*
+```
+
+## get_maps Tool
+
+The `get_maps` tool allows you to query the current map pool for any game mode, with optional filtering by season or date. This is useful for tournament planning, verifying map availability, or historical analysis.
+
+### get_maps Parameters
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `mode` | string | Yes | - | Game mode: `M1V1`, `M2V2`, `M3V3`, or `M4V4` |
+| `seasonOrDate` | string | No | Latest season | Season name or ISO date (e.g., "2025 Season 1" or "2025-01-15") |
+
+### get_maps Example Usage
+
+**Get latest maps for 1v1:**
+```json
+{
+  "mode": "M1V1"
+}
+```
+
+**Response:**
+```json
+{
+  "maps": ["10000 Feet LE", "Celestial Enclave LE", "Mothership LE", "Old Republic LE", "Ruby Rock LE", "Taito Citadel LE", "Tourmaline LE", "White Rabbit LE", "Winter Madness LE"]
+}
+```
+
+**Get maps for a specific season:**
+```json
+{
+  "mode": "M2V2",
+  "seasonOrDate": "2025 Season 1"
+}
+```
 
 ### Batch Processing
 

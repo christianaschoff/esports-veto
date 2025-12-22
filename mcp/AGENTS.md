@@ -12,6 +12,8 @@ This guide provides comprehensive information for AI agents and developers worki
 - Batch processing with fixed parallel limit of 5
 - Generate admin, player, and observer URLs
 - Integration with external Veto API backend
+- Dynamic season-based map pools with caching (TTL: 24 hours)
+- Query maps by season name or date for historical/current map pools
 
 ### Architecture
 - **Frontend**: TypeScript/Node.js MCP server using Model Context Protocol SDK
@@ -101,11 +103,12 @@ src/
 ├── index.ts                 # Main MCP server entry point
 ├── services/
 │   ├── VetoApiService.ts    # Backend API communication
-│   └── MapsService.ts       # Map pool management
+│   └── MapsService.ts       # Dynamic map pool management with caching
 ├── tools/
-│   └── CreateVetoTool.ts    # Main veto creation tool
+│   ├── CreateVetoTool.ts    # Main veto creation tool
+│   └── GetMapsTool.ts       # Map query tool for seasons/dates
 └── types/
-    └── index.ts             # TypeScript type definitions
+    └── index.ts             # TypeScript type definitions (includes Season interface)
 ```
 
 ## 🧪 Testing
@@ -349,6 +352,48 @@ Use the `matchups` array parameter. This creates separate veto sessions for each
 *Creates 4 unique veto sessions in one efficient batch call*
 ```
 
+## 🔍 Tool: get_maps
+
+Retrieves the list of maps for a specific Starcraft 2 game mode, optionally filtered by season name or date.
+
+#### Parameters
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `mode` | string | Yes | - | Game format: `M1V1`, `M2V2`, `M3V3`, `M4V4` |
+| `seasonOrDate` | string | No | Latest season | Season name (e.g., "2025 Season 1") or date in ISO format (e.g., "2025-01-15"). If omitted, returns latest season's maps. |
+
+#### Response Format
+```typescript
+{
+  maps: string[]  // Array of map names for the specified mode and season
+}
+```
+
+#### Usage Examples
+
+**Latest season maps:**
+```json
+{
+  "mode": "M1V1"
+}
+```
+
+**Maps for specific season:**
+```json
+{
+  "mode": "M2V2",
+  "seasonOrDate": "2025 Season 1"
+}
+```
+
+**Maps for specific date:**
+```json
+{
+  "mode": "M3V3",
+  "seasonOrDate": "2025-01-15"
+}
+```
+
 ## 🔍 Troubleshooting
 
 ### Common Issues
@@ -409,9 +454,14 @@ echo $VETO_BASE_URL
 - **Implementation**: Sequential batch processing in `CreateVetoTool.execute()`
 
 ### Memory Usage
-- **Maps Data**: Loaded once per mode, cached in memory
+- **Maps Data**: Loaded once per mode, cached in memory with 24-hour TTL
 - **Token Caching**: JWT tokens cached for 25 minutes
 - **Concurrent Requests**: Limited by batch size
+
+### Caching
+- **Maps Data**: Fetched once per mode, cached in memory with 24-hour TTL
+- **Reason**: Seasons change infrequently (~5 times/year), reduces API calls and latency
+- **Implementation**: Automatic cache refresh on expiry
 
 ### Scalability
 - **Max Matchups**: 256 per request
@@ -487,6 +537,6 @@ curl -f http://localhost:5254/api/token || exit 1
 
 ---
 
-**Last Updated**: October 21, 2025
+**Last Updated**: December 22, 2025
 **Version**: 1.0.0
 **Maintainer**: AI Agent
