@@ -65,6 +65,17 @@ Be advised: decide, if you want to use Zipkin or an OTLP Connector over json.
 if both have an url, the backend will send both, but the span will be the same.  
 Tools like jaeger will complain (though work) in the details of a trace and show both of them.
 
+To provide Legal Notice (as it is mandatory on EU) use the following variables:
+
+```shell
+LegalNotice__Name=${LEGALNOTICE_NAME:-<Default Name>}
+LegalNotice__LegalEntity=${LEGALNOTICE_LEGAL_ENTITY:-<Default Entity>}
+LegalNotice__Street=${LEGALNOTICE_STREET:-<Default Street>}
+LegalNotice__ZipcodeTown=${LEGALNOTICE_ZIP_CODE_TOWN:-<Default Zip Town>}
+LegalNotice__Email=${LEGALNOTICE_EMAIL:-<Default Email>}
+LegalNotice__PhoneNumber=${LEGALNOTICE_PHONE_NUMBER:-<Default Phone>}
+```
+
 ### VETO_DATABASE_CONNECTIONSTRING
 
 make sure that username and password match with the username an password you chose in the docker-compose.yml

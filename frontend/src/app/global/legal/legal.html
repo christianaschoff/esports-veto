@@ -8,9 +8,15 @@
         <br />{{ legalNotice()!.zipcodeTown }}
     </p>
 
-    <h3>Contact</h3>
-    <br />E-Mail: <a [href]="'mailto:' + legalNotice()!.email">{{ legalNotice()!.email }}</a>
-    <br />Phone: {{ legalNotice()!.phoneNumber }}
+    @if(legalNotice()!.phoneNumber || legalNotice()!.email) {
+        <h3>Contact</h3>
+        @if(legalNotice()!.email) {
+            <br />E-Mail: <a [href]="'mailto:' + legalNotice()!.email">{{ legalNotice()!.email }}</a>
+        }
+        @if(legalNotice()!.phoneNumber) {
+            <br />Phone: {{ legalNotice()!.phoneNumber }}
+        }
+    }
 
     <p> The European Commission provides a platform for online dispute resolution (ODR):
         <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
