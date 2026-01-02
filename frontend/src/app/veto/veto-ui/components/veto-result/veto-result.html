@@ -12,7 +12,14 @@
                 <div class="cell ban">-</div>
                 <div class="cell ban hideRowOnMobile">&nbsp;</div>
                 <div class="cell ban">{{ item?.map?.name }}</div>
-                <div class="cell ban">{{ item.user }}</div>
+                <div class="cell ban">                
+                @if($last) {
+                    Autopick
+                }                    
+                @else {
+                    {{ item.user }}
+                }                
+                </div>
             </div>
         } @else {
             <div class="result-container-content">
@@ -28,7 +35,14 @@
                     </div>
                 </div>
                 <div class="cell"><div class="pick margin-50">{{ item?.map?.name }}</div></div>
-                <div class="cell"><div class="margin-50">{{ item.user }}</div></div>
+                <div class="cell"><div class="margin-50">
+                @if($last) {
+                    Autopick
+                }                    
+                @else {
+                    {{ item.user }}
+                }
+                </div></div>
             </div>
         } 
     }   

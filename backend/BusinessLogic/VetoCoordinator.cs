@@ -57,7 +57,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
         }
     }
 
-    public void UpdateVetoMap(string signalRId, string groupId, string map)
+    public async Task UpdateVetoMap(string signalRId, string groupId, string map)
     {
         var vetoMap = FindVetoMapBySignalRId(signalRId);
         if (vetoMap.Equals(default(KeyValuePair<string, string>)))
@@ -76,6 +76,7 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
             return;
 
         UpdateVetoStep(nextStep, veto, map);
+        await AutoSelectLastPick(veto);
     }
 
     public string? RemovePlayerFromVeto(string signalRId)
@@ -304,5 +305,30 @@ public class VetoCoordinator(VetoSystemSetupService vetoSystemSetupService, Veto
             Constants.STARCRAFT2 => no <= limit,
             _ => true,
         };
+    }
+
+    private async Task AutoSelectLastPick(Veto veto)
+    {
+        var nextStep = veto.VetoSteps.FirstOrDefault(x => x.StepType == VetoStepType.Unset);
+        if (nextStep == null) return; // already done
+
+        int index = veto.VetoSteps.IndexOf(nextStep);
+        if (index != veto.VetoSteps.Count - 1) return; // not the last step
+
+        bool isPick = !IsVeto(index + 1, veto.VetoConfig.BestOf, veto.VetoConfig.GameId, veto.VetoConfig.Maps.Length);
+        if (!isPick) return; // last step is not a pick
+
+        // find remaining map
+        var selectedMaps = veto.VetoSteps.Where(x => !string.IsNullOrEmpty(x.Map)).Select(x => x.Map).ToHashSet();
+        var remainingMaps = veto.VetoConfig.Maps.Where(m => !selectedMaps.Contains(m)).ToList();
+        if (remainingMaps.Count != 1) return; // not exactly one left
+
+        string lastMap = remainingMaps[0];
+
+        // update the step
+        UpdateVetoStep(nextStep, veto, lastMap);
+
+        // save state
+        await SaveGameState(veto);
     }
 }

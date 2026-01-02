@@ -34,12 +34,13 @@ export class VetoResult {
     let order: number = 0;
     const configuredMaps = this.mapService.getMapsByNames(this.state.gameId(), this.state.modus(), this.state.maps());
     this.state.currentGameState().vetoSteps.forEach(x => {
-       order = x.stepType === VetoStepType.Ban ? 0 : order + 1;
-       const map = configuredMaps.filter(y => y.name === x.map);
+      order = x.stepType === VetoStepType.Ban ? 0 : order + 1;
+      const map = configuredMaps.filter(y => y.name === x.map);
       result.push({no: ++counter, 
                   veto: x.stepType === VetoStepType.Ban, 
                   map: map ? map[0] : {name: x.map} as Maps, 
-                  user: this.getName(x.playerId), order
+                  user: this.getName(x.playerId), 
+                  order
                 });
     })
     return result;

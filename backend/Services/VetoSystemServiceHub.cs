@@ -35,7 +35,7 @@ public sealed class VetoSystemServiceHub : Hub
         ArgumentException.ThrowIfNullOrWhiteSpace(map);
         var connectionId = Context.ConnectionId;
 
-        _coordinator.UpdateVetoMap(connectionId, groupid, map);
+        await _coordinator.UpdateVetoMap(connectionId, groupid, map);
         var currentGameState = await _coordinator.CalculateCurrentGameState(groupid);
         await Clients.Group(groupid).SendAsync("VetoUpdated", $"{Context.ConnectionId} sent an update to {groupid}.", currentGameState);
     }

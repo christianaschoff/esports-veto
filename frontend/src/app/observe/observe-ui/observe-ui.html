@@ -64,7 +64,13 @@
                         <img ngSrc="{{item.map.image}}" width="220" height="120">            
                     </div>
                     <div class="parallel-player">
-                        {{ item.playerName }}
+                        @if (this.state.currentGameState().vetoState === VetoState.VETO_DONE
+                        && $last && picks().length === item.pickNo) { 
+                            Autopick
+                        }
+                        @else {
+                            {{ item.playerName }}
+                        }
                     </div>
                 </div>
             }
@@ -83,5 +89,5 @@
     <div class="open-settings">
         <button matIconButton (click)="showHideSettings()"><mat-icon>settings</mat-icon></button>
     </div>
-    }
+    }    
 }
