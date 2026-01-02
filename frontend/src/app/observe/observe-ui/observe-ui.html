@@ -60,18 +60,23 @@
                     <div class="parallel-mapname">
                     {{ item.map.name }}
                     </div>
-                    <div class="parallel-imagebox parallel-imagebox-green">
-                        <img ngSrc="{{item.map.image}}" width="220" height="120">            
-                    </div>
-                    <div class="parallel-player">
-                        @if (this.state.currentGameState().vetoState === VetoState.VETO_DONE
-                        && $last && picks().length === item.pickNo) { 
+                    @if (this.state.currentGameState().vetoState === VetoState.VETO_DONE
+                    && $last && picks().length === item.pickNo) { 
+                        <div class="parallel-imagebox parallel-imagebox-yellow">
+                            <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                        </div>
+                        <div class="parallel-player">
                             Autopick
+                        </div>
                         }
                         @else {
+                            <div class="parallel-imagebox parallel-imagebox-green">
+                            <img ngSrc="{{item.map.image}}" width="220" height="120">            
+                        </div>
+                        <div class="parallel-player">
                             {{ item.playerName }}
+                        </div>
                         }
-                    </div>
                 </div>
             }
         </div>
