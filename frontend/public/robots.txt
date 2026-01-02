@@ -4,6 +4,7 @@ Disallow: /dist/
 Disallow: /src/
 Disallow: /assets/
 Disallow: /api/
+Disallow: /legal/
 
 # Allow main application routes
 Allow: /

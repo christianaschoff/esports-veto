@@ -8,6 +8,7 @@ import { Help } from './global/help/help';
 import { ObserveUi } from './observe/observe-ui/observe-ui';
 import { AdminUi } from './admin/admin-ui/admin-ui';
 import { ModeSelection } from './create/create-ui/components/mode-selection/mode-selection';
+import { Legal } from './global/legal/about';
 
 const basePageTitle = "Veto System";
 
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: 'faq', component: Faq, title: basePageTitle},
     {path: 'help', component: Help, title: basePageTitle},
     {path: 'about', component: About, title: basePageTitle},
+    {path: 'legal', component: Legal, title: basePageTitle},
     {path: '**', component: HomeUi, title: basePageTitle},
 ];
