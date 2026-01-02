@@ -5,21 +5,29 @@
     
     @if(currentState() === VetoStateEnum.VETO_MISSING_A) {
         @if(amIPlayerA()) {
-            <div class="info turn you-turn">Veto turn: It is your turn!</div>    
+            <div class="info turn you-turn {{ isVeto() ? 'veto' : 'pick' }}">{{ isVeto() ? 'Veto' : 'Pick' }} phase: It is your turn!</div>    
         } @else {
-            <div class="info turn">Veto turn: {{ state.playerA() }}</div>
+            <div class="info turn {{ isVeto() ? 'veto' : 'pick' }}">{{ isVeto() ? 'Veto' : 'Pick' }} phase: 
+                <span class="black">
+                {{ state.playerA() }}
+                </span>
+            </div>
         }
     }
     
     @if(currentState() === VetoStateEnum.VETO_MISSING_B) {
         @if(!amIPlayerA()) {
-            <div class="info turn your-turn">Veto turn: It is your turn!</div>    
+            <div class="info turn your-turn {{ isVeto() ? 'veto' : 'pick' }}">{{isVeto() ? 'Veto' : 'Pick' }} phase: It is your turn!</div>    
         } @else {
-            <div class="info turn">Veto turn: {{ state.playerB() }}</div>
+            <div class="info turn {{ isVeto() ? 'veto' : 'pick' }}">{{isVeto() ? 'Veto' : 'Pick' }} phase: 
+                <span class="black">
+                {{ state.playerB() }}
+                </span>
+            </div>
         }
     }
     
     @if(currentState() === VetoStateEnum.VETO_DONE) {
         <div class="info done">Veto is done</div>
-    }
+    }    
 </div>
