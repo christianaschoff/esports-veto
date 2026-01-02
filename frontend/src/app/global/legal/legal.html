@@ -1,23 +1,26 @@
 <h2>Legal Notice</h2>
-<div>
-    <h4>Information prusuant to Sect. 5 German Telemedia Act (TMG)</h4>
+<div *ngIf="legalNotice()">
+    <h4>Information pursuant to Sect. 5 German Telemedia Act (TMG)</h4>
     <p>
-        Name
-        <br />C/O
-        <br />Street
-        <br /> PLZ / Town
+        {{ legalNotice()!.name }}
+        <br />{{ legalNotice()!.legalEntity }}
+        <br />{{ legalNotice()!.street }}
+        <br />{{ legalNotice()!.zipcodeTown }}
     </p>
-    
-    <h3>Contact</h3>
-    <br />E-Mail: <a href="mailto:veto@odgw.de">veto(at)odgw.de</a>    
-    <br />Phone: +49 (0)....
 
-    <p> The European Commission provides a platform for online dispute resolution (ODR): 
-        <a _ngcontent-ng-c2989407386="" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
-     <br />Our e-mail address can be found above in the site notice. 
+    <h3>Contact</h3>
+    <br />E-Mail: <a [href]="'mailto:' + legalNotice()!.email">{{ legalNotice()!.email }}</a>
+    <br />Phone: {{ legalNotice()!.phoneNumber }}
+
+    <p> The European Commission provides a platform for online dispute resolution (ODR):
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
+     <br />Our e-mail address can be found above in the site notice.
     </p>
     <h3>Dispute resolution proceedings in front of a consumer arbitration board</h3>
     <p>
-    We are not willing or obliged to participate in dispute resolution proceedings in front of a consumer arbitration board.  
+    We are not willing or obliged to participate in dispute resolution proceedings in front of a consumer arbitration board.
     </p>
+</div>
+<div *ngIf="!legalNotice()">
+    Loading legal notice...
 </div>

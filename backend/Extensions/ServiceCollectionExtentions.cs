@@ -13,6 +13,7 @@ public static class ServiceCollectionExtentions
         services.Configure<VetoSystemDatabaseConfig>(builder.Configuration.GetSection("VetoDatabase"));
         services.Configure<TokenConfig>(builder.Configuration.GetSection("Token"));
         services.Configure<RateLimiterConfig>(builder.Configuration.GetSection("RateLimiter"));
+        services.Configure<LegalNotice>(builder.Configuration.GetSection("LegalNotice"));
         services.AddSingleton<VetoSystemSetupService>();
         services.AddSingleton<VetoSystemResultService>();
         services.AddSingleton<VetoCoordinator>();

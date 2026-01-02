@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Scalar.AspNetCore;
+using Microsoft.Extensions.Options;
 using VETO.Database;
 using VETO.Metrics;
 using VETO.Models;
@@ -148,6 +149,11 @@ createGroup.MapCreateEndpoints();
 app.MapTokenEndpoints();
 app.MapVersionEndpoints();
 app.MapSocialMediaLinksdataEndpoints();
+
+app.MapGet("/api/legal", (IOptions<LegalNotice> legalNotice) =>
+{
+    return Results.Ok(legalNotice.Value);
+});
 #endregion
 
 app.Services.GetService<MongoIndices>()?.CreateIndexesAsync().Wait();

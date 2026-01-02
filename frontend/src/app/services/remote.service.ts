@@ -5,6 +5,7 @@ import { catchError, lastValueFrom, Observable, tap } from 'rxjs';
 import { GlobalStore } from "../store/global-store";
 import { Version } from '../data/version.data';
 import { SocialMediaData } from '../data/socialmedia.data';
+import { LegalNotice } from '../data/legal.data';
 
 @Injectable({
   providedIn: 'root'  
@@ -68,6 +69,10 @@ async loadRemoteVetoAdminAsync(vetoId: string) : Promise<ConstellationResponse> 
 
   async getSocialMediaInformation(attendee: string, id: string) : Promise<SocialMediaData> {
     return lastValueFrom(this.httpClient.get<SocialMediaData>(`/api/socialmediadata/${attendee}/${id}`))
+  }
+
+  async getLegalNotice(): Promise<LegalNotice> {
+    return lastValueFrom(this.httpClient.get<LegalNotice>('/api/legal'));
   }
 
 }

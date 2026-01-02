@@ -8,7 +8,7 @@ import { Help } from './global/help/help';
 import { ObserveUi } from './observe/observe-ui/observe-ui';
 import { AdminUi } from './admin/admin-ui/admin-ui';
 import { ModeSelection } from './create/create-ui/components/mode-selection/mode-selection';
-import { Legal } from './global/legal/about';
+import { Legal } from './global/legal/legal';
 
 const basePageTitle = "Veto System";
 
