@@ -17,12 +17,12 @@ services:
       - OTLP_ENDPOINT_URL=${OTLP_ENDPOINT_URL}
       - ZIPKIN_ENDPOINT_URL=${ZIPKIN_ENDPOINT_URL}
       - UseOpenTelemetry=${USE_OPENTELEMETRY}
-      - LegalNotice__Name=${LEGALNOTICE_NAME:-<Default Name>}
-      - LegalNotice__LegalEntity=${LEGALNOTICE_LEGAL_ENTITY:-<Default Entity>}
-      - LegalNotice__Street=${LEGALNOTICE_STREET:-<Default Street>}
-      - LegalNotice__ZipcodeTown=${LEGALNOTICE_ZIP_CODE_TOWN:-<Default Zip Town>}
-      - LegalNotice__Email=${LEGALNOTICE_EMAIL:-<Default Email>}
-      - LegalNotice__PhoneNumber=${LEGALNOTICE_PHONE_NUMBER:-<Default Phone>}
+      - LegalNotice__Name=${LEGALNOTICE_NAME:-<Name>}
+      - LegalNotice__LegalEntity=${LEGALNOTICE_LEGAL_ENTITY:-<LegalEntity>}
+      - LegalNotice__Street=${LEGALNOTICE_STREET:-<Street>}
+      - LegalNotice__ZipcodeTown=${LEGALNOTICE_ZIPCODE_TOWN:-<Zipcode> <Town>}
+      - LegalNotice__Email=${LEGALNOTICE_EMAIL:-<Email>}
+      - LegalNotice__PhoneNumber=${LEGALNOTICE_PHONE_NUMBER:-<PhoneNumber>}
       # Any other ASP.NET config values
     networks:
       - appnet

@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using VETO.Models;
@@ -51,6 +52,32 @@ public static class HelperFunctions
             return Environment.GetEnvironmentVariable("TOKEN_KEY") ?? "";
         }
         return tokenConfig.Key;
+    }
+
+    public static LegalNotice GetLegalNotice(IOptions<LegalNotice> legalNoticeOptions)
+    {
+        var config = legalNoticeOptions.Value;
+        return new LegalNotice
+        {
+            Name = !string.IsNullOrEmpty(config.Name) && config.Name != "<Name>"
+                ? config.Name
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_NAME") ?? "",
+            LegalEntity = !string.IsNullOrEmpty(config.LegalEntity) && config.LegalEntity != "<LegalEntity>"
+                ? config.LegalEntity
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_LEGAL_ENTITY") ?? "",
+            Street = !string.IsNullOrEmpty(config.Street) && config.Street != "<Street>"
+                ? config.Street
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_STREET") ?? "",
+            ZipcodeTown = !string.IsNullOrEmpty(config.ZipcodeTown) && config.ZipcodeTown != "<Zipcode> <Town>"
+                ? config.ZipcodeTown
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_ZIPCODE_TOWN") ?? "",
+            Email = !string.IsNullOrEmpty(config.Email) && config.Email != "<Email>"
+                ? config.Email
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_EMAIL") ?? "",
+            PhoneNumber = !string.IsNullOrEmpty(config.PhoneNumber) && config.PhoneNumber != "<PhoneNumber>"
+                ? config.PhoneNumber
+                : Environment.GetEnvironmentVariable("LEGAL_NOTICE_PHONE_NUMBER") ?? ""
+        };
     }
 
     public static AttendeeType ExtractRoleFromString(string role)
