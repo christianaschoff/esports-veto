@@ -1,5 +1,6 @@
 <h2>Legal Notice</h2>
-<div *ngIf="legalNotice()">
+@if(legalNotice()) {
+<div>
     <h4>Information pursuant to Sect. 5 German Telemedia Act (TMG)</h4>
     <p>
         {{ legalNotice()!.name }}
@@ -34,6 +35,10 @@
     Obligations to remove or block the use of information under the general laws remain unaffected. However, liability in this respect is only possible from the point in time when knowledge of a specific infringement is obtained. Upon becoming aware of corresponding infringements, we will remove these contents immediately.
     </p>
 </div>
-<div *ngIf="!legalNotice()">
+}
+@if(!legalNotice()) {
+<div>
     Loading legal notice...
 </div>
+}
+
