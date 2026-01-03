@@ -3,10 +3,12 @@ import { VetoState, VetoStepType } from '../../../../data/veto.data';
 import { VetoStore } from '../../../../store/veto-store';
 import { VetoConstellationService } from '../../../../services/veto-constellation.service';
 import { VETO_ACTION } from '../../../../data/veto-constellation.data';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-veto-state-display',
-  imports: [],
+  imports: [MatIconModule, MatListModule],
   templateUrl: './veto-state-display.html',
   styleUrl: './veto-state-display.scss'
 })
