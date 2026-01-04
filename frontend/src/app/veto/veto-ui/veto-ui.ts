@@ -13,6 +13,7 @@ import { VetoStore } from '../../store/veto-store';
 import { VetoStateDisplay } from './components/veto-state-display/veto-state-display';
 import { VetoResult } from './components/veto-result/veto-result';
 import { ConnectionStatus } from '../../shared-components/connection-status/connection-status';
+import { VetoStepType } from '../../data/veto.data';
 
 @Component({
   selector: 'app-veto-ui',
@@ -30,7 +31,8 @@ export class VetoUi implements OnInit, OnDestroy {
   routeId = signal('');
   attendee = signal('');
   localLoadingBatch = signal(true);
-  sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());  
+  sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());
+  private previousIsMyTurn = false;  
 
   constructor() {
     this.route.params.subscribe((params) => {
@@ -50,13 +52,28 @@ export class VetoUi implements OnInit, OnDestroy {
       }
     });
     
-    effect(async () => {          
-      if(this.state.attendee() && this.state.attendee().vetoId) {        
+    effect(async () => {
+      if(this.state.attendee() && this.state.attendee().vetoId) {
         await this.vetohub.joinVetoHub(this.state.attendee().vetoId,this.state.attendee().userId, this.state.attendee().userName);
         await this.state.loadByVetoId(this.state.attendee().vetoId);
         document.title = `Veto: ${this.state.vetoTitle()} - ${this.state.attendee().userName}`
         this.localLoadingBatch.set(false);
-      }        
+      }
+    });
+
+    effect(() => {
+      const steps = this.state.currentGameState().vetoSteps;
+      const userId = this.state.attendee().userId;
+      if (!userId || steps.length === 0) return;
+
+      const nextIndex = steps.findIndex(s => s.stepType === VetoStepType.Unset);
+      if (nextIndex === -1) return; // veto finished
+
+      const isMyTurn = steps[nextIndex].playerId === userId;
+      if (isMyTurn && !this.previousIsMyTurn) {
+        this.playSound();
+      }
+      this.previousIsMyTurn = isMyTurn;
     });
   }
   ngOnDestroy(): void {
@@ -67,10 +84,41 @@ export class VetoUi implements OnInit, OnDestroy {
     this.breadcrumbService.addPath([{ path: '/veto', displayName: 'Veto' }]);
   }
   
-  handleMapSelection(selectedMap: string) {          
+  handleMapSelection(selectedMap: string) {
       if(selectedMap) {
         this.vetohub.updateVeto(this.state.attendee().vetoId, selectedMap);
       }
+  }
+
+  private playSound() {
+    try {
+      if (this.isSafari()) {
+        this.showNotification();
+      } else {
+        const audio = new Audio('/audio/light-562.mp3');
+        audio.play().catch(() => {});
+      }
+    } catch (error) {
+      console.warn('Could not play sound:', error);
+    }
+  }
+
+  private isSafari(): boolean {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
+
+  private showNotification() {
+    if ('Notification' in window) {
+      if (Notification.permission === 'granted') {
+        new Notification('Your veto turn!');
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('Your veto turn!');
+          }
+        });
+      }
+    }
   }
 
 }

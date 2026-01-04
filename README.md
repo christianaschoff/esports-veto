@@ -103,3 +103,7 @@ You can connect to mongo db using (assuming you kept the default config - otherw
   mongosh --username root --password password --authenticationDatabase admin
 ```
 Keep in mind to ssh into your mongo container first.
+
+## Attributions
+
+Sounds from [Notification Sounds](https://notificationsounds.com/)
