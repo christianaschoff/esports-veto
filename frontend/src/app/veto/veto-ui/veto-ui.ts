@@ -32,6 +32,7 @@ export class VetoUi implements OnInit, OnDestroy {
   attendee = signal('');
   localLoadingBatch = signal(true);
   sessionGiven = computed(() => this.attendee() && this.routeId() && !this.state.hasErrors());
+  soundEnabled = signal(localStorage.getItem('soundEnabled') !== 'false'); // default true
   private previousIsMyTurn = false;  
 
   constructor() {
@@ -90,7 +91,13 @@ export class VetoUi implements OnInit, OnDestroy {
       }
   }
 
+  toggleSound() {
+    this.soundEnabled.set(!this.soundEnabled());
+    localStorage.setItem('soundEnabled', this.soundEnabled().toString());
+  }
+
   private playSound() {
+    if (!this.soundEnabled()) return;
     try {
       if (this.isSafari()) {
         this.showNotification();

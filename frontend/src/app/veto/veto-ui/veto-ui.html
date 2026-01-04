@@ -1,7 +1,12 @@
 @if(this.sessionGiven()) {
     @if(!this.localLoadingBatch()) {
         <h2>{{ this.state.vetoTitle() }} - {{ this.state.bestOf() }} - {{this.state.playerA() }} vs {{this.state.playerB()}}</h2>
+        <div class="header-row">
         <h3>Hi {{ this.state.attendee().userName}}</h3>
+          <button matIconButton (click)="toggleSound()" class="sound-toggle">
+            <mat-icon>{{ soundEnabled() ? 'volume_up' : 'volume_off' }}</mat-icon>
+          </button>          
+        </div>
         <app-veto-state-display></app-veto-state-display>        
         <app-maplist-veto (propageMapSelection)="handleMapSelection($event)"></app-maplist-veto>
         <app-veto-result></app-veto-result>
