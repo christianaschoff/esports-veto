@@ -765,7 +765,24 @@
   {
     "seasonName": "2025 Season 4",
     "startDate": "2025-11-10",
-    "closingDate": "2026-01-05",
+    "closingDate": "2026-01-04",
+    "maps": [
+      "Arctic Flowers LE",
+      "Breakwater LE",
+      "Crimson Research Lab LE",
+      "Emerald City CE",
+      "Reclamation LE",
+      "Rhoskallian LE",
+      "Rohana LE",
+      "Undercurrent LE",
+      "Yellowjacket"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2026 Season 1",
+    "startDate": "2025-01-05",
+    "closingDate": "2026-03-31",
     "maps": [
       "Arctic Flowers LE",
       "Breakwater LE",

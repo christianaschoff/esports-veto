@@ -779,7 +779,24 @@
   {
     "seasonName": "2025 Season 4",
     "startDate": "2025-11-10",
-    "closingDate": "2026-01-05",
+    "closingDate": "2026-01-04",
+    "maps": [
+      "Ashen Cradle",
+      "Concord LE",
+      "Dystopian Complex",
+      "Floodplain",
+      "Morheimen",
+      "Riptide",
+      "Slowdive",
+      "Tunguska",
+      "Tuonela LE"
+    ],
+    "mapCount": 9
+  },
+  {
+    "seasonName": "2026 Season 1",
+    "startDate": "2025-01-05",
+    "closingDate": "2026-03-31",
     "maps": [
       "Ashen Cradle",
       "Concord LE",
